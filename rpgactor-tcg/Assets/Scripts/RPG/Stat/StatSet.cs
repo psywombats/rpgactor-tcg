@@ -7,7 +7,8 @@ using UnityEngine;
 namespace RpgActorTGC
 {
      [Serializable]
-    public class StatSet : ISerializationCallbackReceiver {
+    public class StatSet : ISerializationCallbackReceiver 
+    {
 
         [SerializeField] private StatDictionary serializedStats;
         private readonly Dictionary<Stat, float> stats = new();

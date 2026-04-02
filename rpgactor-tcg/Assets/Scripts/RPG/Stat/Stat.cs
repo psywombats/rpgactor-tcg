@@ -2,12 +2,13 @@
 {
     public enum Stat
     {
-        NONE,
-        MHP,
-        HP,
-        ATK,
-        DEF,
-        SPD,
+        NONE  = 0,
+        MHP   = 1,
+        MP    = 2,
+        HP    = 3,
+        ATK   = 4,
+        DEF   = 5,
+        SPD   = 6,
     }
     
     public static class StatExtensions

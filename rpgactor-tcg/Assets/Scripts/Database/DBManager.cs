@@ -8,8 +8,9 @@ namespace RpgActorTGC
         
         public T Get<T>(string key) where T : ScriptableObject, IDatabaseKeyable => database.Get<T>(key);
 
-        public void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             if (database == null)
             {
                 database = Resources.Load<ScriptableDB>("Database");

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using EditorAttributes;
 using UnityEditor;
 using UnityEngine;
@@ -9,14 +10,27 @@ namespace RpgActorTGC
     [CreateAssetMenu(fileName = "Database", menuName = "Data/ScriptableDB")]
     public class ScriptableDB : ScriptableObject
     {
-        [SerializeField] private SerialDictionary<string, List<ScriptableObject>> serializedScriptables;
+        [Serializable]
+        private struct ScriptSet
+        {
+            public List<ScriptableObject> scriptables;
+        }
+        
+        [SerializeField] private List<string> orderedTypeNames = new();
+        [SerializeField] private List<ScriptSet> orderedScriptSets = new();
 
-        private Dictionary<string, List<ScriptableObject>> scriptablesByTypeName = new();
+        private readonly Dictionary<string, List<ScriptableObject>> scriptablesByTypeName = new();
         private readonly Dictionary<string, Dictionary<string, ScriptableObject>> indexedScriptablesByType = new();
         
         public T Get<T>(string key) where T : ScriptableObject, IDatabaseKeyable
         {
-            scriptablesByTypeName ??= serializedScriptables.ToDictionary();
+            if (!scriptablesByTypeName.Any())
+            {
+                for (var i = 0; i < orderedTypeNames.Count; i += 1)
+                {
+                    scriptablesByTypeName.Add(orderedTypeNames[i], orderedScriptSets[i].scriptables);
+                }
+            }
             if (!indexedScriptablesByType.TryGetValue(typeof(T).Name, out var scriptablesByKey))
             {
                 scriptablesByKey = new Dictionary<string, ScriptableObject>();
@@ -76,8 +90,13 @@ namespace RpgActorTGC
                 }
             }
 
-            scriptablesByTypeName = null;
-            serializedScriptables = new SerialDictionary<string, List<ScriptableObject>>(result);
+            scriptablesByTypeName.Clear();
+            orderedTypeNames = result.Keys.ToList();
+            orderedScriptSets = result.Values.Select(r => new ScriptSet
+            {
+                scriptables = r.ToList() 
+                
+            }).ToList();
             
             EditorUtility.SetDirty(this);
         }

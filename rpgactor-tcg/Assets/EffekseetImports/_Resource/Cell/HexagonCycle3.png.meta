@@ -1,0 +1,923 @@
+fileFormatVersion: 2
+guid: d830dfb352e809849a8537dd0d24a7eb
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -769859306906469738
+    second: HexagonCycle3_0
+  - first:
+      213: 627717963856760381
+    second: HexagonCycle3_1
+  - first:
+      213: -5056072353152378924
+    second: HexagonCycle3_2
+  - first:
+      213: -7753792827385389203
+    second: HexagonCycle3_3
+  - first:
+      213: 1228762271910627835
+    second: HexagonCycle3_4
+  - first:
+      213: -1261322147895148252
+    second: HexagonCycle3_5
+  - first:
+      213: -8578336706051995925
+    second: HexagonCycle3_6
+  - first:
+      213: -271795000714558098
+    second: HexagonCycle3_7
+  - first:
+      213: -6430383269024981206
+    second: HexagonCycle3_8
+  - first:
+      213: 5639063370180421983
+    second: HexagonCycle3_9
+  - first:
+      213: 4831442735056058801
+    second: HexagonCycle3_10
+  - first:
+      213: -943491343124753767
+    second: HexagonCycle3_11
+  - first:
+      213: 7144913160848575879
+    second: HexagonCycle3_12
+  - first:
+      213: 4990493817660225768
+    second: HexagonCycle3_13
+  - first:
+      213: -1702097455186870524
+    second: HexagonCycle3_14
+  - first:
+      213: 6481140375102899425
+    second: HexagonCycle3_15
+  - first:
+      213: -2103652960483304155
+    second: HexagonCycle3_16
+  - first:
+      213: 158155386173746887
+    second: HexagonCycle3_17
+  - first:
+      213: -3231482952670319698
+    second: HexagonCycle3_18
+  - first:
+      213: 1238633900896307431
+    second: HexagonCycle3_19
+  - first:
+      213: 6827555833313397448
+    second: HexagonCycle3_20
+  - first:
+      213: 1356516520166387817
+    second: HexagonCycle3_21
+  - first:
+      213: -4707699938281935229
+    second: HexagonCycle3_22
+  - first:
+      213: 5890769287042791549
+    second: HexagonCycle3_23
+  - first:
+      213: -1244001644633288190
+    second: HexagonCycle3_24
+  - first:
+      213: -3545889659481521156
+    second: HexagonCycle3_25
+  - first:
+      213: -1703781503319919236
+    second: HexagonCycle3_26
+  - first:
+      213: 6942233557377645921
+    second: HexagonCycle3_27
+  - first:
+      213: -7769022869153975325
+    second: HexagonCycle3_28
+  - first:
+      213: -4012861844222030857
+    second: HexagonCycle3_29
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: HexagonCycle3_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 197
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69abfcc0a09e055f0800000000000000
+      internalID: -769859306906469738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HexagonCycle3_1
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 29
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3e40de892a16b800800000000000000
+      internalID: 627717963856760381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HexagonCycle3_2
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 34
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d7dda7abf835d9b0800000000000000
+      internalID: -5056072353152378924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HexagonCycle3_3
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 24
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6fd8bd318ef46490800000000000000
+      internalID: -7753792827385389203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HexagonCycle3_4
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 29
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf982aaa6c07d0110800000000000000
+      internalID: 1228762271910627835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HexagonCycle3_5
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 34
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42180637032ee7ee0800000000000000
+      internalID: -1261322147895148252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HexagonCycle3_6
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 24
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be683104730a3f880800000000000000
+      internalID: -8578336706051995925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HexagonCycle3_7
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 29
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e658eaa03e36a3cf0800000000000000
+      internalID: -271795000714558098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HexagonCycle3_8
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 34
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2f96288c70b2c6a0800000000000000
+      internalID: -6430383269024981206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HexagonCycle3_9
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 24
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f596585124af14e40800000000000000
+      internalID: 5639063370180421983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HexagonCycle3_10
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 29
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b978a7c19bbc0340800000000000000
+      internalID: 4831442735056058801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HexagonCycle3_11
+      rect:
+        serializedVersion: 2
+        x: 251
+        y: 0
+        width: 69
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 992946c4f9b08e2f0800000000000000
+      internalID: -943491343124753767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HexagonCycle3_12
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 19
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78d84671aa4d72360800000000000000
+      internalID: 7144913160848575879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HexagonCycle3_13
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 9
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e8bb67bfabc14540800000000000000
+      internalID: 4990493817660225768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HexagonCycle3_14
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 14
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40f7d72f16fe068e0800000000000000
+      internalID: -1702097455186870524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HexagonCycle3_15
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 19
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e4437525d2a1f950800000000000000
+      internalID: 6481140375102899425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HexagonCycle3_16
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 9
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52d91bf27c25ec2e0800000000000000
+      internalID: -2103652960483304155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HexagonCycle3_17
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 14
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ce633c5c71e13200800000000000000
+      internalID: 158155386173746887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HexagonCycle3_18
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 19
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eabea5c20677723d0800000000000000
+      internalID: -3231482952670319698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HexagonCycle3_19
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 9
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e84ea568f2803110800000000000000
+      internalID: 1238633900896307431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HexagonCycle3_20
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 14
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ca8ac04bd950ce50800000000000000
+      internalID: 6827555833313397448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HexagonCycle3_21
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 19
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9607774869053d210800000000000000
+      internalID: 1356516520166387817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HexagonCycle3_22
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 9
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38ea39d39d3eaaeb0800000000000000
+      internalID: -4707699938281935229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HexagonCycle3_23
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 0
+        width: 18
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7877f7b47730c150800000000000000
+      internalID: 5890769287042791549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HexagonCycle3_24
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 4
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20291af581b6cbee0800000000000000
+      internalID: -1244001644633288190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HexagonCycle3_25
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 0
+        width: 18
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf38fd144287acec0800000000000000
+      internalID: -3545889659481521156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HexagonCycle3_26
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 4
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c753cbfefb3fa58e0800000000000000
+      internalID: -1703781503319919236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HexagonCycle3_27
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 0
+        width: 18
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16d7a4f83a4c75060800000000000000
+      internalID: 6942233557377645921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HexagonCycle3_28
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 4
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e3f030dcd2ee2490800000000000000
+      internalID: -7769022869153975325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HexagonCycle3_29
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 0
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fb4d6ae9637f48c0800000000000000
+      internalID: -4012861844222030857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      HexagonCycle3_0: -769859306906469738
+      HexagonCycle3_1: 627717963856760381
+      HexagonCycle3_10: 4831442735056058801
+      HexagonCycle3_11: -943491343124753767
+      HexagonCycle3_12: 7144913160848575879
+      HexagonCycle3_13: 4990493817660225768
+      HexagonCycle3_14: -1702097455186870524
+      HexagonCycle3_15: 6481140375102899425
+      HexagonCycle3_16: -2103652960483304155
+      HexagonCycle3_17: 158155386173746887
+      HexagonCycle3_18: -3231482952670319698
+      HexagonCycle3_19: 1238633900896307431
+      HexagonCycle3_2: -5056072353152378924
+      HexagonCycle3_20: 6827555833313397448
+      HexagonCycle3_21: 1356516520166387817
+      HexagonCycle3_22: -4707699938281935229
+      HexagonCycle3_23: 5890769287042791549
+      HexagonCycle3_24: -1244001644633288190
+      HexagonCycle3_25: -3545889659481521156
+      HexagonCycle3_26: -1703781503319919236
+      HexagonCycle3_27: 6942233557377645921
+      HexagonCycle3_28: -7769022869153975325
+      HexagonCycle3_29: -4012861844222030857
+      HexagonCycle3_3: -7753792827385389203
+      HexagonCycle3_4: 1228762271910627835
+      HexagonCycle3_5: -1261322147895148252
+      HexagonCycle3_6: -8578336706051995925
+      HexagonCycle3_7: -271795000714558098
+      HexagonCycle3_8: -6430383269024981206
+      HexagonCycle3_9: 5639063370180421983
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
