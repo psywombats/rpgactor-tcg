@@ -27,11 +27,9 @@ namespace RpgActorTGC
                 }
 
                 var scores = new Dictionary<U, int>();
-                var totalFitness = 0;
                 foreach (var solution in currentSolutions)
                 {
-                    var fitness = EvaluateSolution(solution);
-                    totalFitness += fitness;
+                    var fitness = EvaluateSolution(settings, solution);
                     scores.Add(solution, fitness);
                 }
                 
