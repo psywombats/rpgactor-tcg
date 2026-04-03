@@ -17,7 +17,14 @@ namespace RpgActorTGC
         
         public StatSet(StatSet other) : this(other.serializedStats) {}
 
-        private StatSet(StatDictionary stats) : this() 
+        public void SetTo(StatSet other) => SetFromSerializedStats(other.serializedStats);
+        
+        private StatSet(StatDictionary stats) : this()
+        {
+            SetFromSerializedStats(stats);
+        }
+
+        private void SetFromSerializedStats(StatDictionary stats)
         {
             var statStrings = stats.ToDictionary();
             foreach (var stat in statStrings) 

@@ -13,8 +13,34 @@ MonoBehaviour:
   m_Name: Database
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.ScriptableDB
   orderedTypeNames:
+  - AbilityTypeInfo
+  - HeroData
+  - LeaderData
   - StatInfo
   orderedScriptSets:
+  - scriptables:
+    - {fileID: 11400000, guid: 56a983701695c974cb6eeb8caf0f396b, type: 2}
+    - {fileID: 11400000, guid: 37953874b95020c4c880a2cc62426cb1, type: 2}
+    - {fileID: 11400000, guid: 1c5d9befe3d1dcb4b8b8cccb328e10ed, type: 2}
+    - {fileID: 11400000, guid: f8c46b59aaf24f045b152f58b3112c6c, type: 2}
+    - {fileID: 11400000, guid: 16a5ad701a2b4fe409b27ba8a3f37fbf, type: 2}
+    - {fileID: 11400000, guid: 00d1f9be3357a1b428eb70cb76a42123, type: 2}
+    - {fileID: 11400000, guid: 63539cbbb6946214b8a8fa16f45e8132, type: 2}
+    - {fileID: 11400000, guid: 08065b6e1450d5c488b065b8ee514217, type: 2}
+    - {fileID: 11400000, guid: c8e625e6adfc7734f8c508f4a13550b2, type: 2}
+  - scriptables:
+    - {fileID: 11400000, guid: 48dc7e19f2df10749a670b10e6f7f40f, type: 2}
+    - {fileID: 11400000, guid: 1cc346a23f81f4640827688a10804d47, type: 2}
+    - {fileID: 11400000, guid: 2116afe0806559146b9b0699f1d352c6, type: 2}
+    - {fileID: 11400000, guid: 09b1c58ca5c9446479124e624c0575e9, type: 2}
+    - {fileID: 11400000, guid: beee0b1cc35a0394ba43694365558ab7, type: 2}
+  - scriptables:
+    - {fileID: 11400000, guid: 1ccfe14c48e794546a14a6d4217a7a14, type: 2}
+    - {fileID: 11400000, guid: d13c584c4ab00c44392d55d427ed81d0, type: 2}
+    - {fileID: 11400000, guid: da3b1bfd91e5c304fa6fe3306553c0c0, type: 2}
+    - {fileID: 11400000, guid: c15cec35f62d8d74d8960d416a8470ab, type: 2}
+    - {fileID: 11400000, guid: 8ccdb7683e365214cbf96db649646698, type: 2}
+    - {fileID: 11400000, guid: 21dbb6141b6635b438efe16f955d9726, type: 2}
   - scriptables:
     - {fileID: 11400000, guid: 5c1c6c025627dd3449ad6718fb703840, type: 2}
     - {fileID: 11400000, guid: 56216c7273baa0840b4e0d77fb913ddd, type: 2}

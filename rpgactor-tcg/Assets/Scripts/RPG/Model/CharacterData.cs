@@ -3,12 +3,15 @@ using UnityEngine;
 
 namespace RpgActorTGC
 {
-    public abstract class CharacterData : ScriptableObject, IDatabaseKeyable
+    [CreateAssetMenu(fileName = "Character", menuName = "Data/CharacterData")]
+    [DatabaseIndexed]
+    public class CharacterData : ScriptableObject, IDatabaseKeyable
     {
         [SerializeField] public string characterName;
         [Space] 
+        [SerializeField] public bool isLeader;
         [SerializeField] public StatSet stats;
-        [SerializeField] private List<AbilityData> abilities;
+        [SerializeField] public List<AbilityData> abilities;
 
         public string Key => name;
     }
