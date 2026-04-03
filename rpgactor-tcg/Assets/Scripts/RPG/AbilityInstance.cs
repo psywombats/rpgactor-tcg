@@ -26,6 +26,7 @@
         {
             if ((!HasActivated || Card.IsContinuous) && Party.Mp >= Card.Cost)
             {
+                if (battle.UseVerboseLogging) battle.LogPartial($"Activated {ShortDescription}: ");
                 HasActivated = true;
                 Card.Data.Activate(battle, Owner, this);
             }

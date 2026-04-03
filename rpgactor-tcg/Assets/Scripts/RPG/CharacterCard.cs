@@ -9,6 +9,26 @@ namespace RpgActorTGC
         public bool IsLeader => Data.isLeader;
         public List<AbilityCard> AbilityCards { get; } = new();
         public StatSet Stats => Data.stats;
+
+        public string CharacterName => Data.characterName;
+        public string CompositionString => IsLeader ? $"[{CharacterName}]" : CharacterName;
+
+        private string abilString;
+        public string AbilString
+        {
+            get
+            {
+                if (abilString == null)
+                {
+                    abilString = "";
+                    foreach (var card in AbilityCards)
+                    {
+                        abilString += $"({card.GetShortDescription(this)})";
+                    }
+                }
+                return abilString;
+            }
+        }
         
         public CharacterCard(CharacterData data)
         {
@@ -21,5 +41,7 @@ namespace RpgActorTGC
         }
         
         public float this[Stat tag] => Data.stats[tag];
+
+        public override string ToString() => CompositionString;
     }
 }

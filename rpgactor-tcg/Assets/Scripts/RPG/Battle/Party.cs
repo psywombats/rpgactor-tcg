@@ -33,6 +33,11 @@ namespace RpgActorTGC
             }
         }
 
+        public Party(DeckData data) : this(new Deck(data)) {}
+
+        public Party(string name, CharacterData back, CharacterData left, CharacterData center, CharacterData right)
+            : this(new Deck(name, back, left, center, right)) {}
+
         public Unit this[LaneType lane]
         {
             get
@@ -47,6 +52,19 @@ namespace RpgActorTGC
                 return null;
             }
         }
+        
+        #region ToString
+
+        public string ShortName => deck.DeckName;
+        public string CompositionString => deck.CompositionString;
+        public string StateString => $"(\"{ShortName}\" {this[LaneType.Back].StateString} / " +
+            $"{this[LaneType.Left].StateString} / " +
+            $"{this[LaneType.Center].StateString} / " +
+            $"{this[LaneType.Right].StateString})";
+
+        public override string ToString() => StateString;
+
+        #endregion
         
         #region Battle sim
 
@@ -77,11 +95,11 @@ namespace RpgActorTGC
                 {
                     SwapSpaces(center, back);
                 }
-                else if (left.IsDead)
+                else if (!left.IsDead)
                 {
                     SwapSpaces(center, left);
                 }
-                else if (right.IsDead)
+                else if (!right.IsDead)
                 {
                     SwapSpaces(center, right);
                 }

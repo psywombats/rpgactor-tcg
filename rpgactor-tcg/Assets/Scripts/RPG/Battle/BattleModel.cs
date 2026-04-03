@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace RpgActorTGC
 {
@@ -7,6 +8,12 @@ namespace RpgActorTGC
         private Party Player1 { get; }
         private Party Player2 { get; }
         
+        public string LivenessString =>
+            $"{Player1.Leader.LivenessString} ({Player1.Mp}) vs ({Player2.Mp}) {Player2.Leader.LivenessString}\n" +
+            $"__{Player1[LaneType.Left].LivenessChar}____{Player2[LaneType.Left].LivenessChar}__\n" +
+            $"_{Player1[LaneType.Back].LivenessChar}{Player1[LaneType.Center].LivenessChar}____{Player2[LaneType.Center].LivenessChar}{Player2[LaneType.Back].LivenessChar}_\n" +
+            $"__{Player1[LaneType.Right].LivenessChar}____{Player2[LaneType.Right].LivenessChar}__";
+
         public BattleModel(Party player1, Party player2)
         {
             Player1 = player1;
@@ -36,7 +43,10 @@ namespace RpgActorTGC
         }
         
         #region Battle sim
-        
+
+        public string Report { get; private set; }
+        public bool UseVerboseLogging { get; init; }
+
         public int Turn { get; private set; }
         
         public bool IsOver => Player1.Leader.IsDead || Player2.Leader.IsDead;
@@ -45,25 +55,49 @@ namespace RpgActorTGC
 
         public Party SimulateBattle()
         {
+            Reset();
             for (Turn = 1; Turn <= 10; Turn += 1)
             {
-                SimulateNextActor();
+                actedThisTurn.Clear();
+                if (UseVerboseLogging)
+                {
+                    Log($"Begin turn {Turn}\n{LivenessString}\n==========\n");
+                }
+
+                for (var actor = GetNextActor(); actor != null; actor = GetNextActor())
+                {
+                    SimulateActor(actor);
+                    Player1.CheckPromotion();
+                    Player2.CheckPromotion();
+                    if (IsOver)
+                    {
+                        break;
+                    }
+                }
                 if (IsOver)
                 {
                     break;
                 }
-                Player1.CheckPromotion();
-                Player2.CheckPromotion();
+                
+                if (UseVerboseLogging) Log("");
             }
 
-            return Player1;
+            var winner = Player1.Leader.IsDead ? Player2 : Player1;
+            if (UseVerboseLogging) Log($"\n\n{winner.ShortName} won!"); 
+            return winner;
         }
 
-        private void SimulateNextActor()
+        private void Reset()
         {
-            actedThisTurn.Clear();
+            Player1.Reset();
+            Player2.Reset();
+            Turn = 0;
+        }
+
+        private Unit GetNextActor()
+        {
             Unit actor = null;
-            foreach (var unit in Player1)
+            foreach (var unit in Player1.Union(Player2))
             {
                 if (!actedThisTurn.Contains(unit)
                     && (actor == null
@@ -73,15 +107,23 @@ namespace RpgActorTGC
                     actor = unit;
                 }
             }
+            return actor;
+        }
 
-            if (actor == null)
-            {
-                UnityEngine.Debug.LogError("No units have yet to move");
-                return;
-            }
-            
+        private void SimulateActor(Unit actor)
+        {
             actedThisTurn.Add(actor);
             actor.SimulateTurn(this);
+        }
+
+        public void Log(string message)
+        {
+            LogPartial(message + '\n');
+        }
+
+        public void LogPartial(string partialMessage)
+        {
+            Report += partialMessage;
         }
         
         #endregion

@@ -12,5 +12,6 @@ namespace RpgActorTGC
         [SerializeField] public bool useBinaryEditor;
 
         public string Key => associatedStat.ToString();
+        public string StatName => statName;
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace RpgActorTGC
+﻿using JetBrains.Annotations;
+
+namespace RpgActorTGC
 {
     public class AbilityCard
     {
@@ -13,7 +15,9 @@
             Data = data;
         }
         
-        public string GetShortDescription(CharacterCard owner) => $"{Data.mpCost}: {Data.GetAbilityName(owner.Data)} {Power}";
-        public string GetLongDescription(CharacterCard owner) => $"{Data.mpCost}: {string.Format(Data.GetAbilityDesc(owner.Data), Power)}";
+        public string GetShortDescription([CanBeNull] CharacterCard owner) => $"{Data.mpCost}: {Data.GetAbilityName(owner?.Data)} {Power}";
+        public string GetLongDescription([CanBeNull] CharacterCard owner) => $"{Data.mpCost}: {string.Format(Data.GetAbilityDesc(owner?.Data), Power)}";
+
+        public override string ToString() => GetShortDescription(null);
     }
 }
