@@ -24,13 +24,13 @@ MonoBehaviour:
       - MP
       - DEF
       values:
-      - 150
-      - 150
-      - 15
-      - 12
-      - 10
-      - 15
+      - 30
+      - 30
+      - 3
+      - 6
+      - 2
+      - 3
   abilities:
-  - mpCost: 20
-    type: 1
-    power: 30
+  - warhead: {fileID: 11400000, guid: 3c2b6a883981a09439a2434691bfb65a, type: 2}
+    mpCost: 4
+    power: 6

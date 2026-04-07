@@ -36,7 +36,7 @@ namespace RpgActorTGC
 
             foreach (var abil in data.abilities)
             {
-                AbilityCards.Add(new AbilityCard(abil));
+                AbilityCards.Add(CardCache.Instance.GetOrCreateCard(abil));
             }
         }
         

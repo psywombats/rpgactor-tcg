@@ -20,7 +20,7 @@ namespace RpgActorTGC
         public string LivenessChar => IsDead
             ? IsLeader ? "X" : "x" 
             : IsLeader ? "0" : "o";
-        public string CompositionString => $"{Card.CompositionString} ({Lane})";
+        public string CompositionString => $"<color={Party.Color}>{Card.CompositionString}</color> ({Lane.ToString()[0]})";
         public string StateString => $"{{ {CompositionString}: {this[Stat.HP]}/{this[Stat.MHP]} " +
                                      $"{this[Stat.ATK]},{this[Stat.DEF]},{this[Stat.SPD]},{this[Stat.MP]} {Card.AbilString} }}";
 
@@ -46,7 +46,7 @@ namespace RpgActorTGC
             Reset();
         }
 
-        public override string ToString() => StateString;
+        public override string ToString() => CompositionString;
 
         #region Battle sim
 
@@ -95,12 +95,21 @@ namespace RpgActorTGC
 
         public void AttackUnit(BattleModel battle, Unit opponent)
         {
-            var dmg = (int)this[Stat.ATK] - opponent[Stat.DEF];
+            var dmg = (int)(this[Stat.ATK] - opponent[Stat.DEF]);
             if (battle.UseVerboseLogging) battle.Log($"Attacked {opponent.CompositionString} for {dmg} damage " +
                                                      $"({opponent[Stat.HP]} => {opponent[Stat.HP] - dmg})");
             
-            opponent[Stat.HP] -= dmg;
+            opponent.TakeDamage(dmg);
             if (battle.UseVerboseLogging && opponent.IsDead) battle.Log("Knock out!!");
+        }
+
+        public void TakeDamage(int dmg)
+        {
+            this[Stat.HP] -= dmg;
+            if (IsDead)
+            {
+                Party.CheckPromotion();
+            }
         }
         
         #endregion

@@ -15,5 +15,5 @@ MonoBehaviour:
   abilityName: Attack+
   abilityDesc: Raises {1}'s attack by {0}.
   isContinuous: 0
-  stat: 4
   targetsLeader: 0
+  stat: 4

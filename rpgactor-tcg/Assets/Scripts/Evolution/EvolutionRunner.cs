@@ -1,71 +1,63 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace RpgActorTGC
 {
-    public abstract class EvolutionRunner<T, U> where T : EvolutionSolution<U> where U : EvolutionSolution<U>
+    public abstract class EvolutionRunner<T> where T : EvolutionSolution<T>
     {
+        [Serializable]
         public class EvolutionSettings
         {
-            public int GenerationCount { get; init; } = 100;
-            public int GenerationSize { get; init; } = 100;
-            public int GenerationWinnerCount { get; set; } = 10;
-            public int GenerationParentCount { get; set; } = 40;
-            public int GenerationChildCount { get; set; } = 80;
-            public float MutationRate { get; set; } = .1f;
+            public int generationCount = 100;
+            public int generationSize = 100;
+            public int generationWinnerCount = 10;
+            public int generationParentCount = 40;
+            public int generationChildCount = 90;
+            public float mutationRate = .5f;
         }
         
-        public IList<U> RunEvolution(EvolutionSettings settings)
+        public IList<T> RunEvolution(EvolutionSettings settings)
         {
-            var currentSolutions = new List<U>();
-            for (var generation = 0; generation < settings.GenerationCount; generation += 1)
+            var currentSolutions = new List<T>();
+            for (var generation = 0; generation < settings.generationCount; generation += 1)
             {
-                while (currentSolutions.Count < settings.GenerationSize)
+                while (currentSolutions.Count < settings.generationSize)
                 {
                     currentSolutions.Add(CreateRandomSolution());
                 }
 
-                var scores = new Dictionary<U, int>();
-                foreach (var solution in currentSolutions)
+                AssignScoresToSolutions(currentSolutions);
+
+                if (generation < settings.generationCount - 1)
                 {
-                    var fitness = EvaluateSolution(settings, solution);
-                    scores.Add(solution, fitness);
-                }
+                    var orderedSolutions = currentSolutions.OrderBy( solution => solution.Fitness ).Reverse().ToList();
+                    currentSolutions.Clear();
+                    currentSolutions.AddRange(orderedSolutions.Take(settings.generationWinnerCount));
                 
-                var orderedSolutions = currentSolutions.OrderBy( solution => scores[solution] ).Reverse().ToList();
-                currentSolutions.Clear();
-                currentSolutions.AddRange(orderedSolutions.Take(settings.GenerationWinnerCount));
-                
-                var parents = orderedSolutions.GetRange(settings.GenerationWinnerCount, settings.GenerationParentCount);
-                while (currentSolutions.Count < settings.GenerationChildCount)
-                {
-                    var parent1 = WeightedRandomSelect(parents);
-                    var parent2 = WeightedRandomSelect(parents);
-                    var child = parent1.CrossWith(parent2);
-                    currentSolutions.Add(child);
-                    
-                    if (Random.Range(0f, 1f) <= settings.MutationRate)
+                    var parents = orderedSolutions.GetRange(settings.generationWinnerCount, settings.generationParentCount);
+                    while (currentSolutions.Count < settings.generationChildCount)
                     {
-                        child.Mutate();
+                        var parent1 = RandomUtils.WeightedChoose(parents);
+                        var parent2 = RandomUtils.WeightedChoose(parents);
+                        var child = parent1.CrossWith(parent2);
+                        currentSolutions.Add(child);
+                    
+                        if (Random.Range(0f, 1f) <= settings.mutationRate)
+                        {
+                            child.Mutate();
+                        }
                     }
                 }
             }
 
-            return currentSolutions.Take(settings.GenerationWinnerCount).ToList();
+            return currentSolutions.Take(settings.generationWinnerCount).ToList();
         }
 
-        protected abstract U CreateRandomSolution();
+        protected abstract T CreateRandomSolution();
         
-        protected abstract int EvaluateSolution(EvolutionSettings settings, U solution);
-
-        private static U WeightedRandomSelect(List<U> candidates)
-        {
-            var r = Random.Range(0f, 1f);
-            r *= r; // parabolic weighting
-            var index = Mathf.RoundToInt(r * candidates.Count + .5f);
-            return candidates[index];
-        }
+        protected abstract void AssignScoresToSolutions(List<T> solutions);
     }
 }
 

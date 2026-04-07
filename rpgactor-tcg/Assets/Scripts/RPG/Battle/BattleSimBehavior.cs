@@ -1,5 +1,7 @@
-﻿using EditorAttributes;
+﻿using System;
+using EditorAttributes;
 using UnityEngine;
+using Void = EditorAttributes.Void;
 
 namespace RpgActorTGC
 {
@@ -17,9 +19,10 @@ namespace RpgActorTGC
         [SerializeField, EnableField(nameof(UsePlayer2Card))] private CharacterData p2Left;
         [SerializeField, EnableField(nameof(UsePlayer2Card))] private CharacterData p2Right;
         [Space] 
+        [SerializeField] private bool autoRun;
         [SerializeField, MessageBox(nameof(ResultString), nameof(ShouldShowResults), MessageMode.Log, StringInputMode.Dynamic)] private Void messageBoxHolder;
         [SerializeField, MessageBox("Can only simulate in play mode", nameof(IsNotRunnable), MessageMode.Warning)] private Void warningBoxHolder;
-
+        
         private bool UsePlayer1Deck => p1Back == null && p1Center == null && p1Left == null && p1Right == null;
         private bool UsePlayer2Deck => p2Back == null && p2Center == null && p2Left == null && p2Right == null;
         private bool UsePlayer1Card => player1 == null;
@@ -29,6 +32,14 @@ namespace RpgActorTGC
         private bool ShouldShowResults => !string.IsNullOrEmpty(ResultString);
         private bool IsRunnable => Application.isPlaying;
         private bool IsNotRunnable => !IsRunnable;
+
+        public void Start()
+        {
+            if (autoRun)
+            {
+                Simulate();
+            }
+        }
 
         [Button]
         public void ClearPlayer1()

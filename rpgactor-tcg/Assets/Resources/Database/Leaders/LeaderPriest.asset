@@ -22,8 +22,8 @@ MonoBehaviour:
       - SPD
       - MP
       values:
-      - 200
-      - 200
-      - 10
-      - 7
+      - 40
+      - 40
+      - 5
+      - 3
   abilities: []

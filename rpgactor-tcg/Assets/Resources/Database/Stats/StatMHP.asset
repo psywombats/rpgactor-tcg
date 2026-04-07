@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed42bb09d38143b086ccab8ee78401ba, type: 3}
   m_Name: StatMHP
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.StatInfo
-  associatedStat: 2
+  associatedStat: 1
   abbreviation: MHP
   statName: Max Health
+  useBinaryEditor: 0

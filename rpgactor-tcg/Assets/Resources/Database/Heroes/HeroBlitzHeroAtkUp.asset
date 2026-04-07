@@ -21,14 +21,12 @@ MonoBehaviour:
       - HP
       - ATK
       - SPD
-      - DEF
       values:
-      - 2
-      - 2
-      - 30
-      - 40
-      - 3
+      - 1
+      - 1
+      - 6
+      - 20
   abilities:
-  - mpCost: 25
-    type: 0
-    power: 100
+  - warhead: {fileID: 11400000, guid: ed1a35f758076544bbdc047e95c77988, type: 2}
+    mpCost: 5
+    power: 20

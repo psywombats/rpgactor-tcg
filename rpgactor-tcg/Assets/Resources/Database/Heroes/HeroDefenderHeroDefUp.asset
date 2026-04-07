@@ -22,11 +22,11 @@ MonoBehaviour:
       - ATK
       - SPD
       values:
-      - 40
-      - 40
-      - 15
-      - 4
+      - 8
+      - 8
+      - 3
+      - 2
   abilities:
-  - mpCost: 20
-    type: 2
-    power: 30
+  - warhead: {fileID: 11400000, guid: 3017929c102ae434fbb52656f20a8bc7, type: 2}
+    mpCost: 4
+    power: 6

@@ -24,10 +24,10 @@ MonoBehaviour:
       - MP
       - DEF
       values:
-      - 10
-      - 10
-      - 15
-      - 15
-      - 30
-      - 15
+      - 2
+      - 2
+      - 3
+      - 11
+      - 5
+      - 2
   abilities: []

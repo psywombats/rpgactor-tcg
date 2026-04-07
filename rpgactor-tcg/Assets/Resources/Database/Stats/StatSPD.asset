@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed42bb09d38143b086ccab8ee78401ba, type: 3}
   m_Name: StatSPD
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.StatInfo
-  associatedStat: 5
+  associatedStat: 6
   abbreviation: SPD
   statName: Speed
+  useBinaryEditor: 0

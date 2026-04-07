@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac9a71f37cfe406697db579ca837ad20, type: 3}
+  m_Script: {fileID: 11500000, guid: 5d40e8824f6f4273a261dac0f998342e, type: 3}
   m_Name: WarheadHealHero
-  m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.WHBuffStat
+  m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.WarheadHeal
   abilityName: Heal
   abilityDesc: Heals {1} by {0}.
   isContinuous: 0
-  stat: 3
   targetsLeader: 0

@@ -23,12 +23,12 @@ MonoBehaviour:
       - SPD
       - MP
       values:
-      - 120
-      - 120
-      - 20
-      - 10
-      - 10
+      - 24
+      - 24
+      - 4
+      - 5
+      - 2
   abilities:
-  - mpCost: 30
-    type: 6
-    power: 60
+  - warhead: {fileID: 11400000, guid: 753d968e36d0dda4f9d498f75e04ef04, type: 2}
+    mpCost: 6
+    power: 12

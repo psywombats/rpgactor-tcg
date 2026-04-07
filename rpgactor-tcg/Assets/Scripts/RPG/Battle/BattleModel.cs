@@ -1,12 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System;
+using System.Collections.Generic;
 
 namespace RpgActorTGC
 {
     public class BattleModel
     {
-        private Party Player1 { get; }
-        private Party Player2 { get; }
+        private Party Player1 { get; set; }
+        private Party Player2 { get; set; }
+
+        private List<Unit> allUnits = new();
         
         public string LivenessString =>
             $"{Player1.Leader.LivenessString} ({Player1.Mp}) vs ({Player2.Mp}) {Player2.Leader.LivenessString}\n" +
@@ -14,10 +16,11 @@ namespace RpgActorTGC
             $"_{Player1[LaneType.Back].LivenessChar}{Player1[LaneType.Center].LivenessChar}____{Player2[LaneType.Center].LivenessChar}{Player2[LaneType.Back].LivenessChar}_\n" +
             $"__{Player1[LaneType.Right].LivenessChar}____{Player2[LaneType.Right].LivenessChar}__";
 
-        public BattleModel(Party player1, Party player2)
+        public BattleModel() {}
+
+        public BattleModel(Party player1, Party player2) : this()
         {
-            Player1 = player1;
-            Player2 = player2;
+            InitForParties(player1, player2);
         }
 
         public Unit GetOppositeUnit(Unit unit)
@@ -51,24 +54,46 @@ namespace RpgActorTGC
         
         public bool IsOver => Player1.Leader.IsDead || Player2.Leader.IsDead;
 
-        private readonly List<Unit> actedThisTurn = new();
+        private readonly List<Unit> turnOrder = new();
+        private readonly HashSet<Unit> actedThisTurn = new();
 
-        public Party SimulateBattle()
+        private void InitForParties(Party player1, Party player2)
         {
-            Reset();
+            Turn = 0;
+            
+            Player1 = player1;
+            Player2 = player2;
+            
+            Player1.Color = "pink";
+            Player2.Color = "red";
+
+            allUnits.Clear();
+            foreach (var unit in Player1)
+            {
+                allUnits.Add(unit);
+            }
+            foreach (var unit in Player2)
+            {
+                allUnits.Add(unit);
+            }
+        }
+
+        public Party SimulateBattle() => SimulateBattle(Player1, Player2);
+        
+        public Party SimulateBattle(Party player1, Party player2)
+        {
+            InitForParties(player1, player2);
+            RecalculateTurnOrder();
             for (Turn = 1; Turn <= 10; Turn += 1)
             {
                 actedThisTurn.Clear();
-                if (UseVerboseLogging)
-                {
-                    Log($"Begin turn {Turn}\n{LivenessString}\n==========\n");
-                }
+                if (UseVerboseLogging) Log($"Begin turn {Turn}\n{LivenessString}\n==========\n");
 
-                for (var actor = GetNextActor(); actor != null; actor = GetNextActor())
+                while (actedThisTurn.Count < allUnits.Count)
                 {
+                    var actor = GetNextActor();
                     SimulateActor(actor);
-                    Player1.CheckPromotion();
-                    Player2.CheckPromotion();
+                    
                     if (IsOver)
                     {
                         break;
@@ -82,39 +107,47 @@ namespace RpgActorTGC
                 if (UseVerboseLogging) Log("");
             }
 
-            var winner = Player1.Leader.IsDead ? Player2 : Player1;
-            if (UseVerboseLogging) Log($"\n\n{winner.ShortName} won!"); 
+            var winner = Player1.Leader.IsDead ? Player2
+                : Player2.Leader.IsDead ? Player1
+                : Player1.Leader.Hp < Player2.Leader.Hp ? Player1 : Player2;
+            if (UseVerboseLogging) Log($"\n\n<color={winner.Color}>{winner.ShortName}</color> won!"); 
             return winner;
-        }
-
-        private void Reset()
-        {
-            Player1.Reset();
-            Player2.Reset();
-            Turn = 0;
         }
 
         private Unit GetNextActor()
         {
-            Unit actor = null;
-            foreach (var unit in Player1.Union(Player2))
+            foreach (var unit in turnOrder)
             {
-                if (!actedThisTurn.Contains(unit)
-                    && (actor == null
-                        || unit[Stat.SPD] > actor[Stat.SPD]
-                        || (unit[Stat.SPD] == actor[Stat.SPD] && unit.Lane < actor.Lane)))
+                if (!actedThisTurn.Contains(unit))
                 {
-                    actor = unit;
+                    return unit;
                 }
             }
-            return actor;
+            throw new ArgumentException("No actors have yet to act");
         }
 
         private void SimulateActor(Unit actor)
         {
             actedThisTurn.Add(actor);
-            actor.SimulateTurn(this);
+            if (!actor.IsDead)
+            {
+                actor.SimulateTurn(this);
+            }
         }
+
+        public void InvalidateTurnOrder()
+        {
+            RecalculateTurnOrder();
+        }
+
+        private void RecalculateTurnOrder()
+        {
+            turnOrder.Clear();
+            turnOrder.AddRange(allUnits);
+            turnOrder.Sort(SpeedComparator);
+        }
+
+        private static int SpeedComparator(Unit p1, Unit p2) => (int)(p1[Stat.SPD] - p2[Stat.SPD]);
 
         public void Log(string message)
         {

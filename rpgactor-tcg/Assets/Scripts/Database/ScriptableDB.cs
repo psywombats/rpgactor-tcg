@@ -24,17 +24,11 @@ namespace RpgActorTGC
         
         public T Get<T>(string key) where T : ScriptableObject, IDatabaseKeyable
         {
-            if (!scriptablesByTypeName.Any())
-            {
-                for (var i = 0; i < orderedTypeNames.Count; i += 1)
-                {
-                    scriptablesByTypeName.Add(orderedTypeNames[i], orderedScriptSets[i].scriptables);
-                }
-            }
-            if (!indexedScriptablesByType.TryGetValue(typeof(T).Name, out var scriptablesByKey))
+            EnsureSupportDictInit();
+            var typeName = typeof(T).Name;
+            if (!indexedScriptablesByType.TryGetValue(typeName, out var scriptablesByKey))
             {
                 scriptablesByKey = new Dictionary<string, ScriptableObject>();
-                var typeName = typeof(T).Name;
                 indexedScriptablesByType.Add(typeName, scriptablesByKey);
 
                 foreach (var scriptable in scriptablesByTypeName[typeName])
@@ -44,6 +38,35 @@ namespace RpgActorTGC
                 }
             }
             return scriptablesByKey[key] as T;
+        }
+
+        public T GetRandom<T>() where T : ScriptableObject, IDatabaseKeyable
+        {
+            EnsureSupportDictInit();
+            var typeName = typeof(T).Name;
+            var relevantSet = scriptablesByTypeName[typeName];
+            var data = relevantSet.Choose();
+            var key = ((IDatabaseKeyable)data).Key;
+            return Get<T>(key);
+        }
+
+        public IEnumerable<T> GetAll<T>() where T : ScriptableObject, IDatabaseKeyable
+        {
+            EnsureSupportDictInit();
+            var typeName = typeof(T).Name;
+            var relevantSet = scriptablesByTypeName[typeName];
+            return relevantSet.Select(so => Get<T>(((IDatabaseKeyable)so).Key));
+        }
+
+        private void EnsureSupportDictInit()
+        {
+            if (!scriptablesByTypeName.Any())
+            {
+                for (var i = 0; i < orderedTypeNames.Count; i += 1)
+                {
+                    scriptablesByTypeName.Add(orderedTypeNames[i], orderedScriptSets[i].scriptables);
+                }
+            }
         }
         
 #if UNITY_EDITOR

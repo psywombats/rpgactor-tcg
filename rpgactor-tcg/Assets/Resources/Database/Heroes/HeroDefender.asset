@@ -23,9 +23,9 @@ MonoBehaviour:
       - SPD
       - DEF
       values:
-      - 100
-      - 100
-      - 3
-      - 3
-      - 10
+      - 20
+      - 20
+      - 1
+      - 2
+      - 2
   abilities: []

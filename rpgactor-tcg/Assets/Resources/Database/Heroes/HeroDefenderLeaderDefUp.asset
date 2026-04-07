@@ -21,10 +21,10 @@ MonoBehaviour:
       - HP
       - DEF
       values:
-      - 130
-      - 130
-      - 25
+      - 24
+      - 24
+      - 5
   abilities:
-  - mpCost: 50
-    type: 3
-    power: 50
+  - warhead: {fileID: 11400000, guid: 1a500be35ee45ee408bd5f734863c575, type: 2}
+    mpCost: 10
+    power: 10

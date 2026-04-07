@@ -21,10 +21,10 @@ MonoBehaviour:
       - HP
       - SPD
       values:
-      - 100
-      - 100
-      - 3
+      - 20
+      - 20
+      - 2
   abilities:
-  - mpCost: 25
-    type: 7
-    power: 250
+  - warhead: {fileID: 11400000, guid: 1959bd39beb507d4cae9b2097873c895, type: 2}
+    mpCost: 5
+    power: 50

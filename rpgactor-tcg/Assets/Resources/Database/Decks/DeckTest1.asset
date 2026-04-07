@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba481ed84052474384ea74b0a8203144, type: 3}
   m_Name: DeckTest1
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.DeckData
-  backChara: {fileID: 11400000, guid: adf96f78686c36d469fce57dc5f850ad, type: 2}
+  backChara: {fileID: 11400000, guid: d18032a69a7da8942bba7736f8ff9228, type: 2}
   leftChara: {fileID: 11400000, guid: ebf0a4f21035bd74c8e57ef09c91c410, type: 2}
   centerChara: {fileID: 11400000, guid: 2b4a75c50a1a1ea44bea9464e7175fcc, type: 2}
   rightChara: {fileID: 11400000, guid: 5396893935b49d345b7b0dcf4777f875, type: 2}

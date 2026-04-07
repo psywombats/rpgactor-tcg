@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace RpgActorTGC
 {
@@ -8,7 +9,7 @@ namespace RpgActorTGC
         public CharacterCard Leader { get; }
         public CharacterCard this[LaneType lane] => CardsByLane[lane];
         
-        public string DeckName { get; }
+        public string DeckName { get; set; }
         
         public Dictionary<LaneType, CharacterCard> CardsByLane { get; } = new();
 
@@ -39,7 +40,7 @@ namespace RpgActorTGC
             Leader = left.IsLeader ? left :
                     center.IsLeader ? center :
                     right.IsLeader ? right : back;
-            if (!back.IsLeader)
+            if (!Leader.IsLeader)
             {
                 throw new ArgumentException($"No leader for deck {name}");
             }
@@ -50,6 +51,26 @@ namespace RpgActorTGC
             CardsByLane[LaneType.Right] = right;
             CardsByLane[LaneType.Center] = center;
             CardsByLane[LaneType.Back] = back;
+        }
+
+        public LaneType GetLaneForCard(CharacterCard card)
+        {
+            foreach (var kvp in CardsByLane)
+            {
+                if (kvp.Value == card)
+                {
+                    return kvp.Key;
+                }
+            }
+            throw new KeyNotFoundException($"No lane for card {card}");
+        }
+
+        public bool IsEquivalentTo(Deck other)
+        {
+            return other.CardsByLane[LaneType.Back].Equals(CardsByLane[LaneType.Back])
+                && other.CardsByLane[LaneType.Left].Equals(CardsByLane[LaneType.Left])
+                && other.CardsByLane[LaneType.Center].Equals(CardsByLane[LaneType.Center])
+                && other.CardsByLane[LaneType.Back].Equals(CardsByLane[LaneType.Back]);
         }
     }
 }

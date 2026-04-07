@@ -1,20 +1,43 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace RpgActorTGC
 {
     public class CardCache : SingletonBehaviour<CardCache>
     {
-        private readonly Dictionary<CharacterData, CharacterCard> characterCards = new();
+        private readonly Dictionary<CharacterData, CharacterCard> heroCards = new();
+        private readonly Dictionary<CharacterData, CharacterCard> leaderCards = new();
         private readonly Dictionary<AbilityData, AbilityCard> abilityCards = new();
         private readonly Dictionary<DeckData, Deck> decks = new();
 
+        public void Start()
+        {
+            foreach (var cardData in DBManager.Instance.GetAll<CharacterData>())
+            {
+                GetOrCreateCard(cardData);
+            }
+        }
+
+        public CharacterCard GetRandomCharacter(bool isLeader)
+        {
+            var set = isLeader ? leaderCards : heroCards;
+            return set.Values.Choose();
+        }
+        
         public CharacterCard GetOrCreateCard(CharacterData data)
         {
-            if (!characterCards.TryGetValue(data, out var card))
+            if (heroCards.TryGetValue(data, out var heroCard))
             {
-                card = new CharacterCard(data);
-                characterCards.Add(data, card);
+                return heroCard;
             }
+            if (leaderCards.TryGetValue(data, out var leaderCard))
+            {
+                return leaderCard;
+            }
+            
+            var card = new CharacterCard(data);
+            var cache = data.isLeader ? leaderCards : heroCards;
+            cache.Add(data, card);
             return card;
         }
         

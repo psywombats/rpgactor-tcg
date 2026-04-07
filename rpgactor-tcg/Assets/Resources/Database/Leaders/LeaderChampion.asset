@@ -22,10 +22,12 @@ MonoBehaviour:
       - ATK
       - SPD
       - DEF
+      - MP
       values:
-      - 100
-      - 100
-      - 25
-      - 10
-      - 15
+      - 20
+      - 20
+      - 2
+      - 5
+      - 3
+      - 1
   abilities: []

@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f850132827bb4f4092db4c913c43d9b9, type: 3}
-  m_Name: WarheadGenerateMP
+  m_Name: WarheadMagicRegen
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.WarheadGenerateMP
-  abilityName: 
-  abilityDesc: 
+  abilityName: MP+
+  abilityDesc: Generates {0} magic points.
   isContinuous: 0

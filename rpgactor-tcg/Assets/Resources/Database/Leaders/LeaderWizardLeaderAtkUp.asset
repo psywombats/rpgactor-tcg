@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 797b1c6c9c724ba2936116a9c204bd58, type: 3}
   m_Name: LeaderWizardLeaderAtkUp
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.CharacterData
-  characterName: Wizard
+  characterName: Nuclear Mage
   isLeader: 1
   stats:
     serializedStats:
@@ -23,12 +23,12 @@ MonoBehaviour:
       - SPD
       - MP
       values:
-      - 100
-      - 100
-      - 10
-      - 8
-      - 15
+      - 20
+      - 20
+      - 2
+      - 4
+      - 3
   abilities:
-  - mpCost: 100
-    type: 1
-    power: 500
+  - warhead: {fileID: 11400000, guid: 3c2b6a883981a09439a2434691bfb65a, type: 2}
+    mpCost: 20
+    power: 100

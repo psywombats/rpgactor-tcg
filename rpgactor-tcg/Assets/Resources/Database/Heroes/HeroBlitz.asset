@@ -22,8 +22,8 @@ MonoBehaviour:
       - ATK
       - SPD
       values:
-      - 50
-      - 50
-      - 20
       - 10
+      - 10
+      - 4
+      - 5
   abilities: []

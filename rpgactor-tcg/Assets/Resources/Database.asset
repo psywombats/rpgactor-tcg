@@ -13,34 +13,39 @@ MonoBehaviour:
   m_Name: Database
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.ScriptableDB
   orderedTypeNames:
-  - AbilityTypeInfo
-  - HeroData
-  - LeaderData
+  - CharacterData
   - StatInfo
   orderedScriptSets:
   - scriptables:
-    - {fileID: 11400000, guid: 56a983701695c974cb6eeb8caf0f396b, type: 2}
-    - {fileID: 11400000, guid: 37953874b95020c4c880a2cc62426cb1, type: 2}
-    - {fileID: 11400000, guid: 1c5d9befe3d1dcb4b8b8cccb328e10ed, type: 2}
-    - {fileID: 11400000, guid: f8c46b59aaf24f045b152f58b3112c6c, type: 2}
-    - {fileID: 11400000, guid: 16a5ad701a2b4fe409b27ba8a3f37fbf, type: 2}
-    - {fileID: 11400000, guid: 00d1f9be3357a1b428eb70cb76a42123, type: 2}
-    - {fileID: 11400000, guid: 63539cbbb6946214b8a8fa16f45e8132, type: 2}
-    - {fileID: 11400000, guid: 08065b6e1450d5c488b065b8ee514217, type: 2}
-    - {fileID: 11400000, guid: c8e625e6adfc7734f8c508f4a13550b2, type: 2}
-  - scriptables:
-    - {fileID: 11400000, guid: 48dc7e19f2df10749a670b10e6f7f40f, type: 2}
-    - {fileID: 11400000, guid: 1cc346a23f81f4640827688a10804d47, type: 2}
-    - {fileID: 11400000, guid: 2116afe0806559146b9b0699f1d352c6, type: 2}
-    - {fileID: 11400000, guid: 09b1c58ca5c9446479124e624c0575e9, type: 2}
-    - {fileID: 11400000, guid: beee0b1cc35a0394ba43694365558ab7, type: 2}
-  - scriptables:
-    - {fileID: 11400000, guid: 1ccfe14c48e794546a14a6d4217a7a14, type: 2}
-    - {fileID: 11400000, guid: d13c584c4ab00c44392d55d427ed81d0, type: 2}
-    - {fileID: 11400000, guid: da3b1bfd91e5c304fa6fe3306553c0c0, type: 2}
-    - {fileID: 11400000, guid: c15cec35f62d8d74d8960d416a8470ab, type: 2}
-    - {fileID: 11400000, guid: 8ccdb7683e365214cbf96db649646698, type: 2}
-    - {fileID: 11400000, guid: 21dbb6141b6635b438efe16f955d9726, type: 2}
+    - {fileID: 11400000, guid: f201ca96beb44354b9e9de70745dd380, type: 2}
+    - {fileID: 11400000, guid: 6991fec5ad6b96d4a9f808445a26a4f0, type: 2}
+    - {fileID: 11400000, guid: 8fa2cb6669d35cb4da1df1f08b70908d, type: 2}
+    - {fileID: 11400000, guid: ebf0a4f21035bd74c8e57ef09c91c410, type: 2}
+    - {fileID: 11400000, guid: 2b4a75c50a1a1ea44bea9464e7175fcc, type: 2}
+    - {fileID: 11400000, guid: 1c7362f70bebd1047924f49d18ba1e8a, type: 2}
+    - {fileID: 11400000, guid: feee54561f5896541828a342d8384c0d, type: 2}
+    - {fileID: 11400000, guid: a0ea0b2a519276442ae6b56e3743b643, type: 2}
+    - {fileID: 11400000, guid: 880aa40c6c3b19d499e13697f877d397, type: 2}
+    - {fileID: 11400000, guid: 9e36ac4133e13f441b0fc91986e503d4, type: 2}
+    - {fileID: 11400000, guid: f157989d9431d9c479f552a54b3b2dea, type: 2}
+    - {fileID: 11400000, guid: 87ce571124f9f1c4b80f90b09d7ba6f7, type: 2}
+    - {fileID: 11400000, guid: 85b9e175a41717b4ca32625601f16f89, type: 2}
+    - {fileID: 11400000, guid: 90a23c22df5e84243b503c72bf422446, type: 2}
+    - {fileID: 11400000, guid: 226add6de7cce07478dc6005a77bdf19, type: 2}
+    - {fileID: 11400000, guid: fea49eefa51c4f247bd479c1492ab554, type: 2}
+    - {fileID: 11400000, guid: 5396893935b49d345b7b0dcf4777f875, type: 2}
+    - {fileID: 11400000, guid: 5406fd12c1bf27343b6fb61dc25fe258, type: 2}
+    - {fileID: 11400000, guid: 104e93a962ea78c4388a0fb027aa8eb5, type: 2}
+    - {fileID: 11400000, guid: adf96f78686c36d469fce57dc5f850ad, type: 2}
+    - {fileID: 11400000, guid: 90cfa0c2293162540a1e73c44b683ef0, type: 2}
+    - {fileID: 11400000, guid: fb1a63c1e53898e438bc93c3e1280399, type: 2}
+    - {fileID: 11400000, guid: 0bf55ae0c1e424e47a0fec631d5d8399, type: 2}
+    - {fileID: 11400000, guid: ec2f428d4f14da8408ccf3ba79d6a4b0, type: 2}
+    - {fileID: 11400000, guid: e18e345e43e56de4892a4a52c93dfe46, type: 2}
+    - {fileID: 11400000, guid: d18032a69a7da8942bba7736f8ff9228, type: 2}
+    - {fileID: 11400000, guid: 6fa4039be59341e4f89d4f53fa6474b4, type: 2}
+    - {fileID: 11400000, guid: 597a98c303c022747b4e089f244e43fa, type: 2}
+    - {fileID: 11400000, guid: e7e6c455e21a3ed4093cedef065b17f4, type: 2}
   - scriptables:
     - {fileID: 11400000, guid: 5c1c6c025627dd3449ad6718fb703840, type: 2}
     - {fileID: 11400000, guid: 56216c7273baa0840b4e0d77fb913ddd, type: 2}

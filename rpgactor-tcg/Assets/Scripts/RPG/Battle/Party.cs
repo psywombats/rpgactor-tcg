@@ -6,23 +6,25 @@ namespace RpgActorTGC
 {
     public class Party : IEnumerable<Unit>
     {
-        private Deck deck;
+        public Deck Deck { get; }
         
-        public Unit Leader { get; init; }
+        public Unit Leader { get; }
+        public Dictionary<LaneType, Unit> UnitsByLane { get; } = new();
+        
+        public List<Unit> AllUnits { get; } = new();
         public List<Unit> Heroes { get; } = new();
-
-        private IEnumerable<Unit> allUnits;
-        public IEnumerable<Unit> AllUnits => allUnits ??= Heroes.Union(new List<Unit> { Leader });
         
         public int Mp { get; private set; }
         
         public Party(Deck deck)
         {
-            this.deck = deck;
+            Deck = deck;
             foreach (var kvp in deck.CardsByLane)
             {
                 var unit = new Unit(this, kvp.Value, kvp.Key);
-                if (deck.Leader == kvp.Value)
+                UnitsByLane[kvp.Key] = unit;
+                AllUnits.Add(unit);
+                if (kvp.Value.IsLeader)
                 {
                     Leader = unit;
                 }
@@ -55,8 +57,10 @@ namespace RpgActorTGC
         
         #region ToString
 
-        public string ShortName => deck.DeckName;
-        public string CompositionString => deck.CompositionString;
+        public string Color { get; set; } = "grey";
+
+        public string ShortName => Deck.DeckName;
+        public string CompositionString => Deck.CompositionString;
         public string StateString => $"(\"{ShortName}\" {this[LaneType.Back].StateString} / " +
             $"{this[LaneType.Left].StateString} / " +
             $"{this[LaneType.Center].StateString} / " +
