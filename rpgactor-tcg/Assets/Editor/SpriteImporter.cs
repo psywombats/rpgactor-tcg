@@ -17,6 +17,7 @@ internal sealed class SpriteImporter : AssetPostprocessor
             importer.filterMode = FilterMode.Point;
             importer.textureCompression = TextureImporterCompression.Uncompressed;
             importer.spriteImportMode = formatData.IsSingleSprite ? SpriteImportMode.Single : SpriteImportMode.Multiple;
+            importer.spritePixelsPerUnit = formatData.PixelsPerUnit;
             
             var factory = new SpriteDataProviderFactories();
             factory.Init();
@@ -55,24 +56,29 @@ internal sealed class SpriteImporter : AssetPostprocessor
 
     private static void PostprocessTexture(string assetPath)
     {
-        var formatData = GetFormatData(assetPath);
-        if (formatData == null || formatData.IsSingleSprite)
-        {
-            return;
-        }
+        var format = GetFormatData(assetPath);
+        if (format == null || format.IsSingleSprite) return;
         
-        var spritesheetName = Path.GetFileNameWithoutExtension(assetPath);
-        var spritesheetPath = EditorUtils.LocalDirectoryFromPath(assetPath) + "/" + spritesheetName + ".asset";
-        var spritesheetData = AssetDatabase.LoadAssetAtPath<SpritesheetData>(spritesheetPath);
-        if (spritesheetData == null)
+        var sprites = AssetDatabase.LoadAllAssetsAtPath(assetPath)?.OfType<Sprite>().ToList();
+        if (sprites == null) return;
+        
+        var spriteCount = sprites.Count / format.TotalFrames;
+        var assetName = Path.GetFileNameWithoutExtension(assetPath);
+        for (var i = 0; i < spriteCount; i++)
         {
-            spritesheetData = ScriptableObject.CreateInstance<SpritesheetData>();
-            AssetDatabase.CreateAsset(spritesheetData, spritesheetPath);
-        }
+            var ordinal = spriteCount > 1 ? i.ToString("D2") : "";
+            var spritesheetPath = $"{EditorUtils.LocalDirectoryFromPath(assetPath)}/{assetName}{ordinal}.asset";
+            var spritesheetData = AssetDatabase.LoadAssetAtPath<SpritesheetData>(spritesheetPath);
+            if (spritesheetData == null)
+            {
+                spritesheetData = ScriptableObject.CreateInstance<SpritesheetData>();
+                AssetDatabase.CreateAsset(spritesheetData, spritesheetPath);
+            }
 
-        var sprites = AssetDatabase.LoadAllAssetsAtPath(assetPath)?.OfType<Sprite>();
-        spritesheetData.PopulateFromSerializedSprite(sprites, formatData);
-        EditorUtility.SetDirty(spritesheetData);
-        AssetDatabase.SaveAssetIfDirty(spritesheetData);
+            var relevantSprites = sprites.GetRange(i * format.TotalFrames, format.TotalFrames);
+            spritesheetData.PopulateFromSerializedSprite(relevantSprites, format, i);
+            EditorUtility.SetDirty(spritesheetData);
+            AssetDatabase.SaveAssetIfDirty(spritesheetData);
+        }
     }
 }

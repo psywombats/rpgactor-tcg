@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8755e393ba17e344d96341f68b599664, type: 3}
+  m_Name: rmmz_sample_sheet06
+  m_EditorClassIdentifier: Assembly-CSharp::SpritesheetData
+  serializedSprites:
+  - {fileID: -1535632956, guid: 0ba8b1ebb0d35ed488d007975981c8b9, type: 3}
+  - {fileID: -330387419, guid: 0ba8b1ebb0d35ed488d007975981c8b9, type: 3}
+  - {fileID: 1039728749, guid: 0ba8b1ebb0d35ed488d007975981c8b9, type: 3}
+  - {fileID: -1654927926, guid: 0ba8b1ebb0d35ed488d007975981c8b9, type: 3}
+  - {fileID: 1498821352, guid: 0ba8b1ebb0d35ed488d007975981c8b9, type: 3}
+  - {fileID: 1624101978, guid: 0ba8b1ebb0d35ed488d007975981c8b9, type: 3}
+  - {fileID: -235820465, guid: 0ba8b1ebb0d35ed488d007975981c8b9, type: 3}
+  - {fileID: -783906108, guid: 0ba8b1ebb0d35ed488d007975981c8b9, type: 3}
+  - {fileID: 196942701, guid: 0ba8b1ebb0d35ed488d007975981c8b9, type: 3}
+  - {fileID: -2013670, guid: 0ba8b1ebb0d35ed488d007975981c8b9, type: 3}
+  - {fileID: 1835631165, guid: 0ba8b1ebb0d35ed488d007975981c8b9, type: 3}
+  - {fileID: 883699136, guid: 0ba8b1ebb0d35ed488d007975981c8b9, type: 3}
+  format: {fileID: 11400000, guid: f942fd27711494c46be53fcf99fd9d50, type: 2}
+  indexInSheet: 6

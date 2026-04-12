@@ -14,6 +14,7 @@ public class SpritesheetData : ScriptableObject
 {
     [SerializeField] private List<Sprite> serializedSprites;
     [SerializeField] private SpritesheetFormatData format;
+    [SerializeField] private int indexInSheet;
 
     public int StepCount => format.WalkCycle.Count;
 
@@ -38,17 +39,19 @@ public class SpritesheetData : ScriptableObject
         }
     }
     
-    public void PopulateFromTexture(Texture2D texture, SpritesheetFormatData format)
+    public void PopulateFromTexture(Texture2D texture, SpritesheetFormatData format, int indexInSheet)
     {
         if (!Application.isPlaying) throw new ArgumentException("Can only populate from a texture at runtime");
         this.format = format;
+        this.indexInSheet = indexInSheet;
         serializedSprites = format.Split(texture);
     }
 
-    public void PopulateFromSerializedSprite(IEnumerable<Sprite> sprites, SpritesheetFormatData format)
+    public void PopulateFromSerializedSprite(IEnumerable<Sprite> sprites, SpritesheetFormatData format, int indexInSheet)
     {
         if (Application.isPlaying) throw new ArgumentException("Can only populate from serialized sprites in editor");
         this.format = format;
+        this.indexInSheet = indexInSheet;
         serializedSprites = sprites.ToList();
     }
 
@@ -58,7 +61,7 @@ public class SpritesheetData : ScriptableObject
         var walkCycle = GetWalkCycle(dir);
         if (walkCycle.Count <= step) throw new ArgumentException();
         var frameNumber = walkCycle[step];
-        var frameName = SpritesheetFormatData.NameForFrame(name, dir, frameNumber);
+        var frameName = SpritesheetFormatData.NameForFrame(name, dir, frameNumber, indexInSheet);
 
         if (!SpritesByName.ContainsKey(frameName) && Application.isPlaying) 
         {
@@ -72,7 +75,7 @@ public class SpritesheetData : ScriptableObject
     public Sprite GetPreviewSprite() 
     {
         if (serializedSprites == null || serializedSprites.Count == 0) return null;
-        var frameName = SpritesheetFormatData.NameForFrame(name, OrthoDir.South, GetWalkCycle(OrthoDir.South)[0]);
+        var frameName = SpritesheetFormatData.NameForFrame(name, OrthoDir.South, GetWalkCycle(OrthoDir.South)[0], indexInSheet);
         return SpritesByName.ContainsKey(frameName) ? SpritesByName[frameName] : serializedSprites.FirstOrDefault();
     }
 

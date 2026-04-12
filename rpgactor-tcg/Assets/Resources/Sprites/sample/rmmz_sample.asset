@@ -13,16 +13,17 @@ MonoBehaviour:
   m_Name: rmmz_sample
   m_EditorClassIdentifier: Assembly-CSharp::SpritesheetData
   serializedSprites:
-  - {fileID: -1371261822, guid: f53abbfc4ac4ecb43b85662f039cf5d0, type: 3}
-  - {fileID: 1571180140, guid: f53abbfc4ac4ecb43b85662f039cf5d0, type: 3}
-  - {fileID: 1134860551, guid: f53abbfc4ac4ecb43b85662f039cf5d0, type: 3}
-  - {fileID: -1958581172, guid: f53abbfc4ac4ecb43b85662f039cf5d0, type: 3}
-  - {fileID: -841754720, guid: f53abbfc4ac4ecb43b85662f039cf5d0, type: 3}
-  - {fileID: -262182217, guid: f53abbfc4ac4ecb43b85662f039cf5d0, type: 3}
-  - {fileID: 590348111, guid: f53abbfc4ac4ecb43b85662f039cf5d0, type: 3}
-  - {fileID: 741078597, guid: f53abbfc4ac4ecb43b85662f039cf5d0, type: 3}
-  - {fileID: -270437610, guid: f53abbfc4ac4ecb43b85662f039cf5d0, type: 3}
-  - {fileID: 570042030, guid: f53abbfc4ac4ecb43b85662f039cf5d0, type: 3}
-  - {fileID: -1927755790, guid: f53abbfc4ac4ecb43b85662f039cf5d0, type: 3}
-  - {fileID: -456861063, guid: f53abbfc4ac4ecb43b85662f039cf5d0, type: 3}
+  - {fileID: 1580858005, guid: f53abbfc4ac4ecb43b85662f039cf5d0, type: 3}
+  - {fileID: -1033374534, guid: f53abbfc4ac4ecb43b85662f039cf5d0, type: 3}
+  - {fileID: -1902242755, guid: f53abbfc4ac4ecb43b85662f039cf5d0, type: 3}
+  - {fileID: -1006410900, guid: f53abbfc4ac4ecb43b85662f039cf5d0, type: 3}
+  - {fileID: -1342872749, guid: f53abbfc4ac4ecb43b85662f039cf5d0, type: 3}
+  - {fileID: -661423613, guid: f53abbfc4ac4ecb43b85662f039cf5d0, type: 3}
+  - {fileID: 1377476574, guid: f53abbfc4ac4ecb43b85662f039cf5d0, type: 3}
+  - {fileID: 977148962, guid: f53abbfc4ac4ecb43b85662f039cf5d0, type: 3}
+  - {fileID: 1434388375, guid: f53abbfc4ac4ecb43b85662f039cf5d0, type: 3}
+  - {fileID: -1927792198, guid: f53abbfc4ac4ecb43b85662f039cf5d0, type: 3}
+  - {fileID: 368433620, guid: f53abbfc4ac4ecb43b85662f039cf5d0, type: 3}
+  - {fileID: -904615690, guid: f53abbfc4ac4ecb43b85662f039cf5d0, type: 3}
   format: {fileID: 11400000, guid: f942fd27711494c46be53fcf99fd9d50, type: 2}
+  indexInSheet: 0
