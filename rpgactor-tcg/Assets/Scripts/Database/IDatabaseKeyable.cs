@@ -1,7 +1,4 @@
-﻿namespace RpgActorTGC
+﻿public interface IDatabaseKeyable
 {
-    public interface IDatabaseKeyable
-    {
-        public string Key { get; }
-    }
+    public string Key { get; }
 }

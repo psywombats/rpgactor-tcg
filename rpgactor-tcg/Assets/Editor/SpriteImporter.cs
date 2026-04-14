@@ -66,8 +66,8 @@ internal sealed class SpriteImporter : AssetPostprocessor
         var assetName = Path.GetFileNameWithoutExtension(assetPath);
         for (var i = 0; i < spriteCount; i++)
         {
-            var ordinal = spriteCount > 1 ? i.ToString("D2") : "";
-            var spritesheetPath = $"{EditorUtils.LocalDirectoryFromPath(assetPath)}/{assetName}{ordinal}.asset";
+            var fullAssetName = assetName + (spriteCount > 1 ? i.ToString("D2") : "");
+            var spritesheetPath = $"{EditorUtils.LocalDirectoryFromPath(assetPath)}/{fullAssetName}.asset";
             var spritesheetData = AssetDatabase.LoadAssetAtPath<SpritesheetData>(spritesheetPath);
             if (spritesheetData == null)
             {
@@ -76,7 +76,7 @@ internal sealed class SpriteImporter : AssetPostprocessor
             }
 
             var relevantSprites = sprites.GetRange(i * format.TotalFrames, format.TotalFrames);
-            spritesheetData.PopulateFromSerializedSprite(relevantSprites, format, i);
+            spritesheetData.PopulateFromSerializedSprite(relevantSprites, format, i, fullAssetName);
             EditorUtility.SetDirty(spritesheetData);
             AssetDatabase.SaveAssetIfDirty(spritesheetData);
         }

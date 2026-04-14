@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using RpgActorTGC;
 
 /// <summary>
 /// An instance of SpritesheetData powers a single character sprite, supporting multiple directions and frames.
@@ -10,13 +11,18 @@ using System.Linq;
 /// Spritesheet data can either be serialized (in the case of spritesheets shipped with the game) or created dynamically
 /// (in the case of custom or DL'd spritesheets). 
 /// </remarks>
-public class SpritesheetData : ScriptableObject 
+[DatabaseIndexed]
+public class SpritesheetData : ScriptableObject, IDatabaseKeyable
 {
+    [SerializeField] private string tag;
+    [Space]
     [SerializeField] private List<Sprite> serializedSprites;
     [SerializeField] private SpritesheetFormatData format;
     [SerializeField] private int indexInSheet;
 
     public int StepCount => format.WalkCycle.Count;
+
+    public string Key => tag;
 
     private Dictionary<string, Sprite> spritesByName;
     private Dictionary<string, Sprite> SpritesByName
@@ -47,12 +53,14 @@ public class SpritesheetData : ScriptableObject
         serializedSprites = format.Split(texture);
     }
 
-    public void PopulateFromSerializedSprite(IEnumerable<Sprite> sprites, SpritesheetFormatData format, int indexInSheet)
+    public void PopulateFromSerializedSprite(IEnumerable<Sprite> sprites, SpritesheetFormatData format, 
+        int indexInSheet, string tag)
     {
         if (Application.isPlaying) throw new ArgumentException("Can only populate from serialized sprites in editor");
         this.format = format;
         this.indexInSheet = indexInSheet;
         serializedSprites = sprites.ToList();
+        if (string.IsNullOrEmpty(this.tag)) this.tag = tag;
     }
 
     public Sprite GetSprite(OrthoDir dir, int step) 

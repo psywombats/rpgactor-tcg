@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8755e393ba17e344d96341f68b599664, type: 3}
   m_Name: rmmz_sample_sheet00
   m_EditorClassIdentifier: Assembly-CSharp::SpritesheetData
+  tag: rmmz_sample_sheet00
   serializedSprites:
   - {fileID: 1099123587, guid: 0ba8b1ebb0d35ed488d007975981c8b9, type: 3}
   - {fileID: -871433875, guid: 0ba8b1ebb0d35ed488d007975981c8b9, type: 3}

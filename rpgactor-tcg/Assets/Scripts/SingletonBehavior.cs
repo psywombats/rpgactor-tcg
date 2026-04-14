@@ -1,95 +1,92 @@
 ﻿using UnityEngine;
 
-namespace RpgActorTGC
+public abstract class SingletonBehaviour<T> : MonoBehaviour where T : SingletonBehaviour<T>
 {
-  public abstract class SingletonBehaviour<T> : MonoBehaviour where T : SingletonBehaviour<T>
+  private static T instance;
+  private static bool creating;
+
+  public static T Instance
   {
-    private static T instance;
-    private static bool creating;
-
-    public static T Instance
+    get
     {
-      get
+      if ( instance == null )
       {
-        if ( instance == null )
+        if ( !Application.isPlaying )
         {
-          if ( !Application.isPlaying )
-          {
-            throw new System.Exception( "For runtime only" );
-          }
-          
-          creating = true;
-          var obj = new GameObject( typeof( T ).Name );
-          instance = obj.AddComponent<T>();
-          DontDestroyOnLoad( obj );
-          creating = false;
+          throw new System.Exception( "For runtime only" );
         }
-        return instance;
+        
+        creating = true;
+        var obj = new GameObject( typeof( T ).Name );
+        instance = obj.AddComponent<T>();
+        DontDestroyOnLoad( obj );
+        creating = false;
       }
+      return instance;
     }
+  }
 
-    protected virtual T GetThis()
+  protected virtual T GetThis()
+  {
+    if ( this is T that )
     {
-      if ( this is T that )
-      {
-        return that;
-      }
-      else
-      {
-        throw new System.NotImplementedException();
-      }
+      return that;
     }
-
-    protected virtual void Awake()
+    else
     {
-      if ( !creating )
-      {
-        if ( instance == null || !instance )
-        {
-          instance = GetThis();
-        }
-        else
-        {
-          HandleConflictingSingleton();
-        }
-      }
+      throw new System.NotImplementedException();
     }
+  }
 
-    /// <summary>
-    /// Called on this object when it's instantiated, but there's already an instance around
-    /// </summary>
-    protected virtual void HandleConflictingSingleton()
+  protected virtual void Awake()
+  {
+    if ( !creating )
     {
-      var old = instance;
-
-      var oldScene = old.gameObject.scene;
-
-      if ( oldScene.name == "DontDestroyOnLoad" )
+      if ( instance == null || !instance )
       {
-        //prefer old instance
-        Destroy( gameObject );
-        return;
-      }
-
-      if ( !oldScene.IsValid() || !oldScene.isLoaded || oldScene.name == gameObject.scene.name )
-      {
-        //prefer the new instance
         instance = GetThis();
-        Destroy( this );
       }
       else
       {
-        //prefer the old instance
-        Destroy( gameObject );
+        HandleConflictingSingleton();
       }
     }
+  }
 
-    protected virtual void OnDestroy()
+  /// <summary>
+  /// Called on this object when it's instantiated, but there's already an instance around
+  /// </summary>
+  protected virtual void HandleConflictingSingleton()
+  {
+    var old = instance;
+
+    var oldScene = old.gameObject.scene;
+
+    if ( oldScene.name == "DontDestroyOnLoad" )
     {
-      if ( instance == GetThis() )
-      {
-        instance = null;
-      }
+      //prefer old instance
+      Destroy( gameObject );
+      return;
+    }
+
+    if ( !oldScene.IsValid() || !oldScene.isLoaded || oldScene.name == gameObject.scene.name )
+    {
+      //prefer the new instance
+      instance = GetThis();
+      Destroy( this );
+    }
+    else
+    {
+      //prefer the old instance
+      Destroy( gameObject );
+    }
+  }
+
+  protected virtual void OnDestroy()
+  {
+    if ( instance == GetThis() )
+    {
+      instance = null;
     }
   }
 }
