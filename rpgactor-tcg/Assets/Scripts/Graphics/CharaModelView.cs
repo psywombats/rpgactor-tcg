@@ -5,8 +5,6 @@ public class CharaModelView : MonoBehaviour
 {
     private const float BaseStepsPerSecond = 2f;
     
-    [SerializeField] private new CharaRenderer renderer;
-    [Space]
     [SerializeField] private SpritesheetData defaultSprite;
     [SerializeField] private bool defaultAnimates = true;
     [SerializeField] private OrthoDir defaultDir = OrthoDir.South;
@@ -74,7 +72,7 @@ public class CharaModelView : MonoBehaviour
     
     public void Update() 
     {
-        if (Animates) 
+        if (Animates && Sprite != null) 
         {
             var elapsed = Time.time;
             var newX = Mathf.FloorToInt(elapsed * StepsPerSecond) % Sprite.StepCount;
@@ -85,8 +83,9 @@ public class CharaModelView : MonoBehaviour
         }
     }
 
-    private Sprite GetSpriteForCurrentFrame() 
+    private Sprite GetSpriteForCurrentFrame()
     {
+        if (Sprite == null) return null;
         var x = Mathf.FloorToInt(Time.time * StepsPerSecond) % Sprite.StepCount;
         return Sprite.GetSprite(Facing, x);
     }

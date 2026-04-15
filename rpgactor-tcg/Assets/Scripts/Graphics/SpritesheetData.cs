@@ -69,7 +69,7 @@ public class SpritesheetData : ScriptableObject, IDatabaseKeyable
         var walkCycle = GetWalkCycle(dir);
         if (walkCycle.Count <= step) throw new ArgumentException();
         var frameNumber = walkCycle[step];
-        var frameName = SpritesheetFormatData.NameForFrame(name, dir, frameNumber, indexInSheet);
+        var frameName = format.NameForFrame(name, dir, frameNumber, indexInSheet);
 
         if (!SpritesByName.ContainsKey(frameName) && Application.isPlaying) 
         {
@@ -83,7 +83,7 @@ public class SpritesheetData : ScriptableObject, IDatabaseKeyable
     public Sprite GetPreviewSprite() 
     {
         if (serializedSprites == null || serializedSprites.Count == 0) return null;
-        var frameName = SpritesheetFormatData.NameForFrame(name, OrthoDir.South, GetWalkCycle(OrthoDir.South)[0], indexInSheet);
+        var frameName = format.NameForFrame(name, OrthoDir.South, GetWalkCycle(OrthoDir.South)[0], indexInSheet);
         return SpritesByName.ContainsKey(frameName) ? SpritesByName[frameName] : serializedSprites.FirstOrDefault();
     }
 

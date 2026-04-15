@@ -11,6 +11,7 @@ namespace RpgActorTGC
         public StatSet Stats => Data.stats;
 
         public string CharacterName => Data.characterName;
+        public SpritesheetData Sprite => Data.sprite;
         public string CompositionString => IsLeader ? $"[{CharacterName}]" : CharacterName;
 
         private string abilString;

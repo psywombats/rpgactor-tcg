@@ -16,7 +16,7 @@ internal sealed class SpriteImporter : AssetPostprocessor
         {
             importer.filterMode = FilterMode.Point;
             importer.textureCompression = TextureImporterCompression.Uncompressed;
-            importer.spriteImportMode = formatData.IsSingleSprite ? SpriteImportMode.Single : SpriteImportMode.Multiple;
+            importer.spriteImportMode = SpriteImportMode.Multiple;
             importer.spritePixelsPerUnit = formatData.PixelsPerUnit;
             
             var factory = new SpriteDataProviderFactories();

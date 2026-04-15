@@ -9,9 +9,11 @@ namespace RpgActorTGC
         [SerializeField] private Stat associatedStat;
         [SerializeField] private string abbreviation;
         [SerializeField] private string statName;
+        [SerializeField] private Sprite icon;
         [SerializeField] public bool useBinaryEditor;
 
         public string Key => associatedStat.ToString();
         public string StatName => statName;
+        public Sprite Icon => icon;
     }
 }

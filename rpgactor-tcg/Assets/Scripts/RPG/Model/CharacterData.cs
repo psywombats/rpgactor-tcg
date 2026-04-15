@@ -8,6 +8,7 @@ namespace RpgActorTGC
     public class CharacterData : ScriptableObject, IDatabaseKeyable
     {
         [SerializeField] public string characterName;
+        [SerializeField] public SpritesheetData sprite;
         [Space] 
         [SerializeField] public bool isLeader;
         [SerializeField] public StatSet stats;

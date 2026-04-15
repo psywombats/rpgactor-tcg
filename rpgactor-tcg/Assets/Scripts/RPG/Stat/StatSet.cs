@@ -9,7 +9,6 @@ namespace RpgActorTGC
      [Serializable]
     public class StatSet : ISerializationCallbackReceiver 
     {
-
         [SerializeField] private StatDictionary serializedStats;
         private readonly Dictionary<Stat, float> stats = new();
 
@@ -60,6 +59,9 @@ namespace RpgActorTGC
             get => Get(tag);
             set => Set(tag, value);
         }
+
+        public IEnumerable<Tuple<Stat, float>> ToTuples() =>
+            stats.Select(entry => new Tuple<Stat, float>(entry.Key, entry.Value));
 
         #endregion
         

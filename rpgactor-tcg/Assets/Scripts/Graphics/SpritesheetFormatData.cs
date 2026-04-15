@@ -30,6 +30,15 @@ public class SpritesheetFormatData : ScriptableObject
     public List<Sprite> Split(Texture2D texture)
     {
         if (!ValidateSheetSize(new Vector2Int(texture.width, texture.height), texture.name)) return null;
+
+        if (isSingleSprite)
+        {
+            return new List<Sprite> 
+            {
+                Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), 
+                    new Vector2(.5f, .5f), pixelsPerUnit)
+            };
+        }
         
         var sprites = new List<Sprite>();
         var indexInSheet = 0;
@@ -54,11 +63,6 @@ public class SpritesheetFormatData : ScriptableObject
         }
 
         return sprites;
-    }
-    
-    public static string NameForFrame(string sheetName, OrthoDir dir, int step, int indexInSheet = 0)
-    {
-        return $"{sheetName}{indexInSheet:D2}_{dir}{step:D2}";
     }
 
     public void ApplyToEditorData(ISpriteEditorDataProvider dataProvider, Vector2Int textureSize, string sheetName)
@@ -96,9 +100,15 @@ public class SpritesheetFormatData : ScriptableObject
         var spriteNameFileIdDataProvider = dataProvider.GetDataProvider<ISpriteNameFileIdDataProvider>();
         spriteNameFileIdDataProvider.SetNameFileIdPairs(spriteIdNamePairs);
     }
+    
+    public string NameForFrame(string sheetName, OrthoDir dir, int step, int indexInSheet = 0)
+    {
+        return isSingleSprite ? $"{sheetName}{indexInSheet:D2}" : $"{sheetName}{indexInSheet:D2}_{dir}{step:D2}";
+    }
 
     private bool ValidateSheetSize(Vector2Int sheetSize, string sheetName)
     {
+        if (isSingleSprite) return true;
         if (supportsMultipleSheetsPerFile)
         {
             if (sheetSize.x / frameSize.x % (walkCycle.Max() + 1) != 0)
