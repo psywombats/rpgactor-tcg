@@ -8,7 +8,7 @@ namespace RpgActorTGC
         private Party Player1 { get; set; }
         private Party Player2 { get; set; }
 
-        private List<Unit> allUnits = new();
+        private readonly List<Unit> allUnits = new();
         
         public string LivenessString =>
             $"{Player1.Leader.LivenessString} ({Player1.Mp}) vs ({Player2.Mp}) {Player2.Leader.LivenessString}\n" +

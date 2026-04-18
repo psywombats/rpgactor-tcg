@@ -4,8 +4,6 @@
     {
         private EvolutionRunner<T> runner;
         
-        public int Wins { get; set; }
-        
         protected EvolutionSolution(EvolutionRunner<T> runner)
         {
             this.runner = runner;

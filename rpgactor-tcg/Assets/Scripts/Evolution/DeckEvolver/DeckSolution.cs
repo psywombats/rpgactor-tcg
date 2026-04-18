@@ -7,9 +7,12 @@ namespace RpgActorTGC
     public class DeckSolution : EvolutionSolution<DeckSolution>
     {
         public Deck Deck { get; private set; }
+        public int Wins { get; set; }
         private Party party;
 
-        private DeckEvolutionRunner runner;
+        private readonly DeckEvolutionRunner runner;
+
+        private bool isPartyInUse;
         
         public DeckSolution(DeckEvolutionRunner runner, Deck deck) : base(runner)
         {
@@ -17,7 +20,31 @@ namespace RpgActorTGC
             this.runner = runner;
         }
 
-        public Party GetFreshParty()
+        public Party LockParty()
+        {
+            lock (this)
+            {
+                if (isPartyInUse)
+                {
+                    return new Party(Deck);
+                }
+                else
+                {
+                    isPartyInUse = true;
+                    return GetFreshParty();
+                }
+            }
+        }
+
+        public void UnlockParty(Party returnedParty)
+        {
+            if (returnedParty == party)
+            {
+                isPartyInUse = false;
+            }
+        }
+
+        private Party GetFreshParty()
         {
             if (party == null)
             {
