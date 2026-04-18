@@ -5,18 +5,13 @@ using System;
 using System.Threading.Tasks;
 using UnityEngine.InputSystem;
 
-public class InputManager : SingletonBehavior
+public class InputManager : SingletonBehaviour<InputManager>
 {
-    public static InputManager Instance => Global.Instance?.Input;
 
     public enum Command
     {
         Primary,
         Secondary,
-        Left,
-        Right,
-        Up,
-        Down,
         Menu,
         Debug,
     };
@@ -28,19 +23,20 @@ public class InputManager : SingletonBehavior
         Hold,
     };
 
-    private Dictionary<Command, InputAction> actions = new Dictionary<Command, InputAction>();
+    private readonly Dictionary<Command, InputAction> actions = new();
 
-    private static readonly float KeyRepeatSeconds = 0.3f;
+    private const float KeyRepeatSeconds = 0.3f;
 
-    private List<IInputListener> listeners = new List<IInputListener>();
-    private List<IInputListener> listeners2 = new List<IInputListener>();
-    private Dictionary<Command, float> holdStartTimes = new Dictionary<Command, float>();
-    private Dictionary<string, IInputListener> anonymousListeners = new Dictionary<string, IInputListener>();
+    private readonly List<IInputListener> listeners = new();
+    private readonly List<IInputListener> nextFrameListeners = new();
+    private readonly Dictionary<Command, float> holdStartTimes = new();
+    private readonly Dictionary<string, IInputListener> anonymousListeners = new();
 
     private bool endProcessing;
 
-    public void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         foreach (Command cmd in Enum.GetValues(typeof(Command)))
         {
             SetDefaultKeybindsForCommand(cmd);
@@ -76,9 +72,9 @@ public class InputManager : SingletonBehavior
                 held = true;
             }
 
-            listeners2.Clear();
-            listeners2.AddRange(listeners);
-            foreach (var listener in listeners2)
+            nextFrameListeners.Clear();
+            nextFrameListeners.AddRange(listeners);
+            foreach (var listener in nextFrameListeners)
             {
                 endProcessing = false;
 
@@ -150,37 +146,9 @@ public class InputManager : SingletonBehavior
 
     public void SetDefaultKeybindsForCommand(Command command)
     {
-        InputAction action = new InputAction(name: command.ToString(), type: InputActionType.Value);
+        var action = new InputAction(name: command.ToString(), type: InputActionType.Value);
         switch (command)
         {
-            case Command.Left:
-                action.AddBinding(Keyboard.current.numpad4Key);
-                action.AddBinding(Keyboard.current.leftArrowKey);
-                action.AddBinding(Keyboard.current.aKey);
-                action.AddBinding("<Gamepad>/leftStick/left");
-                action.AddBinding("<Gamepad>/dpad/left");
-                break;
-            case Command.Right:
-                action.AddBinding(Keyboard.current.numpad6Key);
-                action.AddBinding(Keyboard.current.rightArrowKey);
-                action.AddBinding(Keyboard.current.dKey);
-                action.AddBinding("<Gamepad>/leftStick/right");
-                action.AddBinding("<Gamepad>/dpad/right");
-                break;
-            case Command.Up:
-                action.AddBinding(Keyboard.current.numpad8Key);
-                action.AddBinding(Keyboard.current.upArrowKey);
-                action.AddBinding(Keyboard.current.wKey);
-                action.AddBinding("<Gamepad>/leftStick/up");
-                action.AddBinding("<Gamepad>/dpad/up");
-                break;
-            case Command.Down:
-                action.AddBinding(Keyboard.current.numpad2Key);
-                action.AddBinding(Keyboard.current.downArrowKey);
-                action.AddBinding(Keyboard.current.sKey);
-                action.AddBinding("<Gamepad>/leftStick/down");
-                action.AddBinding("<Gamepad>/dpad/down");
-                break;
             case Command.Primary:
                 action.AddBinding(Keyboard.current.spaceKey);
                 action.AddBinding(Keyboard.current.enterKey);
@@ -205,17 +173,11 @@ public class InputManager : SingletonBehavior
             case Command.Debug:
                 action.AddBinding(Keyboard.current.f12Key);
                 break;
-                break;
+            default:
+                throw new NotImplementedException();
         }
         action.Enable();
         actions[command] = action;
-    }
-
-    public override void GameReset()
-    {
-        base.GameReset();
-        listeners.Clear();
-        anonymousListeners.Clear();
     }
 
     public IEnumerator ConfirmRoutine(bool eatsOthers = true)
@@ -232,7 +194,7 @@ public class InputManager : SingletonBehavior
             }
             return eatsOthers;
         });
-        while (!done && !Global.Instance.Avatar.IsCrashing)
+        while (!done)
         {
             yield return null;
         }

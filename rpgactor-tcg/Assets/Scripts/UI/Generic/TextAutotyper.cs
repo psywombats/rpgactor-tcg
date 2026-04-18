@@ -1,30 +1,38 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.UI;
+using TMPro;
 
-[RequireComponent(typeof(CanvasGroup))]
-public class TextAutotyper : MonoBehaviour, IInputListener {
+public class TextAutotyper : MonoBehaviour, IInputListener 
+{
+    [SerializeField] protected TMP_Text textbox;
+    [SerializeField] private float charsPerSecond = 120f;
+    [SerializeField] private float speedupMultiplier = 4f;
+    [SerializeField] private GameObject advanceArrow;
+    [SerializeField] private bool speedUpWhenHurried;
 
-    [SerializeField] public Text textbox;
-    [SerializeField] public float charsPerSecond = 120f;
-    [SerializeField] protected GameObject advanceArrow;
-    [SerializeField] protected bool speedUpWhenHurried;
+    private bool hurried;
+    private bool confirmed;
+    
+    protected int TypingStartIndex { get; set; }
 
-    public int LinesTyped { get; private set; } = 0;
+    protected virtual void Start()
+    {
+        textbox.text = "";
+    }
 
-    protected int typingStartIndex = 0;
-    protected bool hurried;
-    protected bool confirmed;
-
-    public bool OnCommand(InputManager.Command command, InputManager.Event eventType) {
-        switch (eventType) {
+    public bool OnCommand(InputManager.Command command, InputManager.Event eventType) 
+    {
+        switch (eventType) 
+        {
             case InputManager.Event.Hold:
-                if (command == InputManager.Command.Primary) {
+                if (command == InputManager.Command.Primary) 
+                {
                     hurried = true;
                 }
                 break;
             case InputManager.Event.Down:
-                if (command == InputManager.Command.Primary) {
+                if (command == InputManager.Command.Primary) 
+                {
                     confirmed = true;
                 }
                 break;
@@ -32,51 +40,49 @@ public class TextAutotyper : MonoBehaviour, IInputListener {
         return true;
     }
 
-    public IEnumerator AutotypeRoutine() {
-        return TypeRoutine(textbox.text, false);
-    }
-
-    public IEnumerator TypeRoutine(string text, bool waitForConfirm = true, float fixedDuration = 0f) {
+    public IEnumerator TypeRoutine(string text, bool waitForConfirm = true) 
+    {
         hurried = false;
         confirmed = false;
-        float elapsed = 0.0f;
-        float total;
-        if (fixedDuration > 0) {
-            total = fixedDuration;
-        } else {
-            total = (text.Length - typingStartIndex) / charsPerSecond;
-        }
-        textbox.GetComponent<CanvasGroup>().alpha = 1.0f;
-        while (elapsed <= total && textbox != null) {
+        var elapsed = 0f;
+        var total = (text.Length - TypingStartIndex) / charsPerSecond;
+        while (elapsed <= total && textbox != null) 
+        {
             elapsed += Time.deltaTime;
-            int charsToShow = Mathf.FloorToInt(elapsed * charsPerSecond) + typingStartIndex;
-            int cutoff = charsToShow > text.Length ? text.Length : charsToShow;
-            textbox.text = text.Substring(0, cutoff);
+            var charsToShow = Mathf.FloorToInt(elapsed * charsPerSecond) + TypingStartIndex;
+            var cutoff = charsToShow > text.Length ? text.Length : charsToShow;
+            textbox.text = text[..cutoff];
             textbox.text += "<color=#aa000000>";
-            textbox.text += text.Substring(cutoff);
+            textbox.text += text[cutoff..];
             textbox.text += "</color>";
             yield return null;
 
-            elapsed += Time.deltaTime * Global.Instance.SystemData.SettingTextSpeed.Value;
-            if (hurried) {
+            elapsed += Time.deltaTime;
+            if (hurried) 
+            {
                 hurried = false;
-                if (speedUpWhenHurried) {
-                    elapsed += Time.deltaTime * 4;
+                if (speedUpWhenHurried) 
+                {
+                    elapsed += Time.deltaTime * speedupMultiplier;
                 }
             }
-            if (confirmed) {
+            if (confirmed) 
+            {
                 confirmed = false;
-                if (!speedUpWhenHurried && fixedDuration == 0f) {
+                if (!speedUpWhenHurried) 
+                {
                     break;
                 }
             }
         }
         textbox.text = text;
 
-        if (waitForConfirm) {
+        if (waitForConfirm) 
+        {
             confirmed = false;
             if (advanceArrow != null) advanceArrow.SetActive(true);
-            while (!confirmed) {
+            while (!confirmed) 
+            {
                 yield return null;
             }
             if (advanceArrow != null) advanceArrow.SetActive(false);

@@ -7,6 +7,8 @@ namespace RpgActorTGC
 {
     public class BattleSimBehavior : MonoBehaviour
     {
+        [SerializeField] private Battle
+        [Space]
         [SerializeField, EnableField(nameof(UsePlayer1Deck))] private DeckData player1;
         [SerializeField, EnableField(nameof(UsePlayer1Card))] private CharacterData p1Back;
         [SerializeField, EnableField(nameof(UsePlayer1Card))] private CharacterData p1Center;

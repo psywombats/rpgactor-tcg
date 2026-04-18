@@ -1,10 +1,8 @@
-﻿using UnityEngine;
-using System.Collections;
-using System;
+﻿using System;
 
 public class AnonymousListener : IInputListener
 {
-    private Func<InputManager.Command, InputManager.Event, bool> eventResponder;
+    private readonly Func<InputManager.Command, InputManager.Event, bool> eventResponder;
 
     public AnonymousListener(Func<InputManager.Command, InputManager.Event, bool> eventResponder)
     {
