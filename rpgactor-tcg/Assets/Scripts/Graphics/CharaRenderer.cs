@@ -8,6 +8,7 @@ public abstract class CharaRenderer : MonoBehaviour
     protected void OnEnable()
     {
         model.OnSpriteUpdated += ModelOnOnSpriteUpdated;
+        SetSprite(model.GetSpriteForCurrentFrame());
     }
 
     protected void OnDisable()

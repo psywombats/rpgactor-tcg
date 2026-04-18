@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: LeaderTricksterMpUp
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.CharacterData
   characterName: Alchemist
+  sprite: {fileID: 11400000, guid: 7a0be953aa37c1b49ac503bbfe2801d8, type: 2}
   isLeader: 1
   stats:
     serializedStats:

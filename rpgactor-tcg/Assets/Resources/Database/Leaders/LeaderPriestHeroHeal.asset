@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: LeaderPriestHeroHeal
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.CharacterData
   characterName: Priest
+  sprite: {fileID: 11400000, guid: 1d704ee0240caee478aa53ef5e3ef402, type: 2}
   isLeader: 1
   stats:
     serializedStats:

@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 797b1c6c9c724ba2936116a9c204bd58, type: 3}
   m_Name: HeroBlitz
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.CharacterData
-  characterName: Fighter
+  characterName: Skeleton
+  sprite: {fileID: 11400000, guid: 3c9a830121a3fc14cb51f35177cd3152, type: 2}
   isLeader: 0
   stats:
     serializedStats:

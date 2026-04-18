@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 797b1c6c9c724ba2936116a9c204bd58, type: 3}
   m_Name: HeroDefenderLeaderHealer
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.CharacterData
-  characterName: Water Mage
+  characterName: Mr. Frog
+  sprite: {fileID: 11400000, guid: 7a6f8f6dcf83ae848a897d3c6533a17e, type: 2}
   isLeader: 0
   stats:
     serializedStats:

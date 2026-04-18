@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 797b1c6c9c724ba2936116a9c204bd58, type: 3}
   m_Name: HeroAbilMpUp
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.CharacterData
-  characterName: Thunder Mage
+  characterName: Ghost
+  sprite: {fileID: 11400000, guid: 2d5d476a00c7f68499651157ce4fb136, type: 2}
   isLeader: 0
   stats:
     serializedStats:

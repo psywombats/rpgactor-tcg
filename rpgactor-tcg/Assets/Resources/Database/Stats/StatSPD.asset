@@ -15,4 +15,5 @@ MonoBehaviour:
   associatedStat: 6
   abbreviation: SPD
   statName: Speed
+  icon: {fileID: -104885411, guid: da1903ee954764a4e8e88adc02e4fe0f, type: 3}
   useBinaryEditor: 0

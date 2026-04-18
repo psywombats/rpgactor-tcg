@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 797b1c6c9c724ba2936116a9c204bd58, type: 3}
   m_Name: HeroAbilLeaderAtkUp
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.CharacterData
-  characterName: Wind Mage
+  characterName: Tanuki
+  sprite: {fileID: 11400000, guid: 7e02459f5e3ac5c498fc4d6372e88d5c, type: 2}
   isLeader: 0
   stats:
     serializedStats:

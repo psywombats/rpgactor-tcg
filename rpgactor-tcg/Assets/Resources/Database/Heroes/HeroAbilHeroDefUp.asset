@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 797b1c6c9c724ba2936116a9c204bd58, type: 3}
   m_Name: HeroAbilHeroDefUp
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.CharacterData
-  characterName: Earth Monk
+  characterName: Brass Knight
+  sprite: {fileID: 11400000, guid: 21274032c43fb1a42b3d5f90fbe11013, type: 2}
   isLeader: 0
   stats:
     serializedStats:

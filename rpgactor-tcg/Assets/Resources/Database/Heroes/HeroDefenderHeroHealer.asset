@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 797b1c6c9c724ba2936116a9c204bd58, type: 3}
   m_Name: HeroDefenderHeroHealer
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.CharacterData
-  characterName: Potionmaster
+  characterName: Imp
+  sprite: {fileID: 11400000, guid: a58eafb460c11174a9775cf57b127175, type: 2}
   isLeader: 0
   stats:
     serializedStats:

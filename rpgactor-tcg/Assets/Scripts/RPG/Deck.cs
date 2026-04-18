@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using EffekseerTool.InternalScript;
 
 namespace RpgActorTGC
 {
     public class Deck
     {
         public CharacterCard Leader { get; }
+        public IEnumerable<CharacterCard> Followers => CardsByLane.Values.Where(c => !c.IsLeader);
         public CharacterCard this[LaneType lane] => CardsByLane[lane];
         
         public string DeckName { get; set; }
@@ -65,12 +67,20 @@ namespace RpgActorTGC
             throw new KeyNotFoundException($"No lane for card {card}");
         }
 
-        public bool IsEquivalentTo(Deck other)
+        public bool IsEqualTo(Deck other)
         {
             return other.CardsByLane[LaneType.Back].Equals(CardsByLane[LaneType.Back])
                 && other.CardsByLane[LaneType.Left].Equals(CardsByLane[LaneType.Left])
                 && other.CardsByLane[LaneType.Center].Equals(CardsByLane[LaneType.Center])
                 && other.CardsByLane[LaneType.Back].Equals(CardsByLane[LaneType.Back]);
+        }
+
+        public void Replace(CharacterCard currentCard, CharacterCard newCard)
+        {
+            if (CardsByLane.ContainsValue(currentCard)) throw new ArgumentException($"Card {currentCard} not found");
+
+            var lane = GetLaneForCard(currentCard);
+            CardsByLane[lane] = newCard;
         }
     }
 }

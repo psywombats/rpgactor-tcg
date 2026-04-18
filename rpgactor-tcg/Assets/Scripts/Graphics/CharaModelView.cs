@@ -83,7 +83,7 @@ public class CharaModelView : MonoBehaviour
         }
     }
 
-    private Sprite GetSpriteForCurrentFrame()
+    public Sprite GetSpriteForCurrentFrame()
     {
         if (Sprite == null) return null;
         var x = Mathf.FloorToInt(Time.time * StepsPerSecond) % Sprite.StepCount;

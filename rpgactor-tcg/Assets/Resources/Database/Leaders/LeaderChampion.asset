@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: LeaderChampion
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.CharacterData
   characterName: Champion
+  sprite: {fileID: 11400000, guid: 2de46508177995544a63902cfa78a8c6, type: 2}
   isLeader: 1
   stats:
     serializedStats:

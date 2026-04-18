@@ -15,4 +15,5 @@ MonoBehaviour:
   associatedStat: 5
   abbreviation: DEF
   statName: Defense
+  icon: {fileID: -692538940, guid: da1903ee954764a4e8e88adc02e4fe0f, type: 3}
   useBinaryEditor: 0

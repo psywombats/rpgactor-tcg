@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: LeaderPriest
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.CharacterData
   characterName: Saint
+  sprite: {fileID: 11400000, guid: cff5887219159e04d840a554205b8895, type: 2}
   isLeader: 1
   stats:
     serializedStats:

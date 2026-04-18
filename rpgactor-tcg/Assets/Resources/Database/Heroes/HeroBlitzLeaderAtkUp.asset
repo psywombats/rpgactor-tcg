@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 797b1c6c9c724ba2936116a9c204bd58, type: 3}
   m_Name: HeroBlitzLeaderAtkUp
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.CharacterData
-  characterName: Gunsmith
+  characterName: Demon
+  sprite: {fileID: 11400000, guid: 75aa4103b59407945a668d7702bc2781, type: 2}
   isLeader: 0
   stats:
     serializedStats:

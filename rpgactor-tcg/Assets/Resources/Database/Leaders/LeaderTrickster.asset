@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: LeaderTrickster
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.CharacterData
   characterName: Trickster
+  sprite: {fileID: 11400000, guid: 24331808ec48d7248a19208e403b757e, type: 2}
   isLeader: 1
   stats:
     serializedStats:

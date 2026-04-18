@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: LeaderBerserker
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.CharacterData
   characterName: Berserker
+  sprite: {fileID: 11400000, guid: bc40fb42a04caae4e9c933f43b665701, type: 2}
   isLeader: 1
   stats:
     serializedStats:

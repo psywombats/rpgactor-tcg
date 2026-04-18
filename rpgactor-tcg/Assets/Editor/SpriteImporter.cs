@@ -76,7 +76,7 @@ internal sealed class SpriteImporter : AssetPostprocessor
             }
 
             var relevantSprites = sprites.GetRange(i * format.TotalFrames, format.TotalFrames);
-            spritesheetData.PopulateFromSerializedSprite(relevantSprites, format, i, fullAssetName);
+            spritesheetData.PopulateFromSerializedSprite(relevantSprites, format, i, assetName);
             EditorUtility.SetDirty(spritesheetData);
             AssetDatabase.SaveAssetIfDirty(spritesheetData);
         }

@@ -17,6 +17,9 @@ namespace RpgActorTGC
                 GetOrCreateCard(cardData);
             }
         }
+        
+        public IEnumerable<CharacterCard> AllHeroCards => heroCards.Values;
+        public IEnumerable<CharacterCard> AllLeaderCards => leaderCards.Values;
 
         public CharacterCard GetRandomCharacter(bool isLeader)
         {

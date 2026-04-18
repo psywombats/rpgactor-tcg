@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: LeaderPriestHeroDefUp
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.CharacterData
   characterName: Architect
+  sprite: {fileID: 11400000, guid: 3c179cc9ab4ec304eb4e6bece659737f, type: 2}
   isLeader: 1
   stats:
     serializedStats:

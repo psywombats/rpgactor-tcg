@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8755e393ba17e344d96341f68b599664, type: 3}
+  m_Name: char_p_ninja0105
+  m_EditorClassIdentifier: Assembly-CSharp::SpritesheetData
+  sheetName: char_p_ninja01
+  serializedSprites:
+  - {fileID: 1603989589, guid: 799c2195623cbd34697c76734942d49f, type: 3}
+  - {fileID: 6359076, guid: 799c2195623cbd34697c76734942d49f, type: 3}
+  - {fileID: -233785432, guid: 799c2195623cbd34697c76734942d49f, type: 3}
+  - {fileID: -170934154, guid: 799c2195623cbd34697c76734942d49f, type: 3}
+  - {fileID: 848000348, guid: 799c2195623cbd34697c76734942d49f, type: 3}
+  - {fileID: -2007868468, guid: 799c2195623cbd34697c76734942d49f, type: 3}
+  - {fileID: -1663178600, guid: 799c2195623cbd34697c76734942d49f, type: 3}
+  - {fileID: 622722710, guid: 799c2195623cbd34697c76734942d49f, type: 3}
+  - {fileID: -103198771, guid: 799c2195623cbd34697c76734942d49f, type: 3}
+  - {fileID: -19080645, guid: 799c2195623cbd34697c76734942d49f, type: 3}
+  - {fileID: 472335969, guid: 799c2195623cbd34697c76734942d49f, type: 3}
+  - {fileID: 874846602, guid: 799c2195623cbd34697c76734942d49f, type: 3}
+  format: {fileID: 11400000, guid: 43b4b1cd3455b204b9b4da3288fd934d, type: 2}
+  indexInSheet: 5

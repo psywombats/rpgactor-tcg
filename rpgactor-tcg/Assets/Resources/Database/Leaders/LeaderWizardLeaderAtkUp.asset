@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: LeaderWizardLeaderAtkUp
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.CharacterData
   characterName: Nuclear Mage
+  sprite: {fileID: 11400000, guid: 8df8c0743b247ee49b0021e6bd1a1622, type: 2}
   isLeader: 1
   stats:
     serializedStats:

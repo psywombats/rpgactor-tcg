@@ -168,6 +168,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6031711028049256680}
   - component: {fileID: 1564872721956710470}
+  - component: {fileID: 3554003203455327551}
   m_Layer: 5
   m_Name: CardStatEntry
   m_TagString: Untagged
@@ -222,6 +223,20 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &3554003203455327551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6901351401798934779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10d87f7e6e1f467e9156bf29e943741f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.StatView
+  icon: {fileID: 8796006592307180928}
+  valueText: {fileID: 3729427234153161740}
 --- !u!1 &7107989261810852814
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,4 +15,5 @@ MonoBehaviour:
   associatedStat: 1
   abbreviation: MHP
   statName: Max Health
+  icon: {fileID: 2110963141, guid: da1903ee954764a4e8e88adc02e4fe0f, type: 3}
   useBinaryEditor: 0

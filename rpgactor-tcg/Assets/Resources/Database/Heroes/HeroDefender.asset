@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 797b1c6c9c724ba2936116a9c204bd58, type: 3}
   m_Name: HeroDefender
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.CharacterData
-  characterName: Soldier
+  characterName: Mummy
+  sprite: {fileID: 11400000, guid: a4d1cc44c2a7b6e40a5e044f29715f4c, type: 2}
   isLeader: 0
   stats:
     serializedStats:

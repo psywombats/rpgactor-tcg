@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8755e393ba17e344d96341f68b599664, type: 3}
+  m_Name: char_m_devil0101
+  m_EditorClassIdentifier: Assembly-CSharp::SpritesheetData
+  sheetName: char_m_devil01
+  serializedSprites:
+  - {fileID: -235674974, guid: 3efce3406804acd4db851fee6aea55ac, type: 3}
+  - {fileID: -548272047, guid: 3efce3406804acd4db851fee6aea55ac, type: 3}
+  - {fileID: -924724565, guid: 3efce3406804acd4db851fee6aea55ac, type: 3}
+  - {fileID: 880265695, guid: 3efce3406804acd4db851fee6aea55ac, type: 3}
+  - {fileID: -2108291266, guid: 3efce3406804acd4db851fee6aea55ac, type: 3}
+  - {fileID: 1439267653, guid: 3efce3406804acd4db851fee6aea55ac, type: 3}
+  - {fileID: -934583858, guid: 3efce3406804acd4db851fee6aea55ac, type: 3}
+  - {fileID: -220969071, guid: 3efce3406804acd4db851fee6aea55ac, type: 3}
+  - {fileID: -852843388, guid: 3efce3406804acd4db851fee6aea55ac, type: 3}
+  - {fileID: 147902355, guid: 3efce3406804acd4db851fee6aea55ac, type: 3}
+  - {fileID: 2087577738, guid: 3efce3406804acd4db851fee6aea55ac, type: 3}
+  - {fileID: -1542077479, guid: 3efce3406804acd4db851fee6aea55ac, type: 3}
+  format: {fileID: 11400000, guid: 43b4b1cd3455b204b9b4da3288fd934d, type: 2}
+  indexInSheet: 1

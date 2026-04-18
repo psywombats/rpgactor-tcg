@@ -15,4 +15,5 @@ MonoBehaviour:
   associatedStat: 4
   abbreviation: ATK
   statName: Attack
+  icon: {fileID: 1695119846, guid: da1903ee954764a4e8e88adc02e4fe0f, type: 3}
   useBinaryEditor: 0

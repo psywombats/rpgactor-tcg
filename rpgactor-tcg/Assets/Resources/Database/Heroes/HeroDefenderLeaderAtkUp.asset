@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 797b1c6c9c724ba2936116a9c204bd58, type: 3}
   m_Name: HeroDefenderLeaderAtkUp
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.CharacterData
-  characterName: Blacksmith
+  characterName: Toothy Grin
+  sprite: {fileID: 11400000, guid: edbfc4155267e3946bd91c0824b1d683, type: 2}
   isLeader: 0
   stats:
     serializedStats:

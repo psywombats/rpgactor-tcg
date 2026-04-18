@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: LeaderSniper
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.CharacterData
   characterName: Butcher
+  sprite: {fileID: 11400000, guid: 711ee0495c0454243bf2b3150734c44d, type: 2}
   isLeader: 1
   stats:
     serializedStats:
