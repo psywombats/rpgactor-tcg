@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,10 +11,12 @@ namespace RpgActorTGC
         [SerializeField] private Image icon;
         [SerializeField] private TMP_Text valueText;
 
-        public void Populate(Tuple<Stat, float> statAndValue)
+        public void Populate(Stat stat, float value)
         {
-            icon.sprite = statAndValue.Item1.Info().Icon;
-            valueText.text = ((int)statAndValue.Item2).ToString();
+            icon.sprite = stat.Info().Icon;
+            valueText.text = value.ToString(CultureInfo.InvariantCulture);
         }
+        
+        public void Populate(Tuple<Stat, float> statAndValue) =>  Populate(statAndValue.Item1, statAndValue.Item2);
     }
 }

@@ -8,8 +8,8 @@
         
         public bool HasActivated { get; private set; }
         
-        public string ShortDescription => Card.GetShortDescription(Owner.Card);
-        public string LongDescription => Card.GetShortDescription(Owner.Card);
+        public string GetShortDescription(bool pretty = false) => Card.GetShortDescription(Owner.Card, pretty);
+        public string GetLongDescription(bool pretty = false) => Card.GetShortDescription(Owner.Card, pretty);
         
         public AbilityInstance(Unit owner, AbilityCard card)
         {
@@ -26,7 +26,7 @@
         {
             if ((!HasActivated || Card.IsContinuous) && Party.Mp >= Card.Cost)
             {
-                if (battle.UseVerboseLogging) battle.LogPartial($"Activated {ShortDescription}: ");
+                if (battle.UseVerboseLogging) battle.LogPartial($"Activated {GetShortDescription()}: ");
                 HasActivated = true;
                 Card.Data.Activate(battle, Owner, this);
             }

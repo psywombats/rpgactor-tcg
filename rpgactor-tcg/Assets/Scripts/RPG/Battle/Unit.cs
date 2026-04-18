@@ -11,6 +11,7 @@ namespace RpgActorTGC
         public List<AbilityInstance> Abilities { get; } = new();
         public int Hp => (int)this[Stat.HP];
         public LaneType Lane { get; set; }
+        public SpritesheetData Sprite => Card.Sprite;
         
         public bool IsLeader => Card.IsLeader;
         public bool IsDead => Hp <= 0;
@@ -24,11 +25,11 @@ namespace RpgActorTGC
         public string StateString => $"{{ {CompositionString}: {this[Stat.HP]}/{this[Stat.MHP]} " +
                                      $"{this[Stat.ATK]},{this[Stat.DEF]},{this[Stat.SPD]},{this[Stat.MP]} {Card.AbilString} }}";
 
-        private readonly StatSet stats = new();
+        public StatSet Stats { get; } = new();
         public float this[Stat tag]
         {
-            get => stats[tag];
-            set => stats[tag] = value;
+            get => Stats[tag];
+            set => Stats[tag] = value;
         }
 
         public Unit(Party party, CharacterCard card, LaneType lane)
@@ -57,7 +58,7 @@ namespace RpgActorTGC
                 abil.Reset();
             }
             
-            stats.SetTo(Card.Stats);
+            Stats.SetTo(Card.Stats);
             Lane = originalLane;
         }
 

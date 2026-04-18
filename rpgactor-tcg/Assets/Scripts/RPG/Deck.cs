@@ -77,7 +77,7 @@ namespace RpgActorTGC
 
         public void Replace(CharacterCard currentCard, CharacterCard newCard)
         {
-            if (CardsByLane.ContainsValue(currentCard)) throw new ArgumentException($"Card {currentCard} not found");
+            if (!CardsByLane.ContainsValue(currentCard)) throw new ArgumentException($"Card {currentCard} not found");
 
             var lane = GetLaneForCard(currentCard);
             CardsByLane[lane] = newCard;

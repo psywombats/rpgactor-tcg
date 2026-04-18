@@ -67,7 +67,7 @@ namespace RpgActorTGC
             });
             abilList.Populate(card.AbilityCards, (obj, abil) =>
             {
-                obj.GetComponent<AbilView>().Populate(abil, card);
+                obj.GetComponent<AbilCardView>().Populate(abil, card);
             });
 
             foreach (var obj in leaderObjects)

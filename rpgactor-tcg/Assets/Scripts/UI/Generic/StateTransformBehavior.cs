@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using DG.Tweening;
 using EditorAttributes;
 using UnityEditor;
@@ -10,7 +9,6 @@ public abstract class StateTransformBehavior : MonoBehaviour
 {
     [SerializeField] private Vector2 posA;
     [SerializeField] private Vector2 posB;
-    [SerializeField] private bool inSecondaryState;
     [SerializeField] private bool startAtPrimary;
 
     private RectTransform trans;
@@ -41,29 +39,32 @@ public abstract class StateTransformBehavior : MonoBehaviour
         {
             posA = val;
         }
-        inSecondaryState = isSecondaryState;
         EditorUtility.SetDirty(this);
     }
 
     protected abstract Vector2 Get();
     protected abstract void Set(Vector2 val);
 
-    public async Task TweenToStateAsync(bool useSecondaryState, float duration, bool snapping = false)
+    public Task TweenToStateAsync(bool useSecondaryState, float duration, bool snapping = false)
+        => TweenToLerpAsync(duration, useSecondaryState ? 1f : 0f, snapping);
+
+    public async Task TweenToLerpAsync(float duration, float t, bool snapping = false)
     {
-        if (useSecondaryState == inSecondaryState)
+        var target = t * posB + (1f - t) * posA;
+        if ((target - Get()).sqrMagnitude < Mathf.Epsilon)
         {
             return;
         }
-        var tween = DOTween.To(Get, Set, useSecondaryState ? posB : posA, duration);
+        var tween = DOTween.To(Get, Set, target, duration);
         tween.SetOptions(snapping).SetTarget(Trans);
         await tween.AsTask();
-        inSecondaryState = useSecondaryState;
     }
 
-    public void JumpToState(bool usesSecondaryState)
+    public void JumpToState(bool usesSecondaryState) => JumpToLerp(usesSecondaryState ? 1f : 0f);
+
+    public void JumpToLerp(float t)
     {
-        Set(usesSecondaryState ?  posB : posA);
-        inSecondaryState = usesSecondaryState;
+        Set(t * posB + (1f - t) * posA);
         if (!Application.IsPlaying(this))
         {
             EditorUtility.SetDirty(this);

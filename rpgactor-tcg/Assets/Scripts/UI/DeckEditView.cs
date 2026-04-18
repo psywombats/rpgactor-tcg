@@ -16,7 +16,6 @@ namespace RpgActorTGC
         private CharacterCard currentCard;
 
         private CharacterCard currentlyReplacingCard;
-        private Task replaceCardTask;
         private CancellationTokenSource replaceCardCTS;
 
         protected void Start()
@@ -32,7 +31,7 @@ namespace RpgActorTGC
 
         private void OnCardSelect(CardView cardView)
         {
-            if (replaceCardTask != null)
+            if (currentlyReplacingCard != null)
             {
                 var startAgain = cardView.Card != currentlyReplacingCard;
                 CancelReplacement();
@@ -41,7 +40,7 @@ namespace RpgActorTGC
                     return;
                 }
             }
-            replaceCardTask = ReplaceCardAsync(cardView);
+            ReplaceCardAsync(cardView).Forget();
         }
 
         private async Task ReplaceCardAsync(CardView cardView)
@@ -61,14 +60,13 @@ namespace RpgActorTGC
                 return;
             }
 
+            currentlyReplacingCard = null;
             await selectorView.HideAsync();
-            replaceCardTask = null;
         }
 
         private void CancelReplacement()
         {
-            if (replaceCardTask == null) throw new ArgumentException("No replacement in progress");
-            replaceCardTask = null;
+            if (currentlyReplacingCard == null) throw new ArgumentException("No replacement in progress");
             replaceCardCTS.Cancel();
             replaceCardCTS.Dispose();
             replaceCardCTS = null;

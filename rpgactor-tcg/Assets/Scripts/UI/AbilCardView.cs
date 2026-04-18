@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace RpgActorTGC
 {
-    public class AbilView : MonoBehaviour
+    public class AbilCardView : MonoBehaviour
     {
         [SerializeField] private TMP_Text desc;
 

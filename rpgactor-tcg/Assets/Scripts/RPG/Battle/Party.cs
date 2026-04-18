@@ -15,6 +15,8 @@ namespace RpgActorTGC
         public List<Unit> Heroes { get; } = new();
         
         public int Mp { get; private set; }
+
+        public string PartyName => Deck.DeckName;
         
         public Party(Deck deck)
         {

@@ -72,10 +72,14 @@ public class CharaModelView : MonoBehaviour
     
     public void Update() 
     {
-        if (Animates && Sprite != null) 
+        if (Sprite != null)
         {
-            var elapsed = Time.time;
-            var newX = Mathf.FloorToInt(elapsed * StepsPerSecond) % Sprite.StepCount;
+            var newX = 0;
+            if (Animates) 
+            {
+                var elapsed = Time.time;
+                newX = Mathf.FloorToInt(elapsed * StepsPerSecond) % Sprite.StepCount;
+            }
             if (StepIndex != newX) 
             {
                 StepIndex = newX;
