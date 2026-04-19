@@ -58,7 +58,7 @@ namespace RpgActorTGC
             return party;
         }
 
-        public override bool IsEquivalentTo(DeckSolution other) => other.Deck.IsEqualTo(Deck);
+        public override bool IsEquivalentTo(DeckSolution other) => other.Deck.IsEquivalentTo(Deck);
 
         public override DeckSolution CrossWith(DeckSolution other)
         {

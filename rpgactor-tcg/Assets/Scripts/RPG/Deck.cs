@@ -28,6 +28,11 @@ namespace RpgActorTGC
             }
         }
 
+        private int OrderFreeHash => this[LaneType.Back].GetHashCode()
+                                    ^ this[LaneType.Left].GetHashCode()
+                                    ^ this[LaneType.Center].GetHashCode()
+                                    ^ this[LaneType.Right].GetHashCode();
+
         public Deck(DeckData data) : this(data.name, data.backChara, data.leftChara, data.centerChara, data.rightChara) {}
         
         public Deck(string name, CharacterData back, CharacterData left,  CharacterData center, CharacterData right )
@@ -67,12 +72,9 @@ namespace RpgActorTGC
             throw new KeyNotFoundException($"No lane for card {card}");
         }
 
-        public bool IsEqualTo(Deck other)
+        public bool IsEquivalentTo(Deck other)
         {
-            return other.CardsByLane[LaneType.Back].Equals(CardsByLane[LaneType.Back])
-                && other.CardsByLane[LaneType.Left].Equals(CardsByLane[LaneType.Left])
-                && other.CardsByLane[LaneType.Center].Equals(CardsByLane[LaneType.Center])
-                && other.CardsByLane[LaneType.Back].Equals(CardsByLane[LaneType.Back]);
+            return OrderFreeHash == other.OrderFreeHash;
         }
 
         public void Replace(CharacterCard currentCard, CharacterCard newCard)

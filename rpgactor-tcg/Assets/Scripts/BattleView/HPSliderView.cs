@@ -14,16 +14,23 @@ namespace RpgActorTGC
         
         public void Populate(int newHP, int newMax)
         {
-            hp = newHP;
             max = newMax;
-            label.text = $"{hp}/{max}";
+            SetHP(newHP);
             anchorTrans.JumpToLerp((float)hp / max);
+        }
+
+        private void SetHP(int newHP)
+        {
+            hp = newHP;
+            label.text = $"{hp}/{max}";
         }
 
         public async Task TweenTo(int newHP, float duration)
         {
-            anchorTrans.TweenToLerpAsync(hp, max).Forget();
-            await DOTween.To(() => hp, val => hp = val, newHP, duration).Play().AsTask();
+            if (newHP < 0) newHP = 0;
+            var ratio = (float)newHP / max;
+            await Task.WhenAll(anchorTrans.TweenToLerpAsync(duration, ratio),
+                DOTween.To(() => hp, SetHP, newHP, duration).Play().AsTask());
         }
     }
 }

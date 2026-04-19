@@ -18,11 +18,10 @@ public class SpritesheetData : ScriptableObject, IDatabaseKeyable
     [Space]
     [SerializeField] private List<Sprite> serializedSprites;
     [SerializeField] private SpritesheetFormatData format;
-    [SerializeField] private int indexInSheet;
 
     public int StepCount => format.WalkCycle.Count;
 
-    public string Key => $"{sheetName}{indexInSheet:D2}";
+    public string Key => sheetName;
 
     private Dictionary<string, Sprite> spritesByName;
     private Dictionary<string, Sprite> SpritesByName
@@ -45,21 +44,18 @@ public class SpritesheetData : ScriptableObject, IDatabaseKeyable
         }
     }
     
-    public void PopulateFromTexture(Texture2D texture, SpritesheetFormatData format, int indexInSheet, string sheetName)
+    public void PopulateFromTexture(Texture2D texture, SpritesheetFormatData format, string sheetName)
     {
         if (!Application.isPlaying) throw new ArgumentException("Can only populate from a texture at runtime");
         this.format = format;
-        this.indexInSheet = indexInSheet;
         this.sheetName = sheetName;
         serializedSprites = format.Split(texture);
     }
 
-    public void PopulateFromSerializedSprite(IEnumerable<Sprite> sprites, SpritesheetFormatData format, 
-        int indexInSheet, string sheetName)
+    public void PopulateFromSerializedSprite(IEnumerable<Sprite> sprites, SpritesheetFormatData format, string sheetName)
     {
         if (Application.isPlaying) throw new ArgumentException("Can only populate from serialized sprites in editor");
         this.format = format;
-        this.indexInSheet = indexInSheet;
         this.sheetName = sheetName;
         serializedSprites = sprites.ToList();
     }
@@ -70,7 +66,7 @@ public class SpritesheetData : ScriptableObject, IDatabaseKeyable
         var walkCycle = GetWalkCycle(dir);
         if (walkCycle.Count <= step) throw new ArgumentException();
         var frameNumber = walkCycle[step];
-        var frameName = format.NameForFrame(sheetName, dir, frameNumber, indexInSheet);
+        var frameName = format.NameForFrame(sheetName, dir, frameNumber);
 
         if (!SpritesByName.ContainsKey(frameName) && Application.isPlaying) 
         {
@@ -84,7 +80,7 @@ public class SpritesheetData : ScriptableObject, IDatabaseKeyable
     public Sprite GetPreviewSprite() 
     {
         if (serializedSprites == null || serializedSprites.Count == 0) return null;
-        var frameName = format.NameForFrame(sheetName, OrthoDir.South, GetWalkCycle(OrthoDir.South)[0], indexInSheet);
+        var frameName = format.NameForFrame(sheetName, OrthoDir.South, GetWalkCycle(OrthoDir.South)[0]);
         return SpritesByName.ContainsKey(frameName) ? SpritesByName[frameName] : serializedSprites.FirstOrDefault();
     }
 

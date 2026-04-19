@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using System;
+using UnityEditor;
 using System.IO;
 using System.Linq;
 using Editor;
@@ -62,12 +63,13 @@ internal sealed class SpriteImporter : AssetPostprocessor
         var sprites = AssetDatabase.LoadAllAssetsAtPath(assetPath)?.OfType<Sprite>().ToList();
         if (sprites == null) return;
         
+        sprites.Sort((a, b) => string.Compare(a.name, b.name, StringComparison.Ordinal));
         var spriteCount = sprites.Count / format.TotalFrames;
         var assetName = Path.GetFileNameWithoutExtension(assetPath);
         for (var i = 0; i < spriteCount; i++)
         {
-            var fullAssetName = assetName + (spriteCount > 1 ? i.ToString("D2") : "");
-            var spritesheetPath = $"{EditorUtils.LocalDirectoryFromPath(assetPath)}/{fullAssetName}.asset";
+            var sheetName = assetName + (spriteCount > 1 ? i.ToString("D2") : "");
+            var spritesheetPath = $"{EditorUtils.LocalDirectoryFromPath(assetPath)}/{sheetName}.asset";
             var spritesheetData = AssetDatabase.LoadAssetAtPath<SpritesheetData>(spritesheetPath);
             if (spritesheetData == null)
             {
@@ -76,7 +78,7 @@ internal sealed class SpriteImporter : AssetPostprocessor
             }
 
             var relevantSprites = sprites.GetRange(i * format.TotalFrames, format.TotalFrames);
-            spritesheetData.PopulateFromSerializedSprite(relevantSprites, format, i, assetName);
+            spritesheetData.PopulateFromSerializedSprite(relevantSprites, format, sheetName);
             EditorUtility.SetDirty(spritesheetData);
             AssetDatabase.SaveAssetIfDirty(spritesheetData);
         }

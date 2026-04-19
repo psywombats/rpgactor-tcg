@@ -5,7 +5,7 @@ using Void = EditorAttributes.Void;
 
 namespace RpgActorTGC
 {
-    public class BattleSimBehavior : MonoBehaviour
+    public class BattleTestBehavior : MonoBehaviour
     {
         [SerializeField] private BattlePlaybackView view;
         [Space]
@@ -20,8 +20,7 @@ namespace RpgActorTGC
         [SerializeField, EnableField(nameof(UsePlayer2Card))] private CharacterData p2Center;
         [SerializeField, EnableField(nameof(UsePlayer2Card))] private CharacterData p2Left;
         [SerializeField, EnableField(nameof(UsePlayer2Card))] private CharacterData p2Right;
-        [Space] 
-        [SerializeField] private bool autoRun;
+        [Space]
         [SerializeField, MessageBox(nameof(ResultString), nameof(ShouldShowResults), MessageMode.Log, StringInputMode.Dynamic)] private Void messageBoxHolder;
         [SerializeField, MessageBox("Can only simulate in play mode", nameof(IsNotRunnable), MessageMode.Warning)] private Void warningBoxHolder;
         
@@ -35,40 +34,40 @@ namespace RpgActorTGC
         private bool IsRunnable => Application.isPlaying;
         private bool IsNotRunnable => !IsRunnable;
 
-        public void Start()
-        {
-            if (autoRun)
-            {
-                Simulate();
-            }
-        }
-
         [Button]
-        public void ClearPlayer1()
+        private void ClearPlayer1()
         {
             player1 = null;
             p1Back = p1Left = p1Center = p1Right = null;
         }
         
         [Button]
-        public void ClearPlayer2()
+        private void ClearPlayer2()
         {
             player2 = null;
             p2Back = p2Left = p2Center = p2Right = null;
         }
 
         [Button(false, nameof(IsRunnable), ConditionResult.EnableDisable)]
-        public void Simulate()
+        private void Simulate()
         {
             var p1 = UsePlayer1Deck ? new Party(player1) : new Party("Player1", p1Back, p1Left, p1Center, p1Right);
             var p2 = UsePlayer2Deck ? new Party(player2) : new Party("Player2", p2Back, p2Left, p2Center, p2Right);
-            var model = new BattleModel(p1, p2)
+            var model = new BattleModel
             {
                 UseVerboseLogging = true
             };
-            model.SimulateBattle();
+            var result = model.PlaybackBattleAsync(p1, p2).Result;
             Debug.Log(model.Report);
             ResultString = model.LivenessString;
+        }
+        
+        [Button(false, nameof(IsRunnable), ConditionResult.EnableDisable)]
+        private void Playback()
+        {
+            var p1 = UsePlayer1Deck ? new Party(player1) : new Party("Player1", p1Back, p1Left, p1Center, p1Right);
+            var p2 = UsePlayer2Deck ? new Party(player2) : new Party("Player2", p2Back, p2Left, p2Center, p2Right);
+            view.PlayBattleAsync(p1, p2).Forget();
         }
     }
 }

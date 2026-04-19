@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8755e393ba17e344d96341f68b599664, type: 3}
   m_Name: char_p_hero0102
   m_EditorClassIdentifier: Assembly-CSharp::SpritesheetData
-  sheetName: char_p_hero01
+  sheetName: char_p_hero0102
   serializedSprites:
   - {fileID: 1730691775, guid: c439c3046335cad4a90577b29707508f, type: 3}
   - {fileID: 2061259676, guid: c439c3046335cad4a90577b29707508f, type: 3}
@@ -27,4 +27,3 @@ MonoBehaviour:
   - {fileID: 215829308, guid: c439c3046335cad4a90577b29707508f, type: 3}
   - {fileID: -64942738, guid: c439c3046335cad4a90577b29707508f, type: 3}
   format: {fileID: 11400000, guid: 43b4b1cd3455b204b9b4da3288fd934d, type: 2}
-  indexInSheet: 2

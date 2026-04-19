@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace RpgActorTGC
@@ -8,6 +9,22 @@ namespace RpgActorTGC
         [SerializeField] private bool targetsLeader;
 
         public override void Activate(BattleModel battle, Unit caster, AbilityInstance instance, int power)
+        {
+            foreach (var victim in GetVictims(caster))
+            {
+                ApplyToVictim(battle, caster, instance, power, victim);
+            }
+        }
+
+        public override string GetUseMessage(BattleModel battle, Unit caster, AbilityInstance instance, int power)
+            => GetUseMessage(battle, caster, GetVictims(caster), instance, power);
+
+        protected abstract string GetUseMessage(BattleModel battle, Unit caster, List<Unit> victims,
+            AbilityInstance instance, int power);
+
+        protected abstract void ApplyToVictim(BattleModel battle, Unit caster, AbilityInstance instance, int power, Unit victim);
+
+        protected List<Unit> GetVictims(Unit caster)
         {
             var victims = new List<Unit>();
             if (targetsLeader)
@@ -22,14 +39,8 @@ namespace RpgActorTGC
             {
                 victims.Add(caster);
             }
-
-            foreach (var victim in victims)
-            {
-                ApplyToVictim(battle, caster, instance, power, victim);
-            }
+            return victims;
         }
-        
-        protected abstract void ApplyToVictim(BattleModel battle, Unit caster, AbilityInstance instance, int power, Unit victim);
         
         public override string GetAbilityName(CharacterData owner)
         {

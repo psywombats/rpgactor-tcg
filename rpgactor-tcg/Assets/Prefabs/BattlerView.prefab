@@ -34,7 +34,7 @@ RectTransform:
   - {fileID: 5111454016804208125}
   - {fileID: 8193060616218678912}
   - {fileID: 9199788916719090598}
-  m_Father: {fileID: 583585824846375832}
+  m_Father: {fileID: 786745097298080512}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
@@ -437,46 +437,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01f452ad277d448495dee91ea29126ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnchorPosTransBehavior
-  posA: {x: 78, y: 0}
-  posB: {x: 0, y: 0}
-  startAtPrimary: 0
---- !u!1 &5126380300973201408
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 583585824846375832}
-  m_Layer: 5
-  m_Name: LiveArea
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &583585824846375832
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5126380300973201408}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 686368267167040864}
-  - {fileID: 2022321061094903343}
-  m_Father: {fileID: 786745097298080512}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  posA: {x: 0, y: 0}
+  posB: {x: 78, y: 0}
+  startAtPrimary: 1
 --- !u!1 &5755757639318635186
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,7 +472,8 @@ RectTransform:
   m_Children:
   - {fileID: 7835630046220960985}
   - {fileID: 4016730336484382518}
-  - {fileID: 583585824846375832}
+  - {fileID: 686368267167040864}
+  - {fileID: 2022321061094903343}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -534,9 +498,19 @@ MonoBehaviour:
   statList: {fileID: 6544278209550970969}
   abilList: {fileID: 2849362184581456436}
   liveObjects:
-  - {fileID: 5126380300973201408}
+  - {fileID: 1962702746593473775}
+  - {fileID: 5800073523169193703}
+  - {fileID: 7776254185738226958}
   deadObjects: []
   deadSprite: {fileID: 11400000, guid: 6a1bb0d63e3fb0f419fd564cb1fb806c, type: 2}
+  spriteTransform: {fileID: 4016730336484382518}
+  attackMoveRatio: 0.7
+  attackMoveToDuration: 0.6
+  attackMoveBackDuration: 0.6
+  shakeDuration: 0.3
+  shakeStrength: {x: 0, y: 20}
+  shakeRandomness: 10
+  shakeVibrato: 10
 --- !u!114 &7661351195069085136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -584,7 +558,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6989620182145372092}
-  m_Father: {fileID: 583585824846375832}
+  m_Father: {fileID: 786745097298080512}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -833,7 +807,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.HPSliderView
   label: {fileID: 1727864508568381844}
-  anchorTrans: {fileID: 0}
+  anchorTrans: {fileID: 6195085877598605781}
 --- !u!1 &8933137099632552308
 GameObject:
   m_ObjectHideFlags: 0

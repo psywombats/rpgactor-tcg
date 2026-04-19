@@ -65,9 +65,9 @@ public class SpritesheetFormatData : ScriptableObject
         return sprites;
     }
 
-    public void ApplyToEditorData(ISpriteEditorDataProvider dataProvider, Vector2Int textureSize, string sheetName)
+    public void ApplyToEditorData(ISpriteEditorDataProvider dataProvider, Vector2Int textureSize, string assetName)
     {
-        if (!ValidateSheetSize(textureSize, sheetName)) return;
+        if (!ValidateSheetSize(textureSize, assetName)) return;
         
         var spriteRects = new List<SpriteRect>();
         var spriteIdNamePairs = new List<SpriteNameFileIdPair>();
@@ -81,7 +81,7 @@ public class SpritesheetFormatData : ScriptableObject
                     for (var y = 0; y < facings.Count; y++)
                     {
                         var guid = GUID.Generate();
-                        var spriteName = NameForFrame(sheetName, facings[facings.Count - y - 1], x, indexInSheet);
+                        var spriteName = NameForFrame(assetName, facings[facings.Count - y - 1], x, indexInSheet);
                         spriteRects.Add(new SpriteRect
                         {
                             name = spriteName,
@@ -101,10 +101,13 @@ public class SpritesheetFormatData : ScriptableObject
         spriteNameFileIdDataProvider.SetNameFileIdPairs(spriteIdNamePairs);
     }
     
-    public string NameForFrame(string sheetName, OrthoDir dir, int step, int indexInSheet = 0)
+    public string NameForFrame(string sheetName, OrthoDir dir, int step)
     {
-        return isSingleSprite ? $"{sheetName}{indexInSheet:D2}" : $"{sheetName}{indexInSheet:D2}_{dir}{step:D2}";
+        return isSingleSprite ? sheetName : $"{sheetName}_{dir}{step:D2}";
     }
+
+    public string NameForFrame(string assetName, OrthoDir dir, int step, int indexInSheet)
+        => NameForFrame(assetName + (isSingleSprite ? "" : indexInSheet.ToString("D2")), dir, step);
 
     private bool ValidateSheetSize(Vector2Int sheetSize, string sheetName)
     {

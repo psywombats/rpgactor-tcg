@@ -8,7 +8,12 @@ namespace RpgActorTGC
         public override void Activate(BattleModel battle, Unit caster, AbilityInstance instance, int power)
         {
             caster.Party.GenerateMp(power);
-            if (battle.UseVerboseLogging) battle.Log($"Generated {power} MP to {caster.Party.Mp}");
+            if (battle.UseVerboseLogging) battle.SimLog($"Generated {power} MP to {caster.Party.MP}");
+        }
+
+        public override string GetUseMessage(BattleModel battle, Unit caster, AbilityInstance instance, int power)
+        {
+            return $"Generates {power} MP";
         }
     }
 }

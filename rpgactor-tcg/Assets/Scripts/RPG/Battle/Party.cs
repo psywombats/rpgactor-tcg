@@ -1,6 +1,6 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace RpgActorTGC
 {
@@ -9,14 +9,11 @@ namespace RpgActorTGC
         public Deck Deck { get; }
         
         public Unit Leader { get; }
-        public Dictionary<LaneType, Unit> UnitsByLane { get; } = new();
         
         public List<Unit> AllUnits { get; } = new();
         public List<Unit> Heroes { get; } = new();
         
-        public int Mp { get; private set; }
-
-        public string PartyName => Deck.DeckName;
+        public int MP { get; private set; }
         
         public Party(Deck deck)
         {
@@ -24,7 +21,6 @@ namespace RpgActorTGC
             foreach (var kvp in deck.CardsByLane)
             {
                 var unit = new Unit(this, kvp.Value, kvp.Key);
-                UnitsByLane[kvp.Key] = unit;
                 AllUnits.Add(unit);
                 if (kvp.Value.IsLeader)
                 {
@@ -59,10 +55,10 @@ namespace RpgActorTGC
         
         #region ToString
 
+        public string PartyName => Deck.DeckName;
         public string Color { get; set; } = "grey";
-
+        public string PrettyName => PartyName; // TODO: pretty names: $"<color=\"{Color}\">{PartyName}</color>";
         public string ShortName => Deck.DeckName;
-        public string CompositionString => Deck.CompositionString;
         public string StateString => $"(\"{ShortName}\" {this[LaneType.Back].StateString} / " +
             $"{this[LaneType.Left].StateString} / " +
             $"{this[LaneType.Center].StateString} / " +
@@ -76,7 +72,7 @@ namespace RpgActorTGC
 
         public void Reset()
         {
-            Mp = 0;
+            MP = 0;
             
             foreach (var unit in AllUnits)
             {
@@ -86,42 +82,48 @@ namespace RpgActorTGC
 
         public void GenerateMp(int mp)
         {
-            Mp += mp;
+            MP += mp;
         }
 
-        public void CheckPromotion()
+        public Tuple<Unit, Unit> CheckPromotion()
         {
             var center = this[LaneType.Center];
             var back = this[LaneType.Back];
             var left = this[LaneType.Left];
             var right = this[LaneType.Right];
-            if (center.IsDead)
+            Unit swapper = null, swappee = null;
+            if (center.IsDead && !center.IsLeader)
             {
+                swapper = center;
                 if (!back.IsDead)
                 {
-                    SwapSpaces(center, back);
+                    swappee = back;
                 }
                 else if (!left.IsDead)
                 {
-                    SwapSpaces(center, left);
+                    swappee = left;
                 }
                 else if (!right.IsDead)
                 {
-                    SwapSpaces(center, right);
+                    swappee = right;
                 }
             }
 
-            if (left.IsDead && !back.IsDead)
+            if (left.IsDead && !left.IsLeader && !back.IsDead)
             {
-                SwapSpaces(back, left);
+                swapper = left;
+                swappee = back;
             }
-            if (right.IsDead && !back.IsDead)
+            if (right.IsDead && !right.IsDead && !back.IsDead)
             {
-                SwapSpaces(back, right);
+                swapper = right;
+                swappee = back;
             }
+
+            return swappee != null ? new Tuple<Unit, Unit>(swapper, swappee) : null;
         }
 
-        private void SwapSpaces(Unit unit1, Unit unit2)
+        public void SwapSpaces(Unit unit1, Unit unit2)
         {
             (unit1.Lane, unit2.Lane) = (unit2.Lane, unit1.Lane);
         }

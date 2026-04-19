@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace RpgActorTGC
@@ -12,8 +13,14 @@ namespace RpgActorTGC
         [Space]
         [SerializeField] private DeckHeaderView deckHeader;
 
+        public Party Party { get; private set; }
+        
+        public IEnumerable<UnitView> AllUnitViews => new[] {backUnit, leftUnit, centerUnit, rightUnit};
+        
         public void Populate(Party party)
         {
+            Party = party;
+            
             backUnit.Populate(party[LaneType.Back]);
             leftUnit.Populate(party[LaneType.Left]);
             centerUnit.Populate(party[LaneType.Center]);
@@ -21,5 +28,9 @@ namespace RpgActorTGC
 
             deckHeader.Populate(party);
         }
+        
+        public void Repopulate() => Populate(Party);
+
+        public Task GenerateMPAsync(int mp) => deckHeader.GenerateMPAsync(mp);
     }
 }

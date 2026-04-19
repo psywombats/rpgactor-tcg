@@ -1,4 +1,6 @@
-﻿namespace RpgActorTGC
+﻿using System.Threading.Tasks;
+
+namespace RpgActorTGC
 {
     public class AbilityInstance
     {
@@ -22,14 +24,29 @@
             HasActivated = false;
         }
 
-        public void SimulateTurn(BattleModel battle)
+        public async Task SimulateTurnAsync(BattleModel battle)
         {
-            if ((!HasActivated || Card.IsContinuous) && Party.Mp >= Card.Cost)
+            if ((!HasActivated || Card.IsContinuous) && Party.MP >= Card.Cost)
             {
-                if (battle.UseVerboseLogging) battle.LogPartial($"Activated {GetShortDescription()}: ");
+                if (battle.UseVerboseLogging) battle.SimLogPartial($"{Owner.PrettyName} activated {GetShortDescription()}: ");
                 HasActivated = true;
+                if (!battle.IsSim)
+                {
+                    await battle.View.WriteLineAsync($"Activated {GetShortDescription()}: ");
+                }
                 Card.Data.Activate(battle, Owner, this);
+                if (!battle.IsSim)
+                {
+                    AnimateAsync().Forget();
+                    await battle.View.WriteLineAsync(Card.Data.GetUseMessage(battle, Owner, this));
+                }
             }
+        }
+
+        private Task AnimateAsync()
+        {
+            // TODO: animateasync
+            return Task.CompletedTask;
         }
     }
 }

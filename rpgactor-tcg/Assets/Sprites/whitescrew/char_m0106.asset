@@ -12,19 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8755e393ba17e344d96341f68b599664, type: 3}
   m_Name: char_m0106
   m_EditorClassIdentifier: Assembly-CSharp::SpritesheetData
-  sheetName: char_m01
+  sheetName: char_m0106
   serializedSprites:
-  - {fileID: -1451479447, guid: 51b92f1a0c42b67489de4a703a923ace, type: 3}
-  - {fileID: 1995758548, guid: 51b92f1a0c42b67489de4a703a923ace, type: 3}
-  - {fileID: -1054417355, guid: 51b92f1a0c42b67489de4a703a923ace, type: 3}
-  - {fileID: -2038924112, guid: 51b92f1a0c42b67489de4a703a923ace, type: 3}
-  - {fileID: 775112622, guid: 51b92f1a0c42b67489de4a703a923ace, type: 3}
-  - {fileID: 1979277567, guid: 51b92f1a0c42b67489de4a703a923ace, type: 3}
-  - {fileID: 818263542, guid: 51b92f1a0c42b67489de4a703a923ace, type: 3}
-  - {fileID: 73805424, guid: 51b92f1a0c42b67489de4a703a923ace, type: 3}
-  - {fileID: -715065096, guid: 51b92f1a0c42b67489de4a703a923ace, type: 3}
-  - {fileID: -295061544, guid: 51b92f1a0c42b67489de4a703a923ace, type: 3}
-  - {fileID: -100065466, guid: 51b92f1a0c42b67489de4a703a923ace, type: 3}
-  - {fileID: -1877503039, guid: 51b92f1a0c42b67489de4a703a923ace, type: 3}
+  - {fileID: -1330946263, guid: 51b92f1a0c42b67489de4a703a923ace, type: 3}
+  - {fileID: -278114754, guid: 51b92f1a0c42b67489de4a703a923ace, type: 3}
+  - {fileID: 1182849161, guid: 51b92f1a0c42b67489de4a703a923ace, type: 3}
+  - {fileID: 195177458, guid: 51b92f1a0c42b67489de4a703a923ace, type: 3}
+  - {fileID: 1604157892, guid: 51b92f1a0c42b67489de4a703a923ace, type: 3}
+  - {fileID: 1787482846, guid: 51b92f1a0c42b67489de4a703a923ace, type: 3}
+  - {fileID: 721275361, guid: 51b92f1a0c42b67489de4a703a923ace, type: 3}
+  - {fileID: 578032851, guid: 51b92f1a0c42b67489de4a703a923ace, type: 3}
+  - {fileID: -340916317, guid: 51b92f1a0c42b67489de4a703a923ace, type: 3}
+  - {fileID: 1980274389, guid: 51b92f1a0c42b67489de4a703a923ace, type: 3}
+  - {fileID: -325069130, guid: 51b92f1a0c42b67489de4a703a923ace, type: 3}
+  - {fileID: -1193879609, guid: 51b92f1a0c42b67489de4a703a923ace, type: 3}
   format: {fileID: 11400000, guid: 43b4b1cd3455b204b9b4da3288fd934d, type: 2}
-  indexInSheet: 6

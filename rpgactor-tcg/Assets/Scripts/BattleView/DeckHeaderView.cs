@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System.Threading.Tasks;
+using TMPro;
 using UnityEngine;
 
 namespace RpgActorTGC
@@ -10,8 +11,10 @@ namespace RpgActorTGC
 
         public void Populate(Party party)
         {
-            mpView.Populate(Stat.MP, party.Mp);
+            mpView.Populate(Stat.MP, party.MP);
             partyNameText.text = party.PartyName;
         }
+
+        public Task GenerateMPAsync(int finalMP) => mpView.TweenToAsync(finalMP);
     }
 }

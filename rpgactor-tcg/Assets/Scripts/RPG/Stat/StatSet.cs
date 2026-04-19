@@ -61,7 +61,7 @@ namespace RpgActorTGC
         }
 
         public IEnumerable<Tuple<Stat, float>> ToTuples() =>
-            stats.Select(entry => new Tuple<Stat, float>(entry.Key, entry.Value));
+            Enum.GetValues(typeof(Stat)).Cast<Stat>().Select(stat => new Tuple<Stat, float>(stat, Get(stat)));
 
         #endregion
         
