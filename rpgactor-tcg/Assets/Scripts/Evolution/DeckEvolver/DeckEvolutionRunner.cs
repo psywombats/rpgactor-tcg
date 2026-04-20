@@ -10,21 +10,11 @@ namespace RpgActorTGC
     {
         private const string RandomDeckName = "Random Deck";
         
-        private readonly List<DeckWorker> workers = new List<DeckWorker>();
+        private readonly List<DeckWorker> workers = new();
         
         protected override DeckSolution CreateRandomSolution()
         {
-            var cards = new[]
-            {
-                CardCache.Instance.GetRandomCharacter(isLeader: true),
-                CardCache.Instance.GetRandomCharacter(isLeader: false),
-                CardCache.Instance.GetRandomCharacter(isLeader: false),
-                CardCache.Instance.GetRandomCharacter(isLeader: false),
-            };
-            var leaderIndex = Random.Range(0, 4);
-            (cards[leaderIndex], cards[0]) = (cards[0], cards[leaderIndex]);
-
-            return new DeckSolution(this, new Deck(RandomDeckName, cards[0], cards[1], cards[2], cards[3]));
+            return new DeckSolution(this, Deck.CreateRandom(RandomDeckName));
         }
 
         protected override void AssignScoresToSolutions(List<DeckSolution> solutions)

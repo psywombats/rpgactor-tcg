@@ -10,5 +10,6 @@ public class ImageCharaRenderer : CharaRenderer
     protected override void SetSprite(Sprite sprite)
     {
         Image.sprite = sprite;
+        Image.SetNativeSize();
     }
 }

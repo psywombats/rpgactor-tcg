@@ -25,11 +25,10 @@ namespace RpgActorTGC
             RebuildViewCache();
         }
 
-        public async Task PlayBattleAsync(Party player1, Party player2)
+        public async Task PlayBattleAsync()
         {
-            Populate(new BattleModel(player1, player2));
-            await WriteLineAsync($"The battle begins: {player1.PrettyName} vs {player2.PrettyName}!", true);
-            await battle.PlaybackBattleAsync(player1, player2, this);
+            await WriteLineAsync($"The battle begins: {battle.Player1.PrettyName} vs {battle.Player2.PrettyName}!", true);
+            await battle.PlaybackBattleAsync(this);
         }
 
         public async Task WriteLineAsync(string line, bool requiresConfirm = false)

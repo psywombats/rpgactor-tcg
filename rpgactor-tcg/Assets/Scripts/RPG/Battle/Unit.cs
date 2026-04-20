@@ -10,16 +10,16 @@ namespace RpgActorTGC
 
         public Party Party { get; }
         public List<AbilityInstance> Abilities { get; } = new();
-        public int Hp => (int)this[Stat.HP];
+        public int HP => (int)this[Stat.HP];
         public LaneType Lane { get; set; }
         public SpritesheetData Sprite => Card.Sprite;
         
         public bool IsLeader => Card.IsLeader;
-        public bool IsDead => Hp <= 0;
+        public bool IsDead => HP <= 0;
 
         public string PrettyName => CharacterName; // TODO: pretty names: $"<color=\"{Party.Color}\">{CharacterName}</color>";
         public string CharacterName => Card.CharacterName;
-        public string LivenessString => $"{(Hp >= 0 ? Hp : 0)}/{this[Stat.MHP]}";
+        public string LivenessString => $"{(HP >= 0 ? HP : 0)}/{this[Stat.MHP]}";
         public string LivenessChar => IsDead
             ? IsLeader ? "X" : "x" 
             : IsLeader ? "0" : "o";
@@ -61,6 +61,7 @@ namespace RpgActorTGC
             }
             
             Stats.SetTo(Card.Stats);
+            Stats[Stat.HP] = Stats[Stat.MHP];
             Lane = originalLane;
         }
 
@@ -98,6 +99,7 @@ namespace RpgActorTGC
             else
             {
                 if (battle.UseVerboseLogging) battle.SimLog("No viable opponent.");
+                if (!battle.IsSim) await battle.View.WriteLineAsync($"{PrettyName} had no one to attack.", true);
             }
             if (battle.UseVerboseLogging) battle.SimLog("");
             if (!battle.IsSim) await battle.View.WriteLineAsync("");

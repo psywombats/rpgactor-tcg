@@ -25,21 +25,27 @@ namespace RpgActorTGC
         {
             editor = newEditor;
             DeckIndex = deckIndex;
-            loadButton.enabled = CampaignManager.Instance.DoesDeckExist(deckIndex);
+            loadButton.enabled = deckIndex != editor.Deck.DeckIndex;
+            saveButton.enabled = deckIndex != editor.Deck.DeckIndex;
             
             saveLabel.text = $"Save as Deck {deckIndex + 1}";
             loadLabel.text = $"Load Deck {deckIndex + 1}";
         }
 
+        public void Repopulate() => Populate(DeckIndex, editor);
+
         private void SaveDeck()
         {
-            CampaignManager.Instance.SaveDeckAs(editor.Deck, DeckIndex);
-            editor.Repopulate();
+            var newDeck = new Deck(editor.Deck);
+            CampaignManager.Instance.Player.SaveDeckAs(newDeck, DeckIndex);
+            editor.Populate(newDeck);
+            Repopulate();
         }
 
         private void LoadDeck()
         {
-            editor.Populate(CampaignManager.Instance.GetDeck(DeckIndex));
+            editor.Populate(CampaignManager.Instance.Player.GetDeck(DeckIndex));
+            Repopulate();
         }
     }
 }

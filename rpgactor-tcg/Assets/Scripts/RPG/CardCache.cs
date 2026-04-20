@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace RpgActorTGC
@@ -30,10 +29,13 @@ namespace RpgActorTGC
             return card != null;
         }
         
-        public CharacterCard GetRandomCharacter(bool isLeader)
+        public CharacterCard GetRandomCharacter(bool isLeader,
+            List<CharacterCard> availableHeroes = null, List<CharacterCard> availableLeaders = null)
         {
-            var set = isLeader ? leaderCards : heroCards;
-            return set.Values.Choose();
+            var heroes = availableHeroes == null ? availableHeroes : AllHeroCards;
+            var leaders = availableLeaders == null ? availableLeaders : AllLeaderCards;
+            var set = isLeader ? leaders : heroes;
+            return set.Choose();
         }
         
         public CharacterCard GetOrCreateCard(CharacterData data)

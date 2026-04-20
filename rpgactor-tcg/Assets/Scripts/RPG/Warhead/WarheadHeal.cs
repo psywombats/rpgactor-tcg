@@ -16,8 +16,8 @@ namespace RpgActorTGC
         {
             if (victim.IsDead) return;
             victim[Stat.HP] += power;
-            if (victim.Hp > victim[Stat.MHP]) victim[Stat.HP] =  victim[Stat.MHP];
-            if (battle.UseVerboseLogging) battle.SimLog($"Healed {victim.CompositionString} by {power} to {victim.Hp}/{victim[Stat.MHP]}");
+            if (victim.HP > victim[Stat.MHP]) victim[Stat.HP] =  victim[Stat.MHP];
+            if (battle.UseVerboseLogging) battle.SimLog($"Healed {victim.CompositionString} by {power} to {victim.HP}/{victim[Stat.MHP]}");
         }
     }
 }

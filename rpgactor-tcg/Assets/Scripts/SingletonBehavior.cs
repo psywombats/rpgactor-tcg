@@ -9,15 +9,15 @@ public abstract class SingletonBehaviour<T> : MonoBehaviour where T : SingletonB
   {
     get
     {
-      if ( instance == null )
+      if (instance == null)
       {
-        if ( !Application.isPlaying )
-        {
-          throw new System.Exception( "For runtime only" );
-        }
-        
         creating = true;
         var obj = new GameObject( typeof( T ).Name );
+        if (!Application.IsPlaying(obj))
+        {
+          DestroyImmediate(obj);
+          throw new System.Exception("For runtime only");
+        }
         instance = obj.AddComponent<T>();
         DontDestroyOnLoad( obj );
         instance.Init();
@@ -29,7 +29,7 @@ public abstract class SingletonBehaviour<T> : MonoBehaviour where T : SingletonB
 
   protected virtual T GetThis()
   {
-    if ( this is T that )
+    if (this is T that)
     {
       return that;
     }
@@ -41,9 +41,9 @@ public abstract class SingletonBehaviour<T> : MonoBehaviour where T : SingletonB
 
   protected void Awake()
   {
-    if ( !creating )
+    if (!creating)
     {
-      if ( instance == null || !instance )
+      if (instance == null || !instance)
       {
         instance = GetThis();
       }
@@ -65,29 +65,29 @@ public abstract class SingletonBehaviour<T> : MonoBehaviour where T : SingletonB
 
     var oldScene = old.gameObject.scene;
 
-    if ( oldScene.name == "DontDestroyOnLoad" )
+    if (oldScene.name == "DontDestroyOnLoad")
     {
       //prefer old instance
       Destroy( gameObject );
       return;
     }
 
-    if ( !oldScene.IsValid() || !oldScene.isLoaded || oldScene.name == gameObject.scene.name )
+    if (!oldScene.IsValid() || !oldScene.isLoaded || oldScene.name == gameObject.scene.name)
     {
       //prefer the new instance
       instance = GetThis();
-      Destroy( this );
+      Destroy(this);
     }
     else
     {
       //prefer the old instance
-      Destroy( gameObject );
+      Destroy(gameObject);
     }
   }
 
   protected virtual void OnDestroy()
   {
-    if ( instance == GetThis() )
+    if (instance == GetThis())
     {
       instance = null;
     }

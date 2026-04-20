@@ -57,7 +57,7 @@ namespace RpgActorTGC
             {
                 UseVerboseLogging = true
             };
-            var result = model.PlaybackBattleAsync(p1, p2).Result;
+            var result = model.SimulateBattleAsync(p1, p2).Result;
             Debug.Log(model.Report);
             ResultString = model.LivenessString;
         }
@@ -67,7 +67,8 @@ namespace RpgActorTGC
         {
             var p1 = UsePlayer1Deck ? new Party(player1) : new Party("Player1", p1Back, p1Left, p1Center, p1Right);
             var p2 = UsePlayer2Deck ? new Party(player2) : new Party("Player2", p2Back, p2Left, p2Center, p2Right);
-            view.PlayBattleAsync(p1, p2).Forget();
+            view.Populate(new BattleModel(p1, p2));
+            view.PlayBattleAsync().Forget();
         }
     }
 }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,15 +14,24 @@ namespace RpgActorTGC
     {
         [SerializeField] private DeckView deckView;
         [SerializeField] private CardSelectorView selectorView;
+        [SerializeField] private StateTransformBehavior mainMenuTrans;
         [Space]
         [SerializeField] private List<StateTransformBehavior> deckShowTrans = new();
-        [SerializeField] private float transitionDuration = .5f;
+        [SerializeField] private float transitionDuration = .33f;
         [Space]
         [SerializeField] private Button clearButton;
         [SerializeField] private ListView saveLoadEntries;
+        [Space]
+        [SerializeField] private Button practiceButton;
+        [SerializeField] private PlaybackSelectionView practiceMenu;
+        [Space]
+        [SerializeField] private CanvasGroup incompleteGroup;
+        [SerializeField] private TMP_Text incompleteLabel;
+        [SerializeField] private Button incompleteCloseButton;
+        [SerializeField] private float incompleteTransitionDuration = .5f;
         
         public Deck Deck { get; private set; }
-        private CharacterCard currentCard;
+        public MainGameplayView GameplayView { get; private set; }
 
         private LaneType? currentlyReplacingLane;
         private CancellationTokenSource replaceCardCTS;
@@ -28,10 +39,13 @@ namespace RpgActorTGC
         public void Awake()
         {
             clearButton.onClick.AddListener(ClearDeck);
+            incompleteCloseButton.onClick.AddListener(() => CloseDialogAsync().Forget());
+            practiceButton.onClick.AddListener(() => PracticeAsync().Forget());
         }
 
-        public void Populate(Deck newDeck)
+        public void Populate(MainGameplayView gameplayView, Deck newDeck)
         {
+            GameplayView = gameplayView;
             Deck = newDeck;
             deckView.Populate(newDeck, OnCardSelect);
             saveLoadEntries.Populate(Enumerable.Range(0, ConstantsData.Instance.deckCount), (obj, i) =>
@@ -39,21 +53,28 @@ namespace RpgActorTGC
                 obj.GetComponent<SaveLoadView>().Populate(i, this);
             });
         }
+
+        public Task ShowMainMenuAsync() => mainMenuTrans.TweenToStateAsync(false, transitionDuration);
+        
+        public void Populate(Deck newDeck) => Populate(GameplayView, newDeck);
         
         public void Repopulate() => Populate(Deck);
 
         private void OnCardSelect(CardView cardView)
         {
-            if (currentlyReplacingLane != null)
+            TryRestartReplacementAsync(cardView).Forget();
+        }
+
+        private async Task TryRestartReplacementAsync(CardView cardView)
+        {
+            var startAgain = currentlyReplacingLane != cardView.Lane;
+            await CancelSubmenusAsync();
+            if (!startAgain)
             {
-                var startAgain = cardView.Lane != currentlyReplacingLane;
-                CancelReplacement();
-                if (!startAgain)
-                {
-                    return;
-                }
+                return;
             }
-            ReplaceCardAsync(cardView).Forget();
+
+            await ReplaceCardAsync(cardView);
         }
 
         private async Task ReplaceCardAsync(CardView cardView)
@@ -81,22 +102,27 @@ namespace RpgActorTGC
 
             cardView.IsSelected = false;
             currentlyReplacingLane = null;
+            replaceCardCTS = null;
             await Task.WhenAll(deckShowTrans.Select(trans 
                 => trans.TweenToStateAsync(false, transitionDuration)));
         }
 
-        private void CancelReplacement()
+        private async Task CancelSubmenusAsync()
         {
-            if (currentlyReplacingLane == null) return;
-            replaceCardCTS.Cancel();
-            replaceCardCTS.Dispose();
-            replaceCardCTS = null;
-            currentlyReplacingLane = null;
+            await Task.WhenAll(practiceMenu.HideAsync(), ShowMainMenuAsync());
+            
+            if (replaceCardCTS != null)
+            {
+                replaceCardCTS.Cancel();
+                replaceCardCTS.Dispose();
+                replaceCardCTS = null;
+                currentlyReplacingLane = null;
+            }
         }
 
         private void ClearDeck()
         {
-            CancelReplacement();
+            CancelSubmenusAsync().Forget();
             selectorView.Cancel();
             Deck.Replace(LaneType.Back, null);
             Deck.Replace(LaneType.Left, null);
@@ -104,5 +130,44 @@ namespace RpgActorTGC
             Deck.Replace(LaneType.Right, null);
             Repopulate();
         }
+
+        private async Task PracticeAsync()
+        {
+            await CancelSubmenusAsync();
+            await mainMenuTrans.TweenToStateAsync(true, transitionDuration);
+            practiceMenu.Populate(CampaignManager.Instance.Player.MyDecks, this);
+            await practiceMenu.ShowAsync();
+        }
+        
+        #region Dialog
+        
+        public bool TryPopIncompletionDialog()
+        {
+            if (Deck.IsIncomplete)
+            {
+                var message = Deck.Leader == null
+                    ? "This party needs a leader first!"
+                    : "This party has empty spaces. Fill those first!";
+                PopDialogAsync(message).Forget();
+                return true;
+            }
+
+            return false;
+        }
+
+        public async Task PopDialogAsync(string message)
+        {
+            incompleteLabel.text = message;
+            incompleteGroup.gameObject.SetActive(true);
+            await incompleteGroup.DOFade(1f, incompleteTransitionDuration).AsTask();
+        }
+
+        private async Task CloseDialogAsync()
+        {
+            await incompleteGroup.DOFade(0f, incompleteTransitionDuration).AsTask();
+            incompleteGroup.gameObject.SetActive(false);
+        }
+        
+        #endregion
     }
 }

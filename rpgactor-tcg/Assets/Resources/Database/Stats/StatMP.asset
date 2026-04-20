@@ -15,5 +15,5 @@ MonoBehaviour:
   associatedStat: 2
   abbreviation: MP
   statName: Magic
-  icon: {fileID: 1448614493, guid: da1903ee954764a4e8e88adc02e4fe0f, type: 3}
+  icon: {fileID: 1197488103, guid: da1903ee954764a4e8e88adc02e4fe0f, type: 3}
   useBinaryEditor: 0

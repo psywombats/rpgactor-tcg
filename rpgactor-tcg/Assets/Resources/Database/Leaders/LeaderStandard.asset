@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.CharacterData
   disabled: 0
   characterName: Standard
-  sprite: {fileID: 11400000, guid: b0a9b2f62cba85744b852c553592b958, type: 2}
+  sprite: {fileID: 11400000, guid: 0272df868c8b74a479ba88851076052a, type: 2}
   isLeader: 1
   stats:
     serializedStats:

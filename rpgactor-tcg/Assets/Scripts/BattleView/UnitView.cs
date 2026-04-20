@@ -72,7 +72,7 @@ namespace RpgActorTGC
                             + (1f - attackMoveRatio) * spriteTransform.position;
             await spriteTransform.DOMove(targetPos, attackMoveToDuration).AsTask();
             await victimView.spriteTransform.DOShakeAnchorPos(shakeDuration, shakeStrength, shakeVibrato, shakeRandomness).AsTask();
-            await Task.WhenAll(victimView.hpSlider.TweenTo(victimView.Unit.Hp - dmg, attackMoveBackDuration),
+            await Task.WhenAll(victimView.hpSlider.TweenTo(victimView.Unit.HP - dmg, attackMoveBackDuration),
                 spriteTransform.DOAnchorPos(originalPos, attackMoveBackDuration).AsTask());
         }
 

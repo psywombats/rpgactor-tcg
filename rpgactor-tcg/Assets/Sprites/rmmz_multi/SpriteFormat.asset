@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpritesheetFormatData
   formatName: SpriteFormat
   isSingleSprite: 0
-  pixelsPerUnit: 48
+  pixelsPerUnit: 32
   frameSize: {x: 48, y: 48}
   facings: 02000000030000000100000000000000
   walkCycle: 01000000000000000100000002000000

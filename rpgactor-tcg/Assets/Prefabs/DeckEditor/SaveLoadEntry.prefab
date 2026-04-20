@@ -52,8 +52,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.HorizontalLayoutGroup
   m_Padding:
-    m_Left: 0
-    m_Right: 0
+    m_Left: 48
+    m_Right: 48
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
@@ -103,7 +103,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3530566320085414224, guid: 5a8b85a98a7530b4abd73bebb250cf6c, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3530566320085414224, guid: 5a8b85a98a7530b4abd73bebb250cf6c, type: 3}
       propertyPath: m_AnchorMin.x
@@ -111,15 +111,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3530566320085414224, guid: 5a8b85a98a7530b4abd73bebb250cf6c, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3530566320085414224, guid: 5a8b85a98a7530b4abd73bebb250cf6c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 142
       objectReference: {fileID: 0}
     - target: {fileID: 3530566320085414224, guid: 5a8b85a98a7530b4abd73bebb250cf6c, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 3530566320085414224, guid: 5a8b85a98a7530b4abd73bebb250cf6c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -151,11 +151,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3530566320085414224, guid: 5a8b85a98a7530b4abd73bebb250cf6c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 71
       objectReference: {fileID: 0}
     - target: {fileID: 3530566320085414224, guid: 5a8b85a98a7530b4abd73bebb250cf6c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -15
       objectReference: {fileID: 0}
     - target: {fileID: 3530566320085414224, guid: 5a8b85a98a7530b4abd73bebb250cf6c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -172,6 +172,10 @@ PrefabInstance:
     - target: {fileID: 3605461394025215066, guid: 5a8b85a98a7530b4abd73bebb250cf6c, type: 3}
       propertyPath: m_Name
       value: SaveButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3605461394025215066, guid: 5a8b85a98a7530b4abd73bebb250cf6c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4554305432433386545, guid: 5a8b85a98a7530b4abd73bebb250cf6c, type: 3}
       propertyPath: m_PreferredHeight

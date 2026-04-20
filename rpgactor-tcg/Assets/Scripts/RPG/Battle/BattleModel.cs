@@ -89,16 +89,18 @@ namespace RpgActorTGC
             }
         }
 
-        public Task<Party> SimulateBattle() => PlaybackBattleAsync(Player1, Player2);
+        public Task<Party> SimulateBattleAsync(Party player1, Party player2)
+        {
+            InitForParties(player1, player2);
+            return PlaybackBattleAsync(null);
+        }
         
-        public async Task<Party> PlaybackBattleAsync(Party player1, Party player2, BattlePlaybackView view = null)
+        public async Task<Party> PlaybackBattleAsync(BattlePlaybackView view)
         {
             View = view;
             IsSim = (object)view == null;
-            
-            InitForParties(player1, player2);
 
-            if (player1.Deck.IsEquivalentTo(player2.Deck))
+            if (Player1.Deck.IsEquivalentTo(Player2.Deck))
             {
                 if (!IsSim) await View.EndBattleAsync(null);
                 return null;
@@ -131,7 +133,7 @@ namespace RpgActorTGC
 
             var winner = Player1.Leader.IsDead ? Player2
                 : Player2.Leader.IsDead ? Player1
-                : Player1.Leader.Hp < Player2.Leader.Hp ? Player1 : Player2;
+                : Player1.Leader.HP < Player2.Leader.HP ? Player1 : Player2;
             if (UseVerboseLogging) SimLog($"\n\n<color={winner.Color}>{winner.ShortName}</color> won!");
             if (!IsSim) await View.EndBattleAsync(winner);
             return winner;

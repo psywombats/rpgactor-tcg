@@ -7,12 +7,14 @@ namespace RpgActorTGC
     public class Deck
     {
         public CharacterCard Leader => CardsByLane.Values.FirstOrDefault(c => c != null && c.IsLeader);
-        public IEnumerable<CharacterCard> Followers => CardsByLane.Values.Where(c => !c.IsLeader);
+        public IEnumerable<CharacterCard> Followers => CardsByLane.Values.Where(c => c != null && !c.IsLeader);
         public CharacterCard this[LaneType lane] => CardsByLane.ContainsKey(lane) ? CardsByLane[lane] : null;
         
         public string DeckName { get; set; }
-        
         public Dictionary<LaneType, CharacterCard> CardsByLane { get; } = new();
+        public int DeckIndex { get; set; } = -1;
+
+        public bool IsIncomplete => Leader == null || Followers.Count() < 3;
 
         private string compositionString;
         public string CompositionString
@@ -36,6 +38,9 @@ namespace RpgActorTGC
         {
             DeckName = deckName;
         }
+
+        public Deck(Deck other) : this(other.DeckName, other[LaneType.Back], other[LaneType.Left],
+            other[LaneType.Center], other[LaneType.Right]) { }
 
         public Deck(DeckData data) : this(data.name, data.backChara, data.leftChara, data.centerChara, data.rightChara) {}
         
@@ -80,7 +85,7 @@ namespace RpgActorTGC
         public void Replace(LaneType lane, CharacterCard newCard)
         {
             // remove other leaders if we're assigning another one
-            if (newCard.IsLeader)
+            if (newCard != null && newCard.IsLeader)
             {
                 var lanesToClear = new HashSet<LaneType>();
                 foreach (var asgn in CardsByLane)
@@ -97,6 +102,21 @@ namespace RpgActorTGC
             }
 
             CardsByLane[lane] = newCard;
+        }
+
+        public static Deck CreateRandom(string deckName,
+            List<CharacterCard> availableHeroes = null, List<CharacterCard> availableLeaders = null)
+        {
+            var cards = new[]
+            {
+                CardCache.Instance.GetRandomCharacter(isLeader: true, availableHeroes, availableLeaders),
+                CardCache.Instance.GetRandomCharacter(isLeader: false, availableHeroes, availableLeaders),
+                CardCache.Instance.GetRandomCharacter(isLeader: false, availableHeroes, availableLeaders),
+                CardCache.Instance.GetRandomCharacter(isLeader: false, availableHeroes, availableLeaders),
+            };
+            var leaderIndex = UnityEngine.Random.Range(0, 4);
+            (cards[leaderIndex], cards[0]) = (cards[0], cards[leaderIndex]);
+            return new Deck(deckName, cards[0], cards[1], cards[2], cards[3]);
         }
     }
 }

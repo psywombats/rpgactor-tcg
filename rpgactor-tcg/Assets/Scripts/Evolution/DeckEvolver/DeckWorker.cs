@@ -22,7 +22,7 @@ namespace RpgActorTGC
                 // avoid the dining philosophers problem
                 var party1 = task.Solution1.LockParty();
                 var party2 = task.Solution2.LockParty();
-                var winner = battle.PlaybackBattleAsync(party1, party2).Result;
+                var winner = battle.SimulateBattleAsync(party1, party2).Result;
                 task.Solution1.UnlockParty(party1);
                 task.Solution2.UnlockParty(party2);
 
