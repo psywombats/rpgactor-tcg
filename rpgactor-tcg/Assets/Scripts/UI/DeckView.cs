@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -7,17 +8,25 @@ namespace RpgActorTGC
     public class DeckView : MonoBehaviour
     {
         [SerializeField] private TMP_Text deckNameText;
-        [SerializeField] private CardView leaderView;
-        [SerializeField] private ListView followerViews;
+        [SerializeField] private List<CardView> cardViews;
+
+        private Dictionary<LaneType, CardView> cardViewsByLane = new();
+
+        protected void Awake()
+        {
+            foreach (var cardView in cardViews)
+            {
+                cardViewsByLane.Add(cardView.Lane, cardView);
+            }
+        }
         
         public void Populate(Deck deck, Action<CardView> onSelect = null)
         {
             deckNameText.text = deck.DeckName;
-            leaderView.Populate(deck.Leader);
-            followerViews.Populate(deck.Followers, (obj, card) =>
+            foreach (var cardView in cardViews)
             {
-                obj.GetComponent<CardView>().Populate(card, onSelect);
-            });
+                cardView.Populate(deck[cardView.Lane], onSelect);
+            }
         }
     }
 }

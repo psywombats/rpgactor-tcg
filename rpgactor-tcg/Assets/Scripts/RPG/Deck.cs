@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using EffekseerTool.InternalScript;
 
 namespace RpgActorTGC
 {
     public class Deck
     {
-        public CharacterCard Leader { get; }
+        public CharacterCard Leader => CardsByLane.Values.FirstOrDefault(c => c.IsLeader);
         public IEnumerable<CharacterCard> Followers => CardsByLane.Values.Where(c => !c.IsLeader);
-        public CharacterCard this[LaneType lane] => CardsByLane[lane];
+        public CharacterCard this[LaneType lane] => CardsByLane.ContainsKey(lane) ? CardsByLane[lane] : null;
         
-        public string DeckName { get; set; }
+        public string DeckName { get; }
         
         public Dictionary<LaneType, CharacterCard> CardsByLane { get; } = new();
 
@@ -33,6 +32,11 @@ namespace RpgActorTGC
                                     ^ this[LaneType.Center].GetHashCode()
                                     ^ this[LaneType.Right].GetHashCode();
 
+        public Deck(string deckName)
+        {
+            DeckName = deckName;
+        }
+
         public Deck(DeckData data) : this(data.name, data.backChara, data.leftChara, data.centerChara, data.rightChara) {}
         
         public Deck(string name, CharacterData back, CharacterData left,  CharacterData center, CharacterData right )
@@ -44,20 +48,16 @@ namespace RpgActorTGC
 
         public Deck(string name, CharacterCard back, CharacterCard left, CharacterCard center, CharacterCard right)
         {
-            Leader = left.IsLeader ? left :
-                    center.IsLeader ? center :
-                    right.IsLeader ? right : back;
-            if (!Leader.IsLeader)
-            {
-                throw new ArgumentException($"No leader for deck {name}");
-            }
-
             DeckName = name;
-            
             CardsByLane[LaneType.Left] = left;
             CardsByLane[LaneType.Right] = right;
             CardsByLane[LaneType.Center] = center;
             CardsByLane[LaneType.Back] = back;
+            
+            if (Leader == null)
+            {
+                throw new ArgumentException($"No leader for deck {name}");
+            }
         }
 
         public LaneType GetLaneForCard(CharacterCard card)
@@ -77,11 +77,8 @@ namespace RpgActorTGC
             return OrderFreeHash == other.OrderFreeHash;
         }
 
-        public void Replace(CharacterCard currentCard, CharacterCard newCard)
+        public void Replace(LaneType lane, CharacterCard newCard)
         {
-            if (!CardsByLane.ContainsValue(currentCard)) throw new ArgumentException($"Card {currentCard} not found");
-
-            var lane = GetLaneForCard(currentCard);
             CardsByLane[lane] = newCard;
         }
     }

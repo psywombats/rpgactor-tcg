@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -25,6 +26,10 @@ namespace RpgActorTGC
         [SerializeField] private AnchorPosTransBehavior shifter;
         [SerializeField] private float shiftDuration = 2.5f;
         [SerializeField] private float uiXfadeDuration = .2f;
+        [Space]
+        [SerializeField] private CanvasGroup fader;
+        [SerializeField] private float fadeDuration = 1;
+        [SerializeField] private string nextSceneName = "Gameplay";
         
         public void Start()
         {
@@ -77,18 +82,25 @@ namespace RpgActorTGC
 
         private void LaunchNewCampaign()
         {
-            
+            TransitionSceneAsync().Forget();
         }
 
         private void LaunchHowToPlay()
         {
-            
+            TransitionSceneAsync().Forget();
         }
 
         private void ResetAssignments()
         {
             RPGActorManager.Instance.ResetAssignments();
             Reload();
+        }
+        
+        private async Task TransitionSceneAsync()
+        {
+            allUICanvas.interactable = false;
+            await fader.DOFade(1f, fadeDuration).AsTask();
+            SceneManager.Instance.LoadSceneImmediate(nextSceneName);
         }
 
         private IEnumerator ShowLoadOutputRoutine()

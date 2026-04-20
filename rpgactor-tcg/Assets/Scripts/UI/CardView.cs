@@ -9,7 +9,7 @@ namespace RpgActorTGC
 {
     public class CardView : MonoBehaviour
     {
-        [Header("Display Components")]
+        [Header("Card Components")]
         [SerializeField] private CharaModelView chara;
         [SerializeField] private TMP_Text nameText;
         [SerializeField] private ListView statList;
@@ -19,17 +19,19 @@ namespace RpgActorTGC
         [SerializeField] private List<GameObject> followerObjects;
         [Space]
         [SerializeField] private CanvasGroup canvas;
+        [Space]
+        [SerializeField] private Button backerButton;
+        [SerializeField] private GameObject nullArea;
+        [SerializeField] private GameObject nonNullArea;
 
         [Header("Config")]
         [SerializeField] private float selectedAlpha = .8f;
-
-        [Header("Wiring")]
-        [SerializeField] private Button backerButton;
-
-        private CharacterCard card;
+        [SerializeField] private LaneType lane;
+        
         private Action<CardView> tapHandler;
         
-        public CharacterCard Card => card;
+        public CharacterCard Card { get; private set; }
+        public LaneType Lane => lane;
         
         private bool isSelected;
         public bool IsSelected
@@ -50,33 +52,39 @@ namespace RpgActorTGC
             });
         }
 
-        public void Populate(CharacterCard newCard, Action<CardView> newTapHandler = null)
+        public void Populate(CharacterCard card, Action<CardView> newTapHandler = null)
         {
             tapHandler = newTapHandler;
-            card = newCard;
+            Card = card;
             
-            chara.Sprite = card.Sprite;
-            nameText.text = card.CharacterName;
+            nonNullArea.SetActive(Card != null);
+            nullArea.SetActive(Card == null);
 
-            var statTuples = card.Stats.ToTuples()
-                .Where(tuple => tuple.Item1 is Stat.MHP or Stat.ATK or Stat.DEF or Stat.SPD 
-                                || (tuple.Item1 == Stat.MP && card.IsLeader));
-            statList.Populate(statTuples, (obj, statAndValue) =>
+            if (Card != null)
             {
-                obj.GetComponent<StatView>().Populate(statAndValue);
-            });
-            abilList.Populate(card.AbilityCards, (obj, abil) =>
-            {
-                obj.GetComponent<AbilCardView>().Populate(abil, card);
-            });
+                chara.Sprite = Card.Sprite;
+                nameText.text = Card.CharacterName;
 
-            foreach (var obj in leaderObjects)
-            {
-                obj.SetActive(card.IsLeader);
-            }
-            foreach (var obj in followerObjects)
-            {
-                obj.SetActive(!card.IsLeader);
+                var statTuples = Card.Stats.ToTuples()
+                    .Where(tuple => tuple.Item1 is Stat.MHP or Stat.ATK or Stat.DEF or Stat.SPD 
+                                    || (tuple.Item1 == Stat.MP && Card.IsLeader));
+                statList.Populate(statTuples, (obj, statAndValue) =>
+                {
+                    obj.GetComponent<StatView>().Populate(statAndValue);
+                });
+                abilList.Populate(Card.AbilityCards, (obj, abil) =>
+                {
+                    obj.GetComponent<AbilCardView>().Populate(abil, Card);
+                });
+
+                foreach (var obj in leaderObjects)
+                {
+                    obj.SetActive(Card.IsLeader);
+                }
+                foreach (var obj in followerObjects)
+                {
+                    obj.SetActive(!Card.IsLeader);
+                }
             }
         }
     }

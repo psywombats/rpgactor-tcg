@@ -2,7 +2,6 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
-using RpgActorTGC;
 
 /// <summary>
 /// An instance of SpritesheetData powers a single character sprite, supporting multiple directions and frames.
@@ -17,14 +16,14 @@ public class SpritesheetData : ScriptableObject, IDatabaseKeyable
     [SerializeField] private string sheetName;
     [Space]
     [SerializeField] private List<Sprite> serializedSprites;
-    [SerializeField] private SpritesheetFormatData format;
-
-    public int StepCount => format.WalkCycle.Count;
+    [SerializeField] protected SpritesheetFormatData format;
 
     public string Key => sheetName;
+    public int StepCount => format.WalkCycle.Count;
+    public SpritesheetFormatData Format => format;
 
     private Dictionary<string, Sprite> spritesByName;
-    private Dictionary<string, Sprite> SpritesByName
+    protected Dictionary<string, Sprite> SpritesByName
     {
         get 
         {
@@ -60,7 +59,7 @@ public class SpritesheetData : ScriptableObject, IDatabaseKeyable
         serializedSprites = sprites.ToList();
     }
 
-    public Sprite GetSprite(OrthoDir dir, int step) 
+    public virtual Sprite GetSprite(OrthoDir dir, int step) 
     {
         if (SpritesByName == null) return null;
         var walkCycle = GetWalkCycle(dir);
@@ -76,6 +75,8 @@ public class SpritesheetData : ScriptableObject, IDatabaseKeyable
 
         return SpritesByName[frameName];
     }
+
+    public virtual void OnShow(Action dataChangedCallback = null) { }
 
     public Sprite GetPreviewSprite() 
     {

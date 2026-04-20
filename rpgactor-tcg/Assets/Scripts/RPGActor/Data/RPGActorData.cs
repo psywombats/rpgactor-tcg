@@ -22,7 +22,7 @@ namespace RpgActorTGC
 
         public bool IsValidForTCG() => hasSprite
                                        && sprite != null
-                                       && !string.IsNullOrEmpty(displayName);
+                                       && !string.IsNullOrEmpty(displayName.ToAscii());
 
         public IEnumerable<string> Classes => stats.Classes;
     }

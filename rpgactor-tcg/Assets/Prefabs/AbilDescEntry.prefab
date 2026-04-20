@@ -68,8 +68,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: '3<sprite name="mag">: Attack+ 5'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 63eb37d8b91886c41aff91e34b943e6e, type: 2}
-  m_sharedMaterial: {fileID: -2982425819102154870, guid: 63eb37d8b91886c41aff91e34b943e6e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f0030505735855b469f2946a46c67a8c, type: 2}
+  m_sharedMaterial: {fileID: 3182446925149762992, guid: f0030505735855b469f2946a46c67a8c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -93,8 +93,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
-  m_fontSizeBase: 32
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

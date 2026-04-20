@@ -1,43 +1,7 @@
 fileFormatVersion: 2
-guid: f53abbfc4ac4ecb43b85662f039cf5d0
+guid: c896045932a8c22498204899b95971c1
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: 7752257456370083030
-    second: rmmz_sample_0
-  - first:
-      213: 4944259737615347097
-    second: rmmz_sample_1
-  - first:
-      213: 2974580301433398252
-    second: rmmz_sample_2
-  - first:
-      213: -8789576536428833735
-    second: rmmz_sample_3
-  - first:
-      213: -6816014595929344118
-    second: rmmz_sample_4
-  - first:
-      213: -5800490225662973181
-    second: rmmz_sample_5
-  - first:
-      213: 4332714711540106706
-    second: rmmz_sample_6
-  - first:
-      213: 148444300773893814
-    second: rmmz_sample_7
-  - first:
-      213: 4195170330146732504
-    second: rmmz_sample_8
-  - first:
-      213: 4733599172655172658
-    second: rmmz_sample_9
-  - first:
-      213: 7332005470647080755
-    second: rmmz_sample_10
-  - first:
-      213: 3070368271929730395
-    second: rmmz_sample_11
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -84,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 48
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -155,11 +119,24 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: rmmz_sample00_North00
+      name: default_North00
       rect:
         serializedVersion: 2
         x: 0
@@ -174,14 +151,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a10b98e4736803948a462251b7d31859
-      internalID: -1006410900
+      spriteID: cbbe1bc686e0eba48a0de7794f366ad8
+      internalID: 1999127599
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rmmz_sample00_East00
+      name: default_East00
       rect:
         serializedVersion: 2
         x: 0
@@ -196,14 +173,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a2df7f03894f3224a8e3d46830f619c1
-      internalID: 1580858005
+      spriteID: 40023b06ac329bd4693dc0590216b05c
+      internalID: -1357571805
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rmmz_sample00_West00
+      name: default_West00
       rect:
         serializedVersion: 2
         x: 0
@@ -218,14 +195,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4617165d43edce949983f031d6b86f3a
-      internalID: -1927792198
+      spriteID: e50b115fc36339348af72af9cb9d748b
+      internalID: 1399077405
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rmmz_sample00_South00
+      name: default_South00
       rect:
         serializedVersion: 2
         x: 0
@@ -240,14 +217,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6267ded966f1e2d459105c6b319a57e4
-      internalID: 1377476574
+      spriteID: f2bf52d0584dfee4bbb69dd758973802
+      internalID: -1695405305
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rmmz_sample00_North01
+      name: default_North01
       rect:
         serializedVersion: 2
         x: 48
@@ -262,14 +239,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b4778ecf8e9fbfd42a9744b3113cc4b0
-      internalID: -1342872749
+      spriteID: 174584a65d3114741bab5b4cff741c25
+      internalID: -971032171
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rmmz_sample00_East01
+      name: default_East01
       rect:
         serializedVersion: 2
         x: 48
@@ -284,14 +261,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c26b03e28d7c4bb44bc5a09e4d92baa6
-      internalID: -1033374534
+      spriteID: 07830903b3a95e6478b42d0a6bda4c02
+      internalID: 1411022161
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rmmz_sample00_West01
+      name: default_West01
       rect:
         serializedVersion: 2
         x: 48
@@ -306,14 +283,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0a585f07f7e38d84fa21acc7b9ae7fd0
-      internalID: 368433620
+      spriteID: 51958e1759faad94caa97b6fe0c589d8
+      internalID: -327392126
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rmmz_sample00_South01
+      name: default_South01
       rect:
         serializedVersion: 2
         x: 48
@@ -328,14 +305,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 19f1a4b39f3fe1d43a126e718edd77a9
-      internalID: 977148962
+      spriteID: e756604ec8d43ac48bbdd49b10d8a72c
+      internalID: 1574158352
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rmmz_sample00_North02
+      name: default_North02
       rect:
         serializedVersion: 2
         x: 96
@@ -350,14 +327,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aabc5a8cf8427ff48bca0cec492dfd6a
-      internalID: -661423613
+      spriteID: bed7a97acd8009242aee20e7e854c6b4
+      internalID: 1041304996
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rmmz_sample00_East02
+      name: default_East02
       rect:
         serializedVersion: 2
         x: 96
@@ -372,14 +349,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0bcbb77f9020b9c43bce7e47d4c0c0a8
-      internalID: -1902242755
+      spriteID: 338e05013501af94ea16791a3b5bf0b6
+      internalID: 843646816
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rmmz_sample00_West02
+      name: default_West02
       rect:
         serializedVersion: 2
         x: 96
@@ -394,14 +371,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f7c40d9e27f6aa3489727946175a9fba
-      internalID: -904615690
+      spriteID: ffadd745539794344b435c8c6e51675f
+      internalID: 828171724
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rmmz_sample00_South02
+      name: default_South02
       rect:
         serializedVersion: 2
         x: 96
@@ -416,8 +393,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 06b1582aaf2ffd841ab44c97c647de7c
-      internalID: 1434388375
+      spriteID: 3f456a07d3fcde04494b07ff61672962
+      internalID: 1789896246
       vertices: []
       indices: 
       edges: []
@@ -426,7 +403,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 1920528f225753642bf19e5ca237f227
     internalID: 0
     vertices: []
     indices: 
@@ -436,18 +413,18 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      rmmz_sample00_East00: 1580858005
-      rmmz_sample00_East01: -1033374534
-      rmmz_sample00_East02: -1902242755
-      rmmz_sample00_North00: -1006410900
-      rmmz_sample00_North01: -1342872749
-      rmmz_sample00_North02: -661423613
-      rmmz_sample00_South00: 1377476574
-      rmmz_sample00_South01: 977148962
-      rmmz_sample00_South02: 1434388375
-      rmmz_sample00_West00: -1927792198
-      rmmz_sample00_West01: 368433620
-      rmmz_sample00_West02: -904615690
+      default_East00: -1357571805
+      default_East01: 1411022161
+      default_East02: 843646816
+      default_North00: 1999127599
+      default_North01: -971032171
+      default_North02: 1041304996
+      default_South00: -1695405305
+      default_South01: 1574158352
+      default_South02: 1789896246
+      default_West00: 1399077405
+      default_West01: -327392126
+      default_West02: 828171724
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

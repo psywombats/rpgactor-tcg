@@ -19,8 +19,10 @@ public class CharaModelView : MonoBehaviour
         get => sprite;
         set
         {
-            sprite = value; 
-            OnSpriteUpdated?.Invoke(GetSpriteForCurrentFrame());
+            stepIndex = 0;
+            sprite = value;
+            sprite?.OnShow(UpdateForNewSprite);
+            UpdateForNewSprite();
         }
     }
 
@@ -31,7 +33,7 @@ public class CharaModelView : MonoBehaviour
         set
         {
             facing = value; 
-            OnSpriteUpdated?.Invoke(GetSpriteForCurrentFrame());
+            UpdateForNewSprite();
         }
     }
     
@@ -42,7 +44,7 @@ public class CharaModelView : MonoBehaviour
         private set
         {
             stepIndex = value;
-            OnSpriteUpdated?.Invoke(GetSpriteForCurrentFrame());
+            UpdateForNewSprite();
         }
     }
 
@@ -90,7 +92,11 @@ public class CharaModelView : MonoBehaviour
     public Sprite GetSpriteForCurrentFrame()
     {
         if (Sprite == null) return null;
-        var x = Mathf.FloorToInt(Time.time * StepsPerSecond) % Sprite.StepCount;
-        return Sprite.GetSprite(Facing, x);
+        return Sprite.GetSprite(Facing, StepIndex);
+    }
+
+    private void UpdateForNewSprite()
+    {
+        OnSpriteUpdated?.Invoke(GetSpriteForCurrentFrame());
     }
 }

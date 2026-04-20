@@ -15,13 +15,8 @@ namespace RpgActorTGC
         private Deck deck;
         private CharacterCard currentCard;
 
-        private CharacterCard currentlyReplacingCard;
+        private LaneType? currentlyReplacingLane;
         private CancellationTokenSource replaceCardCTS;
-
-        protected void Start()
-        {
-            Populate(new Deck(defaultDeck));
-        }
         
         public void Populate(Deck newDeck)
         {
@@ -31,9 +26,9 @@ namespace RpgActorTGC
 
         private void OnCardSelect(CardView cardView)
         {
-            if (currentlyReplacingCard != null)
+            if (currentlyReplacingLane != null)
             {
-                var startAgain = cardView.Card != currentlyReplacingCard;
+                var startAgain = cardView.Lane != currentlyReplacingLane;
                 CancelReplacement();
                 if (!startAgain)
                 {
@@ -45,14 +40,16 @@ namespace RpgActorTGC
 
         private async Task ReplaceCardAsync(CardView cardView)
         {
-            currentlyReplacingCard = cardView.Card;
+            currentlyReplacingLane = cardView.Lane;
             replaceCardCTS = new CancellationTokenSource();
+            var card = deck[currentlyReplacingLane.Value];
+            var leaderMode = deck.Leader == null || (card != null && card.IsLeader);
             try
             {
-                var newCard = await selectorView.SelectCardAsync(replaceCardCTS.Token, currentlyReplacingCard.IsLeader
+                var newCard = await selectorView.SelectCardAsync(replaceCardCTS.Token, leaderMode
                     ? CardCache.Instance.AllLeaderCards
                     : CardCache.Instance.AllHeroCards);
-                deck.Replace(currentlyReplacingCard, newCard);
+                deck.Replace(currentlyReplacingLane.Value, newCard);
                 Populate(deck);
             }
             catch (OperationCanceledException)
@@ -60,17 +57,17 @@ namespace RpgActorTGC
                 return;
             }
 
-            currentlyReplacingCard = null;
+            currentlyReplacingLane = null;
             await selectorView.HideAsync();
         }
 
         private void CancelReplacement()
         {
-            if (currentlyReplacingCard == null) throw new ArgumentException("No replacement in progress");
+            if (currentlyReplacingLane == null) throw new ArgumentException("No replacement in progress");
             replaceCardCTS.Cancel();
             replaceCardCTS.Dispose();
             replaceCardCTS = null;
-            currentlyReplacingCard = null;
+            currentlyReplacingLane = null;
         }
     }
 }

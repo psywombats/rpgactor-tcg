@@ -11,13 +11,22 @@ namespace RpgActorTGC
         public IEnumerable<string> Classes => Data.Classes;
         
         private string asciiName;
-        public string AsciiName => asciiName ??= Data.displayName.ToAscii();
+        public string AsciiName => asciiName ??= DisplayName.ToAscii();
+
+        private string displayName;
+        public string DisplayName => displayName ??= Data.displayName.Replace(".bluesky.social", "");
         
         public CharacterCard Card { get; set; }
+        public NetworkedSpriteData Sprite { get; private set; }
 
         public RPGActorModel(RPGActorData data)
         {
             Data = data;
+            Sprite = NetworkedSpriteData.Create(
+                format: DBManager.Instance.Constants.rpgactorSpriteFormat,
+                url: data.sprite.url, 
+                spriteName: AsciiName, 
+                fallback: DBManager.Instance.Constants.defaultNetworkFallbackSprite);
         }
         
         public int DistanceFromCard(CharacterCard card)

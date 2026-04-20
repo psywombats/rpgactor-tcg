@@ -17,16 +17,10 @@ namespace RpgActorTGC
 
         public event Action<InitState, string> OnStateChange;
         
-        private HttpClient http;
         private RPGActorFullCachedData fullCachedData;
         private readonly List<RPGActorModel> allActors = new();
         private readonly List<(RPGActorModel actor, CharacterCard card)> cardAssignments = new();
         private int loadedFromCacheCount;
-        
-        protected override void Init()
-        {
-            http = new HttpClient();
-        }
 
         public async Task StartupAsync()
         {
@@ -34,7 +28,7 @@ namespace RpgActorTGC
             try
             {
                 SetState(InitState.FetchingData, "Fetching initial rpg.actor data...");
-                initialFetchResponse = await http.GetAsync("https://rpg.actor/api/actors/full");
+                initialFetchResponse = await HTTPManager.Instance.Client.GetAsync("https://rpg.actor/api/actors/full");
                 if (!initialFetchResponse.IsSuccessStatusCode)
                 {
                     SetState(InitState.Error, $"Error fetching initial data: {initialFetchResponse.StatusCode}");
@@ -142,7 +136,7 @@ namespace RpgActorTGC
                 // assign as many of the top scorers as possible
                 foreach (var candidate in topScorers)
                 {
-                    if (candidate.card.Actor == null)
+                    if (candidate.actor.Card == null)
                     {
                         candidate.card.Actor = candidate.actor;
                         candidate.actor.Card = candidate.card;

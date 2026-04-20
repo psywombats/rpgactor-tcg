@@ -6,13 +6,18 @@ namespace RpgActorTGC
     public class CharacterCard
     {
         public CharacterData Data { get; }
-
-        public bool IsLeader => Data.isLeader;
+        
+        public RPGActorModel Actor { get; set; }
         public List<AbilityCard> AbilityCards { get; } = new();
         public StatSet Stats => Data.stats;
+        
+        public bool IsLeader => Data.isLeader;
 
-        public string CharacterName => Data.characterName;
-        public SpritesheetData Sprite => Data.sprite;
+        public SpritesheetData Sprite => Actor?.Sprite ?? Data.sprite;
+        
+        #region ToString
+
+        public string CharacterName => Actor?.DisplayName ?? Data.characterName;
         public string CompositionString => IsLeader ? $"[{CharacterName}]" : CharacterName;
 
         private string abilString;
@@ -31,8 +36,8 @@ namespace RpgActorTGC
                 return abilString;
             }
         }
-        
-        public RPGActorModel Actor { get; set; }
+
+        #endregion
         
         private readonly List<(RPGActorModel actor, int score)> sortedScores = new();
         

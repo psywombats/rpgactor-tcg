@@ -27,6 +27,8 @@ public class SpritesheetFormatData : ScriptableObject
     public int FramesPerDir => framesPerDir > 0 ? framesPerDir : framesPerDir = WalkCycle.Max() + 1;
     public int TotalFrames => FramesPerDir * facings.Count;
 
+    public Vector2Int SheetSize => new Vector2Int((walkCycle.Max() + 1) * frameSize.x, facings.Count * frameSize.y);
+
     public List<Sprite> Split(Texture2D texture)
     {
         if (!ValidateSheetSize(new Vector2Int(texture.width, texture.height), texture.name)) return null;
@@ -107,7 +109,7 @@ public class SpritesheetFormatData : ScriptableObject
     }
 
     public string NameForFrame(string assetName, OrthoDir dir, int step, int indexInSheet)
-        => NameForFrame(assetName + ((isSingleSprite || !supportsMultipleSheetsPerFile) ? "" : indexInSheet.ToString("D2")), dir, step);
+        => NameForFrame(assetName + (isSingleSprite || !supportsMultipleSheetsPerFile ? "" : indexInSheet.ToString("D2")), dir, step);
 
     private bool ValidateSheetSize(Vector2Int sheetSize, string sheetName)
     {
@@ -129,16 +131,16 @@ public class SpritesheetFormatData : ScriptableObject
         }
         else
         {
-            if (sheetSize.x / frameSize.x != walkCycle.Max() + 1)
+            if (sheetSize.x != SheetSize.x)
             {
                 Debug.LogError($"Importing [{sheetName}] as [{formatName}] failed: expected a width of " +
-                               $"{(walkCycle.Max() + 1) * frameSize.x} but tex has width of {sheetSize.x}");
+                               $"{SheetSize.x} but tex has width of {sheetSize.x}");
                 return false;
             }
-            if (sheetSize.y / frameSize.y != facings.Count)
+            if (sheetSize.y != SheetSize.y)
             {
                 Debug.LogError($"Importing [{sheetName}] as [{formatName}] failed: expected a height of " +
-                               $"{facings.Count * frameSize.y} but tex has height of {sheetSize.y}");
+                               $"{SheetSize.y} but tex has height of {sheetSize.y}");
                 return false;
             }
         }
