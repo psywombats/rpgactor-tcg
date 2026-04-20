@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace RpgActorTGC
 {
@@ -10,7 +11,7 @@ namespace RpgActorTGC
         private readonly Dictionary<AbilityData, AbilityCard> abilityCards = new();
         private readonly Dictionary<DeckData, Deck> decks = new();
 
-        public void Start()
+        protected override void Init()
         {
             foreach (var cardData in DBManager.Instance.GetAll<CharacterData>())
             {
@@ -20,7 +21,15 @@ namespace RpgActorTGC
         
         public IEnumerable<CharacterCard> AllHeroCards => heroCards.Values;
         public IEnumerable<CharacterCard> AllLeaderCards => leaderCards.Values;
+        public IEnumerable<CharacterCard> AllCards => AllHeroCards.Union(AllLeaderCards);
 
+        public bool TryGetCharacter(string key, out CharacterCard card)
+        {
+            var data = DBManager.Instance.GetOrNull<CharacterData>(key);
+            card = data == null ? null : GetOrCreateCard(data);
+            return card != null;
+        }
+        
         public CharacterCard GetRandomCharacter(bool isLeader)
         {
             var set = isLeader ? leaderCards : heroCards;
@@ -62,6 +71,14 @@ namespace RpgActorTGC
                 decks.Add(data, deck);
             }
             return deck;
+        }
+
+        public void ResetAssignments()
+        {
+            foreach (var card in AllCards)
+            {
+                card.Actor = null;
+            }
         }
     }
 }

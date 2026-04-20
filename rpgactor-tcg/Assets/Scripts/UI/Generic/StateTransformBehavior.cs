@@ -12,7 +12,17 @@ public abstract class StateTransformBehavior : MonoBehaviour
     [SerializeField] private bool startAtPrimary;
 
     private RectTransform trans;
-    protected RectTransform Trans => trans ??= GetComponent<RectTransform>();
+    protected RectTransform Trans
+    {
+        get
+        {
+            if (trans == null)
+            {
+                trans = GetComponent<RectTransform>();
+            }
+            return trans;
+        }
+    }
 
     [Button] private void MemorizePrimary() => MemorizePosition(false);
     [Button] private void MemorizeSecondary() => MemorizePosition(true);
@@ -20,10 +30,18 @@ public abstract class StateTransformBehavior : MonoBehaviour
     [Button] private void JumpToPrimary() => JumpToState(false);
     [Button] private void JumpToSecondary() => JumpToState(true);
 
+    private bool started;
+
     protected void Start()
     {
-        if (startAtPrimary)
+        CheckStart();
+    }
+
+    private void CheckStart()
+    {
+        if (startAtPrimary && !started)
         {
+            started = true;
             JumpToPrimary();
         }
     }
@@ -50,6 +68,7 @@ public abstract class StateTransformBehavior : MonoBehaviour
 
     public async Task TweenToLerpAsync(float duration, float t, bool snapping = false)
     {
+        CheckStart();
         var target = t * posB + (1f - t) * posA;
         if ((target - Get()).sqrMagnitude < Mathf.Epsilon)
         {
@@ -64,6 +83,7 @@ public abstract class StateTransformBehavior : MonoBehaviour
 
     public void JumpToLerp(float t)
     {
+        CheckStart();
         Set(t * posB + (1f - t) * posA);
         if (!Application.IsPlaying(this))
         {

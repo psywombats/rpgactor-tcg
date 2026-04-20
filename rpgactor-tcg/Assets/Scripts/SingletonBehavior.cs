@@ -20,6 +20,7 @@ public abstract class SingletonBehaviour<T> : MonoBehaviour where T : SingletonB
         var obj = new GameObject( typeof( T ).Name );
         instance = obj.AddComponent<T>();
         DontDestroyOnLoad( obj );
+        instance.Init();
         creating = false;
       }
       return instance;
@@ -38,7 +39,7 @@ public abstract class SingletonBehaviour<T> : MonoBehaviour where T : SingletonB
     }
   }
 
-  protected virtual void Awake()
+  protected void Awake()
   {
     if ( !creating )
     {
@@ -52,6 +53,8 @@ public abstract class SingletonBehaviour<T> : MonoBehaviour where T : SingletonB
       }
     }
   }
+
+  protected virtual void Init() {}
 
   /// <summary>
   /// Called on this object when it's instantiated, but there's already an instance around

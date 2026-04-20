@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49e0b9a99cc74ade91ffd363be4566b2, type: 3}
   m_Name: SpriteFormat
   m_EditorClassIdentifier: Assembly-CSharp::SpritesheetFormatData
+  formatName: SpriteFormat
   isSingleSprite: 0
   pixelsPerUnit: 48
   frameSize: {x: 48, y: 48}
   facings: 02000000030000000100000000000000
   walkCycle: 01000000000000000100000002000000
+  supportsMultipleSheetsPerFile: 1

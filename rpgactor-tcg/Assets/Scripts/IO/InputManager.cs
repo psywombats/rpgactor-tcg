@@ -34,9 +34,8 @@ public class InputManager : SingletonBehaviour<InputManager>
 
     private bool endProcessing;
 
-    protected override void Awake()
+    protected override void Init()
     {
-        base.Awake();
         foreach (Command cmd in Enum.GetValues(typeof(Command)))
         {
             SetDefaultKeybindsForCommand(cmd);

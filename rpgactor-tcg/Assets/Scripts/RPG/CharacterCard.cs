@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace RpgActorTGC
 {
@@ -31,6 +32,10 @@ namespace RpgActorTGC
             }
         }
         
+        public RPGActorModel Actor { get; set; }
+        
+        private readonly List<(RPGActorModel actor, int score)> sortedScores = new();
+        
         public CharacterCard(CharacterData data)
         {
             Data = data;
@@ -44,5 +49,19 @@ namespace RpgActorTGC
         public float this[Stat tag] => Data.stats[tag];
 
         public override string ToString() => CompositionString;
+        
+        public (RPGActorModel actor, int score) GetHighestUnasignedScore()
+        {
+            return sortedScores.FirstOrDefault(score => score.actor.Card == null);
+        }
+        
+        public void CalculateScores(IEnumerable<RPGActorModel> actors)
+        {
+            foreach (var actor in actors)
+            {
+                sortedScores.Add((actor, actor.DistanceFromCard(this)));
+            }
+            sortedScores.Sort((a, b) => a.score.CompareTo(b.score));
+        }
     }
 }

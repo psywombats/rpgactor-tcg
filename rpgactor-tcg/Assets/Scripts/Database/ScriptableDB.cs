@@ -6,7 +6,6 @@ using RpgActorTGC;
 using UnityEditor;
 using UnityEngine;
 
-
 [CreateAssetMenu(fileName = "Database", menuName = "Data/ScriptableDB")]
 public class ScriptableDB : ScriptableObject
 {
@@ -22,7 +21,7 @@ public class ScriptableDB : ScriptableObject
     private readonly Dictionary<string, List<ScriptableObject>> scriptablesByTypeName = new();
     private readonly Dictionary<string, Dictionary<string, ScriptableObject>> indexedScriptablesByType = new();
     
-    public T Get<T>(string key) where T : ScriptableObject, IDatabaseKeyable
+    public T Get<T>(string key, bool nullAllowed = true) where T : ScriptableObject, IDatabaseKeyable
     {
         EnsureSupportDictInit();
         var typeName = typeof(T).Name;
@@ -37,7 +36,9 @@ public class ScriptableDB : ScriptableObject
                 scriptablesByKey.Add(instance.Key, instance);
             }
         }
-        return scriptablesByKey[key] as T;
+        var result = scriptablesByKey[key] as T;
+        if (result == null && !nullAllowed) throw new ArgumentException($"Cannot find {key} as {typeof(T)}");
+        return result;
     }
 
     public T GetRandom<T>() where T : ScriptableObject, IDatabaseKeyable

@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: default00_North00
+      name: default_North00
       rect:
         serializedVersion: 2
         x: 0
@@ -138,14 +138,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 87b9544b6d7a5eb4ab84246c4fec7f72
-      internalID: -1671316801
+      spriteID: d36a66b3d3f2d39419ef3ea7ea43627a
+      internalID: 1999127599
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: default00_East00
+      name: default_East00
       rect:
         serializedVersion: 2
         x: 0
@@ -160,14 +160,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b515c6d50a01a4944b3f55e53475c72d
-      internalID: 1825403959
+      spriteID: 1d9c2705ecffdfa47b3a9cbe3ad9d606
+      internalID: -1357571805
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: default00_West00
+      name: default_West00
       rect:
         serializedVersion: 2
         x: 0
@@ -182,14 +182,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 418c15b5c162d844fae48cc7579f343d
-      internalID: 1380921576
+      spriteID: 5042f0eb599c89042ae051253b464afb
+      internalID: 1399077405
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: default00_South00
+      name: default_South00
       rect:
         serializedVersion: 2
         x: 0
@@ -204,14 +204,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac1b94c24c9b9494d85a0c5eb0bc8cee
-      internalID: 611675976
+      spriteID: d823324a31bf1b245b103201c951f228
+      internalID: -1695405305
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: default00_North01
+      name: default_North01
       rect:
         serializedVersion: 2
         x: 48
@@ -226,14 +226,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 34742da091e636c479ca4aecf690a279
-      internalID: -595543930
+      spriteID: 4fea33d17532ffb42ac5b73e423ff799
+      internalID: -971032171
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: default00_East01
+      name: default_East01
       rect:
         serializedVersion: 2
         x: 48
@@ -248,14 +248,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5792cca1284a5d04cb5ac4a6bde5f800
-      internalID: 1862535432
+      spriteID: 3e6c3a941259daf47a8d292f4636d2da
+      internalID: 1411022161
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: default00_West01
+      name: default_West01
       rect:
         serializedVersion: 2
         x: 48
@@ -270,14 +270,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b5347af3029e4dd4883a5698a698631e
-      internalID: 1828538106
+      spriteID: 87e60645052d7cd49a9fc3c2f055a322
+      internalID: -327392126
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: default00_South01
+      name: default_South01
       rect:
         serializedVersion: 2
         x: 48
@@ -292,14 +292,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 40de462ad849e6645b6dc60d40c35c89
-      internalID: -931934405
+      spriteID: f0573ff5de48c7348ba96d1868103b87
+      internalID: 1574158352
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: default00_North02
+      name: default_North02
       rect:
         serializedVersion: 2
         x: 96
@@ -314,14 +314,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bd3169e4d4ce135449230ad067a0699b
-      internalID: 556777749
+      spriteID: 0e51907f5532d2c47b26a7cea6719d35
+      internalID: 1041304996
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: default00_East02
+      name: default_East02
       rect:
         serializedVersion: 2
         x: 96
@@ -336,14 +336,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5010a410c445186449a78da1516eee26
-      internalID: -1546376163
+      spriteID: e9caf85ccaf45ca4781399271026c1c2
+      internalID: 843646816
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: default00_West02
+      name: default_West02
       rect:
         serializedVersion: 2
         x: 96
@@ -358,14 +358,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da87b892027707d4a9010cc36e73c0e0
-      internalID: 1537700845
+      spriteID: abb4dcae574b1cd4da284b5523081316
+      internalID: 828171724
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: default00_South02
+      name: default_South02
       rect:
         serializedVersion: 2
         x: 96
@@ -380,8 +380,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5c2e2a3fa0a7e4243bbcbe5990bcbb63
-      internalID: -781468714
+      spriteID: 6dd37d328b82ced4ea7154476b9ec343
+      internalID: 1789896246
       vertices: []
       indices: 
       edges: []
@@ -400,18 +400,18 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      default00_East00: 1825403959
-      default00_East01: 1862535432
-      default00_East02: -1546376163
-      default00_North00: -1671316801
-      default00_North01: -595543930
-      default00_North02: 556777749
-      default00_South00: 611675976
-      default00_South01: -931934405
-      default00_South02: -781468714
-      default00_West00: 1380921576
-      default00_West01: 1828538106
-      default00_West02: 1537700845
+      default_East00: -1357571805
+      default_East01: 1411022161
+      default_East02: 843646816
+      default_North00: 1999127599
+      default_North01: -971032171
+      default_North02: 1041304996
+      default_South00: -1695405305
+      default_South01: 1574158352
+      default_South02: 1789896246
+      default_West00: 1399077405
+      default_West01: -327392126
+      default_West02: 828171724
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
