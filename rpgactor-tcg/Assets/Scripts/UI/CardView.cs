@@ -59,6 +59,15 @@ namespace RpgActorTGC
             
             nonNullArea.SetActive(Card != null);
             nullArea.SetActive(Card == null);
+            
+            foreach (var obj in leaderObjects)
+            {
+                obj.SetActive(Card != null && Card.IsLeader);
+            }
+            foreach (var obj in followerObjects)
+            {
+                obj.SetActive(Card != null && !Card.IsLeader);
+            }
 
             if (Card != null)
             {
@@ -76,15 +85,6 @@ namespace RpgActorTGC
                 {
                     obj.GetComponent<AbilCardView>().Populate(abil, Card);
                 });
-
-                foreach (var obj in leaderObjects)
-                {
-                    obj.SetActive(Card.IsLeader);
-                }
-                foreach (var obj in followerObjects)
-                {
-                    obj.SetActive(!Card.IsLeader);
-                }
             }
         }
     }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace RpgActorTGC
 {
@@ -7,15 +6,25 @@ namespace RpgActorTGC
     {
         public List<CharacterCard> UnlockedCards { get; } = new();
 
-        private List<Deck> decks = new();
+        private Deck[] decks;
 
         protected override void Init()
         {
             base.Init();
-            for (var i = 0; i < ConstantsData.Instance.deckCount; i++)
+
+            decks = new Deck[ConstantsData.Instance.deckCount];
+            for (var i = 0; i < decks.Length; i++)
             {
-                decks.Add(new Deck($"Deck {i+1}"));
+                decks[i] = new Deck($"Deck {i + 1}");
             }
+        }
+
+        public bool DoesDeckExist(int deckIndex) => GetDeck(deckIndex) != null;
+
+        public void SaveDeckAs(Deck deck, int slot)
+        {
+            deck.DeckName = $"Deck {slot + 1}";
+            decks[slot] = deck;
         }
         
         public Deck GetDeck(int index) => decks[index];

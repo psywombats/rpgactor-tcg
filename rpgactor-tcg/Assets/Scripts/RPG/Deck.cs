@@ -6,11 +6,11 @@ namespace RpgActorTGC
 {
     public class Deck
     {
-        public CharacterCard Leader => CardsByLane.Values.FirstOrDefault(c => c.IsLeader);
+        public CharacterCard Leader => CardsByLane.Values.FirstOrDefault(c => c != null && c.IsLeader);
         public IEnumerable<CharacterCard> Followers => CardsByLane.Values.Where(c => !c.IsLeader);
         public CharacterCard this[LaneType lane] => CardsByLane.ContainsKey(lane) ? CardsByLane[lane] : null;
         
-        public string DeckName { get; }
+        public string DeckName { get; set; }
         
         public Dictionary<LaneType, CharacterCard> CardsByLane { get; } = new();
 
@@ -79,6 +79,23 @@ namespace RpgActorTGC
 
         public void Replace(LaneType lane, CharacterCard newCard)
         {
+            // remove other leaders if we're assigning another one
+            if (newCard.IsLeader)
+            {
+                var lanesToClear = new HashSet<LaneType>();
+                foreach (var asgn in CardsByLane)
+                {
+                    if (asgn.Value != null && asgn.Value.IsLeader && lane != asgn.Key)
+                    {
+                        lanesToClear.Add(asgn.Key);
+                    }
+                }
+                foreach (var toClear in lanesToClear)
+                {
+                    CardsByLane.Remove(toClear);
+                }
+            }
+
             CardsByLane[lane] = newCard;
         }
     }

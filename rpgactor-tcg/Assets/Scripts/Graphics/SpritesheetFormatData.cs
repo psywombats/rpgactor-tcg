@@ -109,7 +109,7 @@ public class SpritesheetFormatData : ScriptableObject
     }
 
     public string NameForFrame(string assetName, OrthoDir dir, int step, int indexInSheet)
-        => NameForFrame(assetName + (isSingleSprite || !supportsMultipleSheetsPerFile ? "" : indexInSheet.ToString("D2")), dir, step);
+        => NameForFrame(assetName + (!supportsMultipleSheetsPerFile ? "" : indexInSheet.ToString("D2")), dir, step);
 
     private bool ValidateSheetSize(Vector2Int sheetSize, string sheetName)
     {
