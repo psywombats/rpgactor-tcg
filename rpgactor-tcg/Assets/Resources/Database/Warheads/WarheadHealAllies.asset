@@ -10,9 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d40e8824f6f4273a261dac0f998342e, type: 3}
-  m_Name: WarheadHealHero
+  m_Name: WarheadHealAllies
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.WarheadHeal
   abilityName: Heal
-  abilityDesc: Heals {1} by {0}.
+  abilityDesc: Heals all allies by {0}.
   isContinuous: 0
-  targetsLeader: 0
+  targetsLeader: 1
+  targetsHeroes: 1
+  targetsLocal: 0
+  targetsFriendly: 1
+  targetsHostile: 0

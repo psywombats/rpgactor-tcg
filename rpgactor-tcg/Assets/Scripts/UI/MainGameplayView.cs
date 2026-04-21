@@ -48,6 +48,11 @@ namespace RpgActorTGC
 
         private async Task EnterTournamentAsync()
         {
+            if (editor.TryPopIncompletionDialog())
+            {
+                return;
+            }
+            
             editorTouchBlocker.SetActive(true);
             
             tourneyLoadingArea.SetActive(true);
@@ -57,6 +62,13 @@ namespace RpgActorTGC
             resultView.Populate(this, CampaignManager.Instance.Player.CurrentRoundResult);
             await resultTrans.TweenToStateAsync(true, transitionDuration);
             
+            editorTouchBlocker.SetActive(false);
+        }
+
+        public async Task ExitTournamentAsync()
+        {
+            editorTouchBlocker.SetActive(true);
+            await resultTrans.TweenToStateAsync(false, transitionDuration);
             editorTouchBlocker.SetActive(false);
         }
     }

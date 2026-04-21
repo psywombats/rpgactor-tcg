@@ -65,6 +65,8 @@ namespace RpgActorTGC
             }
         }
 
+        public bool ContainsCard(CharacterCard card) => CardsByLane.Values.Contains(card);
+
         public LaneType GetLaneForCard(CharacterCard card)
         {
             foreach (var kvp in CardsByLane)
@@ -114,7 +116,7 @@ namespace RpgActorTGC
                 CardCache.Instance.GetRandomCharacter(isLeader: false, availableHeroes, availableLeaders),
                 CardCache.Instance.GetRandomCharacter(isLeader: false, availableHeroes, availableLeaders),
             };
-            var leaderIndex = UnityEngine.Random.Range(0, 4);
+            var leaderIndex = RandomUtils.Range(0, 4);
             (cards[leaderIndex], cards[0]) = (cards[0], cards[leaderIndex]);
             return new Deck(deckName, cards[0], cards[1], cards[2], cards[3]);
         }

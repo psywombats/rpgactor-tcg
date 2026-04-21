@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace RpgActorTGC
@@ -12,8 +13,10 @@ namespace RpgActorTGC
         public HashSet<CharacterCard> MyCards { get; } = new();
         public List<CharacterCard> GloballyAvailableLeaders { get; } = new();
         public List<CharacterCard> GloballyAvailableHeroes { get; } = new();
+        
+        public List<Deck> EvolvedReplacementDecks { get; private set; }
 
-        public int RoundCount = 0;
+        public int RoundCount { get; private set; }
 
         protected override void Init()
         {
@@ -38,7 +41,12 @@ namespace RpgActorTGC
 
         public async Task<TourneyRoundResult> SimulateRound(Deck myDeck)
         {
+            if (RoundCount > 0)
+            {
+                RunEvoAlgorithm();
+            }
             Player.SetDeckForCurrentRound(myDeck);
+            
             foreach (var entrant in AllEntrants)
             {
                 entrant.SetupForNewRound();
@@ -61,6 +69,14 @@ namespace RpgActorTGC
 
             RoundCount++;
             return Player.CurrentRoundResult;
+        }
+
+        private void RunEvoAlgorithm()
+        {
+            var runner = new DeckEvoVsFixedSetRunner(AllEntrants.Select(entrant => entrant.CurrentDeck),
+                GloballyAvailableLeaders, GloballyAvailableHeroes);
+            var solutions = runner.RunEvolution(ConstantsData.Instance.evolutionSettings);
+            EvolvedReplacementDecks = solutions.Select(sol => sol.Deck).ToList();
         }
     }
 }

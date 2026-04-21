@@ -31,6 +31,6 @@ namespace RpgActorTGC
         
         public void Repopulate() => Populate(Party);
 
-        public Task GenerateMPAsync(int mp) => deckHeader.GenerateMPAsync(mp);
+        public Task GenerateMPAsync(int finalMP) => deckHeader.GenerateMPAsync(finalMP);
     }
 }

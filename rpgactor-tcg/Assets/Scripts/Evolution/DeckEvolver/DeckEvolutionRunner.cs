@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Random = UnityEngine.Random;
 
 namespace RpgActorTGC
 {
@@ -14,7 +13,7 @@ namespace RpgActorTGC
         
         protected override DeckSolution CreateRandomSolution()
         {
-            return new DeckSolution(this, Deck.CreateRandom(RandomDeckName));
+            return new DeckSolution(Deck.CreateRandom(RandomDeckName));
         }
 
         protected override void AssignScoresToSolutions(List<DeckSolution> solutions)

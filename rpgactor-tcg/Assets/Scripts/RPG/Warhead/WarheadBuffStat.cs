@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace RpgActorTGC
@@ -13,7 +14,7 @@ namespace RpgActorTGC
             return $"Raised {stat.Info().StatName} of {GetVictimsString(victims)} by {power}.";
         }
 
-        protected override void ApplyToVictim(BattleModel battle, Unit caster, AbilityInstance instance, int power, Unit victim)
+        protected override Task ApplyToVictimAsync(BattleModel battle, Unit caster, AbilityInstance instance, int power, Unit victim)
         {
             victim[stat] += power;
             if (battle.UseVerboseLogging) battle.SimLog($"Raised {victim.CompositionString} {stat.Info().StatName} by {power} to {victim[stat]}");
@@ -21,6 +22,8 @@ namespace RpgActorTGC
             {
                 battle.InvalidateTurnOrder();
             }
+
+            return Task.CompletedTask;
         }
     }
 }

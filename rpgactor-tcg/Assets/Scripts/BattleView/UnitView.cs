@@ -13,6 +13,7 @@ namespace RpgActorTGC
         [SerializeField] private HPSliderView hpSlider;
         [SerializeField] private ListView statList;
         [SerializeField] private ListView abilList;
+        [SerializeField] private MPView mp;
         [Space]
         [SerializeField] private List<GameObject> liveObjects;
         [SerializeField] private List<GameObject> deadObjects;
@@ -50,9 +51,10 @@ namespace RpgActorTGC
             
             hpSlider.Populate((int)newUnit[Stat.HP], (int)newUnit[Stat.MHP]);
 
+            mp.Populate((int)Unit[Stat.MP]);
             var statTuples = Unit.Stats.ToTuples()
-                .Where(tuple => tuple.Item1 is Stat.ATK or Stat.DEF or Stat.SPD 
-                                || (tuple.Item1 == Stat.MP && Unit.IsLeader));
+                .Where(tuple => tuple.Item1 is Stat.ATK or Stat.SPD 
+                                || (tuple.Item1 == Stat.DEF && Unit[Stat.DEF] > 0));
             statList.Populate(statTuples, (obj, statAndValue) =>
             {
                 obj.GetComponent<StatView>().Populate(statAndValue);
@@ -71,9 +73,16 @@ namespace RpgActorTGC
             var targetPos = attackMoveRatio * victimView.spriteTransform.position
                             + (1f - attackMoveRatio) * spriteTransform.position;
             await spriteTransform.DOMove(targetPos, attackMoveToDuration).AsTask();
-            await victimView.spriteTransform.DOShakeAnchorPos(shakeDuration, shakeStrength, shakeVibrato, shakeRandomness).AsTask();
-            await Task.WhenAll(victimView.hpSlider.TweenTo(victimView.Unit.HP - dmg, attackMoveBackDuration),
-                spriteTransform.DOAnchorPos(originalPos, attackMoveBackDuration).AsTask());
+            await victimView.AnimateDamageAsync(dmg);
+            await spriteTransform.DOAnchorPos(originalPos, attackMoveBackDuration).AsTask();
+        }
+
+        public Task AnimateDamageAsync(int dmg)
+        {
+            var str = dmg > 0 ? shakeStrength : Vector2.zero;
+            return Task.WhenAll(
+                spriteTransform.DOShakeAnchorPos(shakeDuration, str, shakeVibrato, shakeRandomness).AsTask(),
+                hpSlider.TweenTo(Unit.HP - dmg, attackMoveBackDuration));
         }
 
         public Task SwapToUnitPosAsync(UnitView unit2View)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace RpgActorTGC
@@ -12,8 +13,8 @@ namespace RpgActorTGC
         
          public bool IsContinuous => warhead.IsContinuous;
 
-        public void Activate(BattleModel battle, Unit caster, AbilityInstance instance) =>
-            warhead.Activate(battle, caster, instance, power);
+        public Task ActivateAsync(BattleModel battle, Unit caster, AbilityInstance instance) =>
+            warhead.ActivateAsync(battle, caster, instance, power);
         public string GetUseMessage(BattleModel battle, Unit caster, AbilityInstance instance) =>
             warhead.GetUseMessage(battle, caster, instance, power);
         

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using RpgActorTGC;
+﻿using RpgActorTGC;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Constants", menuName = "Data/Constants")]
@@ -14,4 +13,6 @@ public class ConstantsData : ScriptableObject
     [SerializeField] public SpritesheetData defaultNetworkFallbackSprite;
     [Space]
     [SerializeField] public OpponentNameData oppoNames;
+    [Space]
+    [SerializeField] public EvolutionRunner<DeckSolution>.EvolutionSettings evolutionSettings;
 }

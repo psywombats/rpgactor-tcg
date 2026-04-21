@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 797b1c6c9c724ba2936116a9c204bd58, type: 3}
-  m_Name: HeroStandard
+  m_Name: HeroSimpleBuffLeaderDef
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.CharacterData
   disabled: 0
-  characterName: Standard
-  sprite: {fileID: 11400000, guid: 83ec84f41d13d5047a01cef7ab2f9396, type: 2}
+  characterName: Simple Buff Leader Def
+  sprite: {fileID: 11400000, guid: 3c9a830121a3fc14cb51f35177cd3152, type: 2}
   isLeader: 0
   stats:
     serializedStats:
@@ -23,13 +23,14 @@ MonoBehaviour:
       - ATK
       - SPD
       values:
-      - 10
-      - 4
+      - 14
+      - 3
       - 5
   abilities:
-  - warhead: {fileID: 11400000, guid: 3c2b6a883981a09439a2434691bfb65a, type: 2}
+  - warhead: {fileID: 11400000, guid: dbef76e9be0afcd48b8e24fd73254fca, type: 2}
     mpCost: 8
-    power: 2
+    power: 1
   actorPreferredName: 
-  actorPreferredClasses: []
+  actorPreferredClasses:
+  - Paladin
   actorPreferredDID: 

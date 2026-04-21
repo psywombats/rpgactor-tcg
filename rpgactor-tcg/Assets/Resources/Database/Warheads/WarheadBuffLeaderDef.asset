@@ -12,8 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac9a71f37cfe406697db579ca837ad20, type: 3}
   m_Name: WarheadBuffLeaderDef
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.WHBuffStat
-  abilityName: Defense+
-  abilityDesc: Raises {1}'s attack by {0}.
+  abilityName: Harden
+  abilityDesc: Raises the leader's attack by {0}.
   isContinuous: 0
   targetsLeader: 1
-  stat: 5
+  targetsHeroes: 0
+  targetsLocal: 0
+  targetsFriendly: 1
+  targetsHostile: 0
+  stat: 4

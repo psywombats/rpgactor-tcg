@@ -14,10 +14,9 @@ namespace RpgActorTGC
 
         private bool isPartyInUse;
         
-        public DeckSolution(DeckEvolutionRunner runner, Deck deck) : base(runner)
+        public DeckSolution(Deck deck)
         {
             Deck = deck;
-            this.runner = runner;
         }
 
         public Party LockParty()
@@ -91,13 +90,13 @@ namespace RpgActorTGC
                     : other.Deck.CardsByLane[lane];
             }
             
-            return new DeckSolution(runner, new Deck("Evolved Deck",
+            return new DeckSolution(new Deck("Evolved Deck",
                 newCards[0], newCards[1], newCards[2], newCards[3]));
         }
 
         public override void Mutate()
         {
-            if (Random.Range(0f, 1f) < .1f)
+            if (RandomUtils.NextFloat() < .1f)
             {
                 var shuffled = Deck.CardsByLane.Values.ToList();
                 RandomUtils.Shuffle(shuffled);
@@ -106,7 +105,7 @@ namespace RpgActorTGC
             else
             {
                 var newCards = new CharacterCard[4];
-                var index = Random.Range(0, 4);
+                var index = RandomUtils.Range(0, 4);
                 var replacee = Deck.CardsByLane[(LaneType)index];
                 newCards[index] = CardCache.Instance.GetRandomCharacter(replacee.IsLeader);
                 foreach (LaneType lane in Enum.GetValues(typeof(LaneType)))

@@ -13,16 +13,21 @@ namespace RpgActorTGC
         [Space]
         [SerializeField] private BattleBox battlebox;
         [SerializeField] private TMP_Text turnCounter;
+        [SerializeField] private TMP_Text roundCounter;
 
         private BattleModel battle;
-        private Dictionary<Unit, UnitView> viewForUnits = new();
+        public Dictionary<Unit, UnitView> ViewForUnit { get; } = new();
 
         public void Populate(BattleModel newBattle)
         {
+            battlebox.Clear();
             battle = newBattle;
             player1View.Populate(newBattle.Player1);
             player2View.Populate(newBattle.Player2);
             RebuildViewCache();
+            
+            roundCounter.gameObject.SetActive(!newBattle.IsPractice);
+            roundCounter.text = $"Round {CampaignManager.Instance.RoundCount + 1}";
         }
 
         public async Task PlayBattleAsync()
@@ -47,26 +52,32 @@ namespace RpgActorTGC
             await WriteLineAsync("");
         }
 
-        public Task GenerateMPAsync(Party party, Unit actor, int mp)
+        public Task GenerateMPAsync(Party party, Unit actor, int mp, bool silent = false)
         {
             var partyView = party == player1View.Party ? player1View : player2View;
-            var totalMP = party.MP + mp;
-            return Task.WhenAll(WriteLineAsync($"{actor.PrettyName} generated {mp} MP (now {totalMP})."), 
-                partyView.GenerateMPAsync(totalMP));
+            if (silent)
+            {
+                return partyView.GenerateMPAsync(party.MP);
+            }
+            else
+            {
+                return Task.WhenAll(WriteLineAsync($"{actor.PrettyName} generated {mp} MP (now {party.MP})."), 
+                    partyView.GenerateMPAsync(party.MP));
+            }
         }
 
         public async Task AnimateAttackAsync(Unit actor, Unit victim, int dmg)
         {
-            var attackerView = viewForUnits[actor];
-            var victimView = viewForUnits[victim];
+            var attackerView = ViewForUnit[actor];
+            var victimView = ViewForUnit[victim];
             await Task.WhenAll(WriteLineAsync($"{actor.PrettyName} attacked {victim.PrettyName} for {dmg} damage.", !victim.IsDead),
                 attackerView.AnimateAttackAsync(victimView, dmg));
         }
         
         public async Task AnimateSwapAsync(Tuple<Unit, Unit> promotion)
         {
-            var unit1View = viewForUnits[promotion.Item1];
-            var unit2View = viewForUnits[promotion.Item2];
+            var unit1View = ViewForUnit[promotion.Item1];
+            var unit2View = ViewForUnit[promotion.Item2];
             await Task.WhenAll(unit1View.SwapToUnitPosAsync(unit2View), unit2View.SwapToUnitPosAsync(unit1View));
             player1View.Repopulate();
             player2View.Repopulate();
@@ -75,7 +86,7 @@ namespace RpgActorTGC
 
         public void RepopulateUnit(Unit unit)
         {
-            viewForUnits[unit].Repopulate();
+            ViewForUnit[unit].Repopulate();
         }
 
         public async Task EndBattleAsync(Party winner)
@@ -91,14 +102,14 @@ namespace RpgActorTGC
 
         private void RebuildViewCache()
         {
-            viewForUnits.Clear();
+            ViewForUnit.Clear();
             foreach (var view in player1View.AllUnitViews)
             {
-                viewForUnits.Add(view.Unit, view);
+                ViewForUnit.Add(view.Unit, view);
             }
             foreach (var view in player2View.AllUnitViews)
             {
-                viewForUnits.Add(view.Unit, view);
+                ViewForUnit.Add(view.Unit, view);
             }
         }
     }

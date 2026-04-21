@@ -14,13 +14,13 @@ namespace RpgActorTGC
             public int generationSize = 100;
             public int generationWinnerCount = 10;
             public int generationParentCount = 40;
-            public int generationChildCount = 90;
             public float mutationRate = .5f;
         }
         
         public IList<T> RunEvolution(EvolutionSettings settings)
         {
-            var currentSolutions = new List<T>();
+            var currentSolutions = GetInitialSolutions();
+            
             for (var generation = 0; generation < settings.generationCount; generation += 1)
             {
                 while (currentSolutions.Count < settings.generationSize)
@@ -37,14 +37,14 @@ namespace RpgActorTGC
                     currentSolutions.AddRange(orderedSolutions.Take(settings.generationWinnerCount));
                 
                     var parents = orderedSolutions.GetRange(settings.generationWinnerCount, settings.generationParentCount);
-                    while (currentSolutions.Count < settings.generationChildCount)
+                    while (currentSolutions.Count < settings.generationSize)
                     {
                         var parent1 = RandomUtils.WeightedChoose(parents);
                         var parent2 = RandomUtils.WeightedChoose(parents);
                         var child = parent1.CrossWith(parent2);
                         currentSolutions.Add(child);
                     
-                        if (Random.Range(0f, 1f) <= settings.mutationRate)
+                        if (RandomUtils.NextFloat() <= settings.mutationRate)
                         {
                             child.Mutate();
                         }
@@ -56,6 +56,8 @@ namespace RpgActorTGC
         }
 
         protected abstract T CreateRandomSolution();
+
+        protected virtual List<T> GetInitialSolutions() => new();
         
         protected abstract void AssignScoresToSolutions(List<T> solutions);
     }

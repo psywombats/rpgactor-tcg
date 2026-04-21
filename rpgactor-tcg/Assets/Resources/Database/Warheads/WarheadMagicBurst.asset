@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f850132827bb4f4092db4c913c43d9b9, type: 3}
   m_Name: WarheadMagicBurst
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.WarheadGenerateMP
-  abilityName: MP+
-  abilityDesc: Generates {0} magic points.
+  abilityName: Energy
+  abilityDesc: Generates {0} MP.
   isContinuous: 0

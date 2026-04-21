@@ -9,15 +9,16 @@ namespace RpgActorTGC
     {
         protected override string GetUseMessage(BattleModel battle, Unit caster, List<Unit> victims, AbilityInstance instance, int power)
         {
-            return $"Healed {GetVictimsString(victims)} by {power}.";
+            return $"{caster.PrettyName} healed {GetVictimsString(victims)} by {power}.";
         }
 
-        protected override void ApplyToVictim(BattleModel battle, Unit caster, AbilityInstance instance, int power, Unit victim)
+        protected override Task ApplyToVictimAsync(BattleModel battle, Unit caster, AbilityInstance instance, int power, Unit victim)
         {
-            if (victim.IsDead) return;
+            if (victim.IsDead) return Task.CompletedTask;
             victim[Stat.HP] += power;
-            if (victim.HP > victim[Stat.MHP]) victim[Stat.HP] =  victim[Stat.MHP];
+            if (victim.HP > victim[Stat.MHP]) victim[Stat.HP] = victim[Stat.MHP];
             if (battle.UseVerboseLogging) battle.SimLog($"Healed {victim.CompositionString} by {power} to {victim.HP}/{victim[Stat.MHP]}");
+            return battle.IsSim ? Task.CompletedTask : battle.View.ViewForUnit[victim].AnimateDamageAsync(power);
         }
     }
 }

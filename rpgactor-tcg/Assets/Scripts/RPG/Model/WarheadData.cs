@@ -13,7 +13,7 @@ namespace RpgActorTGC
         
         public bool IsContinuous => isContinuous;
         
-        public abstract void Activate(BattleModel battle, Unit caster, AbilityInstance instance, int power);
+        public abstract Task ActivateAsync(BattleModel battle, Unit caster, AbilityInstance instance, int power);
         public abstract string GetUseMessage(BattleModel battle, Unit caster, AbilityInstance instance, int power);
         
         public virtual string GetAbilityName([CanBeNull] CharacterData owner) => abilityName;
@@ -26,7 +26,7 @@ namespace RpgActorTGC
             var result = victims[0].PrettyName;
             for (var i = 1; i < victims.Count; i++)
             {
-                result += "," + victims[i].PrettyName;
+                result += ", " + victims[i].PrettyName;
             }
 
             return result;

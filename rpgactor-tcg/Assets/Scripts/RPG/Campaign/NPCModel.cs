@@ -1,4 +1,6 @@
-﻿namespace RpgActorTGC
+﻿using System.Linq;
+
+namespace RpgActorTGC
 {
     public class NPCModel : EntrantModel
     {
@@ -12,7 +14,23 @@
         }
 
         public override void SetupForNewRound()
-        {
+        { 
+            // if our deck sucks, take one that's proven to work against the current field
+            if (CurrentRoundResult != null && CurrentRoundResult.Wins < CurrentRoundResult.Losses)
+            {
+                if (CampaignManager.Instance.EvolvedReplacementDecks.Any())
+                {
+                    CurrentDeck = CampaignManager.Instance.EvolvedReplacementDecks.First();
+                    CampaignManager.Instance.EvolvedReplacementDecks.Remove(CurrentDeck);
+                    CurrentDeck.DeckName = EntrantName;
+                }
+                else if (CurrentRoundResult.Wins <= CurrentRoundResult.Losses + 8)
+                {
+                    // we're really sucking wind
+                    CurrentDeck = Deck.CreateRandom(EntrantName, CampaignManager.Instance.GloballyAvailableHeroes,
+                        CampaignManager.Instance.GloballyAvailableLeaders);
+                }
+            }
             base.SetupForNewRound();
         }
     }

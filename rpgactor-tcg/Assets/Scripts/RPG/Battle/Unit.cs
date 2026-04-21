@@ -86,21 +86,25 @@ namespace RpgActorTGC
                 await abil.SimulateTurnAsync(battle);
             }
 
-            var opponent = battle.GetOppositeUnit(this);
-            if (opponent != null)
+            if (!IsDead)
             {
-                await AttackUnitAsync(battle, opponent);
-                if (!battle.IsSim)
+                var opponent = battle.GetOppositeUnit(this);
+                if (opponent != null)
                 {
-                    battle.View.RepopulateUnit(this);
-                    battle.View.RepopulateUnit(opponent);
+                    await AttackUnitAsync(battle, opponent);
+                    if (!battle.IsSim)
+                    {
+                        battle.View.RepopulateUnit(this);
+                        battle.View.RepopulateUnit(opponent);
+                    }
+                }
+                else
+                {
+                    if (battle.UseVerboseLogging) battle.SimLog("No viable opponent.");
+                    if (!battle.IsSim) await battle.View.WriteLineAsync($"{PrettyName} had no one to attack.", true);
                 }
             }
-            else
-            {
-                if (battle.UseVerboseLogging) battle.SimLog("No viable opponent.");
-                if (!battle.IsSim) await battle.View.WriteLineAsync($"{PrettyName} had no one to attack.", true);
-            }
+
             if (battle.UseVerboseLogging) battle.SimLog("");
             if (!battle.IsSim) await battle.View.WriteLineAsync("");
         }
@@ -115,7 +119,7 @@ namespace RpgActorTGC
             if (opponent.IsDead)
             {
                 if (battle.UseVerboseLogging) battle.SimLog("Knock out!!");
-                if (!battle.IsSim) await battle.View.WriteLineAsync($"{opponent.PrettyName} defeated!", true);
+                if (!battle.IsSim) await battle.View.WriteLineAsync($"{opponent.PrettyName} has fallen!", true);
             }
         }
 

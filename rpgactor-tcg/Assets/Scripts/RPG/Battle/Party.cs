@@ -114,7 +114,7 @@ namespace RpgActorTGC
                 swapper = left;
                 swappee = back;
             }
-            if (right.IsDead && !right.IsDead && !back.IsDead)
+            if (right.IsDead && !right.IsLeader && !back.IsDead)
             {
                 swapper = right;
                 swappee = back;

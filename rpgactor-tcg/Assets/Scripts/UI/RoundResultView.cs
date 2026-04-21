@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -26,7 +27,7 @@ namespace RpgActorTGC
         
         public void Awake()
         {
-            nextButton.onClick.AddListener(Continue);
+            nextButton.onClick.AddListener(() => GameplayView.ExitTournamentAsync().Forget());
         }
 
         public void Populate(MainGameplayView mainView, TourneyRoundResult myResult)
@@ -54,11 +55,6 @@ namespace RpgActorTGC
             leftChara.Sprite = myCards[LaneType.Left].Sprite;
             centerChara.Sprite = myCards[LaneType.Center].Sprite;
             rightChara.Sprite = myCards[LaneType.Right].Sprite;
-        }
-
-        private void Continue()
-        {
-            
         }
     }
 }

@@ -7,53 +7,48 @@ namespace RpgActorTGC
     public abstract class WarheadSharedTargeting : WarheadData
     {
         [SerializeField] private bool targetsLeader;
+        [SerializeField] private bool targetsHeroes;
+        [SerializeField] private bool targetsLocal;
+        [SerializeField] private bool targetsFriendly;
+        [SerializeField] private bool targetsHostile;
 
-        public override void Activate(BattleModel battle, Unit caster, AbilityInstance instance, int power)
+        public override async Task ActivateAsync(BattleModel battle, Unit caster, AbilityInstance instance, int power)
         {
-            foreach (var victim in GetVictims(caster))
+            var victims = GetVictims(battle, caster);
+            foreach (var victim in victims)
             {
-                ApplyToVictim(battle, caster, instance, power, victim);
+                await ApplyToVictimAsync(battle, caster, instance, power, victim);
+                if (!battle.IsSim) battle.View.RepopulateUnit(victim);
             }
         }
 
         public override string GetUseMessage(BattleModel battle, Unit caster, AbilityInstance instance, int power)
-            => GetUseMessage(battle, caster, GetVictims(caster), instance, power);
+            => GetUseMessage(battle, caster, GetVictims(battle, caster), instance, power);
 
         protected abstract string GetUseMessage(BattleModel battle, Unit caster, List<Unit> victims,
             AbilityInstance instance, int power);
 
-        protected abstract void ApplyToVictim(BattleModel battle, Unit caster, AbilityInstance instance, int power, Unit victim);
+        protected abstract Task ApplyToVictimAsync(BattleModel battle, Unit caster, AbilityInstance instance, int power, Unit victim);
 
-        protected List<Unit> GetVictims(Unit caster)
+        private List<Unit> GetVictims(BattleModel battle, Unit caster)
         {
             var victims = new List<Unit>();
             if (targetsLeader)
             {
-                victims.Add(caster.Party.Leader);
+                if (targetsFriendly) victims.Add(caster.Party.Leader);
+                if (targetsHostile) victims.Add(battle.GetOppositeParty(caster).Leader);
             }
-            else if (caster.IsLeader)
+            if (targetsHeroes)
             {
-                victims.AddRange(caster.Party.Heroes);
+                if (targetsFriendly) victims.AddRange(caster.Party.Heroes);
+                if (targetsHostile) victims.AddRange(battle.GetOppositeParty(caster).Heroes);
             }
-            else
+            if (targetsLocal)
             {
-                victims.Add(caster);
+                if (targetsFriendly) victims.Add(caster);
+                if (targetsHostile) victims.Add(battle.GetOppositeUnit(caster));
             }
             return victims;
-        }
-        
-        public override string GetAbilityName(CharacterData owner)
-        {
-            var baseName = base.GetAbilityName(owner);
-            if (targetsLeader && (owner == null || !owner.isLeader))
-            {
-                return "Leader " + baseName;
-            }
-            if (!targetsLeader && owner != null && owner.isLeader)
-            {
-                return "Follower " + baseName;
-            }
-            return baseName;
         }
     }
 }

@@ -9,7 +9,7 @@ namespace RpgActorTGC
 
         public void Populate(AbilityCard newCard, CharacterCard owner = null)
         {
-            desc.text = newCard.GetShortDescription(owner, pretty: true);
+            desc.text = newCard.GetShortDescription(owner, pretty: false);
         }
     }
 }

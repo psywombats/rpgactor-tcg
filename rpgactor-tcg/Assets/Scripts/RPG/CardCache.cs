@@ -32,8 +32,8 @@ namespace RpgActorTGC
         public CharacterCard GetRandomCharacter(bool isLeader,
             List<CharacterCard> availableHeroes = null, List<CharacterCard> availableLeaders = null)
         {
-            var heroes = availableHeroes == null ? availableHeroes : AllHeroCards;
-            var leaders = availableLeaders == null ? availableLeaders : AllLeaderCards;
+            var heroes = availableHeroes ?? AllHeroCards;
+            var leaders = availableLeaders ?? AllLeaderCards;
             var set = isLeader ? leaders : heroes;
             return set.Choose();
         }

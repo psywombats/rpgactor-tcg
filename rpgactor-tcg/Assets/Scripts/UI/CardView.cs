@@ -14,6 +14,7 @@ namespace RpgActorTGC
         [SerializeField] private TMP_Text nameText;
         [SerializeField] private ListView statList;
         [SerializeField] private ListView abilList;
+        [SerializeField] private MPView mp;
         [Space]
         [SerializeField] private List<GameObject> leaderObjects;
         [SerializeField] private List<GameObject> followerObjects;
@@ -74,9 +75,10 @@ namespace RpgActorTGC
                 chara.Sprite = Card.Sprite;
                 nameText.text = Card.CharacterName;
 
+                mp.Populate((int)Card[Stat.MP]);
                 var statTuples = Card.Stats.ToTuples()
-                    .Where(tuple => tuple.Item1 is Stat.MHP or Stat.ATK or Stat.DEF or Stat.SPD 
-                                    || (tuple.Item1 == Stat.MP && Card.IsLeader));
+                    .Where(tuple => tuple.Item1 is Stat.MHP or Stat.ATK or Stat.SPD 
+                                    || (tuple.Item1 == Stat.DEF && Card[Stat.DEF] > 0));
                 statList.Populate(statTuples, (obj, statAndValue) =>
                 {
                     obj.GetComponent<StatView>().Populate(statAndValue);

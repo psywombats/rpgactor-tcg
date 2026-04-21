@@ -95,6 +95,14 @@ namespace RpgActorTGC
                 }
                 
                 var newCard = await selectorView.SelectCardAsync();
+                /*if (Deck.ContainsCard(newCard) && Deck.CardsByLane[currentlyReplacingLane.Value] != newCard)
+                {
+                    
+                }
+                else
+                {
+                    
+                }*/
                 Deck.Replace(currentlyReplacingLane.Value, newCard);
                 Repopulate();
             }

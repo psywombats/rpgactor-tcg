@@ -32,13 +32,13 @@ namespace RpgActorTGC
                 HasActivated = true;
                 if (!battle.IsSim)
                 {
-                    await battle.View.WriteLineAsync($"Activated {GetShortDescription()}: ");
+                    await battle.View.WriteLineAsync($"{Owner.PrettyName} activated {GetShortDescription()}: ");
                 }
-                Card.Data.Activate(battle, Owner, this);
+                await Card.Data.ActivateAsync(battle, Owner, this);
                 if (!battle.IsSim)
                 {
                     AnimateAsync().Forget();
-                    await battle.View.WriteLineAsync(Card.Data.GetUseMessage(battle, Owner, this));
+                    await battle.View.WriteLineAsync(Card.Data.GetUseMessage(battle, Owner, this), true);
                 }
             }
         }

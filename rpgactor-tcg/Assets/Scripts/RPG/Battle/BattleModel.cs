@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 // ReSharper disable PossibleNullReferenceException
 
@@ -13,6 +14,8 @@ namespace RpgActorTGC
         public Party Player1 { get; private set; }
         public Party Player2 { get; private set; }
 
+        public bool IsPractice { get; private set; }
+        
         private readonly List<Unit> allUnits = new();
         
         public string LivenessString =>
@@ -23,9 +26,26 @@ namespace RpgActorTGC
 
         public BattleModel() {}
 
-        public BattleModel(Party player1, Party player2) : this()
+        public BattleModel(Party player1, Party player2, bool isPractice = false) : this()
         {
+            IsPractice = isPractice;
             InitForParties(player1, player2);
+        }
+
+        public Party GetOppositeParty(Unit unit)
+        {
+            if (Player1.Contains(unit))
+            {
+                return Player2;
+            }
+            else if (Player2.Contains(unit))
+            {
+                return Player1;
+            }
+            else
+            {
+                throw new ArgumentException();
+            }
         }
 
         public Unit GetOppositeUnit(Unit unit)
@@ -169,7 +189,7 @@ namespace RpgActorTGC
             turnOrder.Sort(SpeedComparator);
         }
 
-        private static int SpeedComparator(Unit p1, Unit p2) => (int)(p1[Stat.SPD] - p2[Stat.SPD]);
+        private static int SpeedComparator(Unit p1, Unit p2) => p2[Stat.SPD].CompareTo(p1[Stat.SPD]);
 
         public void SimLog(string message)
         {

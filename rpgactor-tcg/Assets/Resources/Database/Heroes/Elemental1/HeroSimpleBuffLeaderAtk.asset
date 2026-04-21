@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 797b1c6c9c724ba2936116a9c204bd58, type: 3}
-  m_Name: HeroFastAbil
+  m_Name: HeroSimpleBuffLeaderAtk
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.CharacterData
   disabled: 0
-  characterName: FastAbil
-  sprite: {fileID: 11400000, guid: 8df8c0743b247ee49b0021e6bd1a1622, type: 2}
+  characterName: Simple Buff Leader Atk
+  sprite: {fileID: 11400000, guid: 711ee0495c0454243bf2b3150734c44d, type: 2}
   isLeader: 0
   stats:
     serializedStats:
@@ -23,7 +23,7 @@ MonoBehaviour:
       - ATK
       - SPD
       values:
-      - 8
+      - 10
       - 4
       - 10
   abilities:
@@ -31,5 +31,6 @@ MonoBehaviour:
     mpCost: 6
     power: 2
   actorPreferredName: 
-  actorPreferredClasses: []
+  actorPreferredClasses:
+  - Warlock
   actorPreferredDID: 

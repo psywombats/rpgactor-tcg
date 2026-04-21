@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 797b1c6c9c724ba2936116a9c204bd58, type: 3}
-  m_Name: HeroSturdyAbil
+  m_Name: HeroBasicSturdy
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.CharacterData
   disabled: 0
-  characterName: SturdyAbil
-  sprite: {fileID: 11400000, guid: b8a75e3b41b521c4b92e9709567f6a02, type: 2}
+  characterName: Basic Sturdy
+  sprite: {fileID: 11400000, guid: 21274032c43fb1a42b3d5f90fbe11013, type: 2}
   isLeader: 0
   stats:
     serializedStats:
@@ -23,13 +23,10 @@ MonoBehaviour:
       - ATK
       - SPD
       values:
-      - 15
+      - 14
+      - 4
       - 3
-      - 12
-  abilities:
-  - warhead: {fileID: 11400000, guid: 3c2b6a883981a09439a2434691bfb65a, type: 2}
-    mpCost: 10
-    power: 2
+  abilities: []
   actorPreferredName: 
   actorPreferredClasses: []
   actorPreferredDID: 
