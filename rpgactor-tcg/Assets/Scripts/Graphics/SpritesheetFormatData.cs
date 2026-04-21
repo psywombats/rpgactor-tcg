@@ -2,8 +2,11 @@
 using System.Linq;
 using EditorAttributes;
 using UnityEditor;
-using UnityEditor.U2D.Sprites;
 using UnityEngine;
+
+#if UNITY_EDITOR
+using UnityEditor.U2D.Sprites;
+#endif
 
 [CreateAssetMenu(fileName = DefaultFilename, menuName = "SpriteFormat")]
 public class SpritesheetFormatData : ScriptableObject
@@ -67,6 +70,7 @@ public class SpritesheetFormatData : ScriptableObject
         return sprites;
     }
 
+#if UNITY_EDITOR
     public void ApplyToEditorData(ISpriteEditorDataProvider dataProvider, Vector2Int textureSize, string assetName)
     {
         if (!ValidateSheetSize(textureSize, assetName)) return;
@@ -102,6 +106,7 @@ public class SpritesheetFormatData : ScriptableObject
         var spriteNameFileIdDataProvider = dataProvider.GetDataProvider<ISpriteNameFileIdDataProvider>();
         spriteNameFileIdDataProvider.SetNameFileIdPairs(spriteIdNamePairs);
     }
+#endif    
     
     public string NameForFrame(string sheetName, OrthoDir dir, int step)
     {

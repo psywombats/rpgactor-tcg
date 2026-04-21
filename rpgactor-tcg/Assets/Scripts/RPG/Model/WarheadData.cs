@@ -23,13 +23,18 @@ namespace RpgActorTGC
         
         protected static string GetVictimsString(List<Unit> victims)
         {
-            var result = victims[0].PrettyName;
-            for (var i = 1; i < victims.Count; i++)
+            if (victims.Count > 0)
             {
-                result += ", " + victims[i].PrettyName;
+                var result = victims[0].PrettyName;
+                for (var i = 1; i < victims.Count; i++)
+                {
+                    result += ", " + victims[i].PrettyName;
+                }
+
+                return result;
             }
 
-            return result;
+            return "?";
         }
     }
 }

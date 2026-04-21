@@ -16,4 +16,4 @@ MonoBehaviour:
   abbreviation: HP
   statName: Health
   icon: {fileID: 1755198807, guid: da1903ee954764a4e8e88adc02e4fe0f, type: 3}
-  useBinaryEditor: 0
+  description: This character can suffer {0} damage before falling.

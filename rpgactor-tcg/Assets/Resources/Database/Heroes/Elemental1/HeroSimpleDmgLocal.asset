@@ -29,7 +29,7 @@ MonoBehaviour:
   abilities:
   - warhead: {fileID: 11400000, guid: 0d74bf4a3d67a61448fbefd647c52fde, type: 2}
     mpCost: 8
-    power: 5
+    power: 8
   actorPreferredName: 
   actorPreferredClasses:
   - Swordsman

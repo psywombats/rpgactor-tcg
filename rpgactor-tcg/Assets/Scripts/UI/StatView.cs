@@ -14,6 +14,8 @@ namespace RpgActorTGC
         [SerializeField] private TMP_Text valueText;
         [Space]
         [SerializeField] private float tweenDeltaPerSecond = 10;
+        [Space]
+        [SerializeField] private TooltipSpawnComponent tooltip;
 
         private Stat stat;
         private int value;
@@ -23,6 +25,7 @@ namespace RpgActorTGC
             stat = newStat;
             icon.sprite = newStat.Info().Icon;
             valueText.text = newValue.ToString(CultureInfo.InvariantCulture);
+            tooltip.Message = string.Format(stat.Info().Description, newValue);
         }
         
         public void Populate(Tuple<Stat, float> statAndValue) =>  Populate(statAndValue.Item1, (int)statAndValue.Item2);

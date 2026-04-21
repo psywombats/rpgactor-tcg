@@ -14,8 +14,6 @@ namespace RpgActorTGC
 
         protected override async Task ApplyToVictimAsync(BattleModel battle, Unit caster, AbilityInstance instance, int power, Unit victim)
         {
-            if (victim.IsDead) return;
-            
             if (!battle.IsSim) await battle.View.ViewForUnit[victim].AnimateDamageAsync(power);
             
             victim.TakeDamage(battle, power);

@@ -16,4 +16,4 @@ MonoBehaviour:
   abbreviation: MP
   statName: Magic
   icon: {fileID: 1197488103, guid: da1903ee954764a4e8e88adc02e4fe0f, type: 3}
-  useBinaryEditor: 0
+  description: The party collectively has {0} MP.

@@ -28,6 +28,7 @@ namespace RpgActorTGC
             
             roundCounter.gameObject.SetActive(!newBattle.IsPractice);
             roundCounter.text = $"Round {CampaignManager.Instance.RoundCount + 1}";
+            turnCounter.text = "Turn 1";
         }
 
         public async Task PlayBattleAsync()

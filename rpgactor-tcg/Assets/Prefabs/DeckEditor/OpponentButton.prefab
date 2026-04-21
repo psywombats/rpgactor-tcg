@@ -107,6 +107,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3605461394025215066, guid: 5a8b85a98a7530b4abd73bebb250cf6c, type: 3}
       insertIndex: 1
       addedObject: {fileID: 5631614837311415189}
+    - targetCorrespondingSourceObject: {fileID: 3605461394025215066, guid: 5a8b85a98a7530b4abd73bebb250cf6c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3681966158710193246}
   m_SourcePrefab: {fileID: 100100000, guid: 5a8b85a98a7530b4abd73bebb250cf6c, type: 3}
 --- !u!114 &531422941396561236 stripped
 MonoBehaviour:
@@ -149,3 +152,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.OpponentButtonView
   button: {fileID: 531422941396561236}
   label: {fileID: 676518464629489381}
+--- !u!114 &3681966158710193246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5118767107905440612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffa9000f78514363b51b40017c78bafc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TooltipSpawnComponent
+  tooltipMessage: Test out your current party against your saved one
+  textTooltip: {fileID: 0}

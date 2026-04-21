@@ -8,7 +8,7 @@ public class DBManager : SingletonBehaviour<DBManager>
     [SerializeField] private ConstantsData constantsData;
     
     public T Get<T>(string key) where T : ScriptableObject, IDatabaseKeyable => database.Get<T>(key, nullAllowed: false);
-    public T GetOrNull<T>(string key) where T : ScriptableObject, IDatabaseKeyable => database.Get<T>(key);
+    public T GetOrNull<T>(string key) where T : ScriptableObject, IDatabaseKeyable => database.Get<T>(key, nullAllowed: true);
     public T GetRandom<T>() where T : ScriptableObject, IDatabaseKeyable => database.GetRandom<T>();
     public IEnumerable<T> GetAll<T>() where T : ScriptableObject, IDatabaseKeyable => database.GetAll<T>();
     

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5477654645977794484}
   - component: {fileID: 3985085352870602989}
   - component: {fileID: 5896687089830013891}
+  - component: {fileID: 7105897918206894452}
   m_Layer: 5
   m_Name: MP
   m_TagString: Untagged
@@ -80,6 +81,21 @@ MonoBehaviour:
   icon: {fileID: 3361852367533190874}
   valueText: {fileID: 2552373700712137520}
   tweenDeltaPerSecond: 10
+  tooltip: {fileID: 7105897918206894452}
+--- !u!114 &7105897918206894452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 318514331788346642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffa9000f78514363b51b40017c78bafc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TooltipSpawnComponent
+  tooltipMessage: 
+  textTooltip: {fileID: 0}
 --- !u!1 &2137975653827832787
 GameObject:
   m_ObjectHideFlags: 0
@@ -172,7 +188,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
+  m_fontSize: 18
   m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 1

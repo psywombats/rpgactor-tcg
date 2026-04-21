@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Networking;
 
 namespace RpgActorTGC
 {
@@ -24,14 +24,15 @@ namespace RpgActorTGC
 
         public async Task StartupAsync()
         {
-            HttpResponseMessage initialFetchResponse;
+            string jsonString;
             try
             {
                 SetState(InitState.FetchingData, "Fetching initial rpg.actor data...");
-                initialFetchResponse = await HTTPManager.Instance.Client.GetAsync("https://rpg.actor/api/actors/full");
-                if (!initialFetchResponse.IsSuccessStatusCode)
+                UnityWebRequest.Result res;
+                (res, jsonString) = await HTTPManager.Instance.FetchJSONStringAsync("https://rpg.actor/api/actors/full");
+                if (res != UnityWebRequest.Result.Success)
                 {
-                    SetState(InitState.Error, $"Error fetching initial data: {initialFetchResponse.StatusCode}");
+                    SetState(InitState.Error, $"Error fetching initial data: {res}");
                 }
             }
             catch (Exception ex)
@@ -44,10 +45,9 @@ namespace RpgActorTGC
             try
             {
                 SetState(InitState.ParsingResponse, "Parsing rpg.actor info...");
-                await Task.Run(async () =>
+                await Task.Run(() =>
                 {
-                    var json = await initialFetchResponse.Content.ReadAsStringAsync();
-                    fullCachedData = Newtonsoft.Json.JsonConvert.DeserializeObject<RPGActorFullCachedData>(json);
+                    fullCachedData = Newtonsoft.Json.JsonConvert.DeserializeObject<RPGActorFullCachedData>(jsonString);
                 });
             }
             catch (Exception ex)
@@ -90,6 +90,7 @@ namespace RpgActorTGC
             CardCache.Instance.ResetAssignments();
             PlayerPrefs.DeleteKey(ActorsPrefKey);
             PlayerPrefs.DeleteKey(CardsPrefKey);
+            PlayerPrefs.Save();
             foreach (var actor in allActors)
             {
                 actor.Card = null;
@@ -106,6 +107,7 @@ namespace RpgActorTGC
         private void AssignFittingCardsAsync(HashSet<CharacterCard> toAssign)
         {
             var unassignedActors = allActors.Where(actor => actor.Card == null).ToList();
+            RandomUtils.Shuffle(unassignedActors);
             foreach (var card in toAssign)
             {
                 card.CalculateScores(unassignedActors);

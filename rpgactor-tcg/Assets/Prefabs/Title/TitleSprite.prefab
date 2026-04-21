@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4159188555136069337}
   - component: {fileID: 3788465343601822063}
+  - component: {fileID: 2990198663100977201}
+  - component: {fileID: 2795157086973764414}
   m_Layer: 5
   m_Name: TitleSprite
   m_TagString: Untagged
@@ -52,6 +54,34 @@ MonoBehaviour:
   defaultSprite: {fileID: 11400000, guid: 33a4ae0650719c6489c48736a6ef2715, type: 2}
   defaultAnimates: 1
   defaultDir: 1
+--- !u!114 &2990198663100977201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 485685765510469458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e33ff51f38724b05a89a3c51d610e46e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.TitleSpriteComponent
+  charaModelView: {fileID: 3788465343601822063}
+  tooltip: {fileID: 2795157086973764414}
+--- !u!114 &2795157086973764414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 485685765510469458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffa9000f78514363b51b40017c78bafc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TooltipSpawnComponent
+  tooltipMessage: 
+  textTooltip: {fileID: 0}
 --- !u!1 &1386691372364105580
 GameObject:
   m_ObjectHideFlags: 0

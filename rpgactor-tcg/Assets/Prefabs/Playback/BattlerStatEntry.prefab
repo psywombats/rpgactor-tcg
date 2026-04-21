@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 5107190965752117379}
   - component: {fileID: 6871447663065663432}
   - component: {fileID: 6505846105981861666}
+  - component: {fileID: 5940233982095825951}
   m_Layer: 5
   m_Name: BattlerStatEntry
   m_TagString: Untagged
@@ -191,6 +192,7 @@ MonoBehaviour:
   icon: {fileID: 7490443710309488059}
   valueText: {fileID: 6669915418464516698}
   tweenDeltaPerSecond: 10
+  tooltip: {fileID: 5940233982095825951}
 --- !u!114 &6505846105981861666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,6 +219,20 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &5940233982095825951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5877922795149683016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffa9000f78514363b51b40017c78bafc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TooltipSpawnComponent
+  tooltipMessage: 
+  textTooltip: {fileID: 0}
 --- !u!1 &8046149640347842279
 GameObject:
   m_ObjectHideFlags: 0

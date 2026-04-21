@@ -48,6 +48,8 @@ namespace RpgActorTGC
                 if (targetsFriendly) victims.Add(caster);
                 if (targetsHostile) victims.Add(battle.GetOppositeUnit(caster));
             }
+
+            victims.RemoveAll(unit => unit == null || unit.IsDead);
             return victims;
         }
     }

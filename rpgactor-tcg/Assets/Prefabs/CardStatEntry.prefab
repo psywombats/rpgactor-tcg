@@ -169,6 +169,7 @@ GameObject:
   - component: {fileID: 6031711028049256680}
   - component: {fileID: 1564872721956710470}
   - component: {fileID: 3554003203455327551}
+  - component: {fileID: 670590442325125453}
   m_Layer: 5
   m_Name: CardStatEntry
   m_TagString: Untagged
@@ -238,6 +239,21 @@ MonoBehaviour:
   icon: {fileID: 8796006592307180928}
   valueText: {fileID: 3729427234153161740}
   tweenDeltaPerSecond: 10
+  tooltip: {fileID: 670590442325125453}
+--- !u!114 &670590442325125453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6901351401798934779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffa9000f78514363b51b40017c78bafc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TooltipSpawnComponent
+  tooltipMessage: 
+  textTooltip: {fileID: 0}
 --- !u!1 &7107989261810852814
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,6 +14,7 @@ namespace RpgActorTGC
         [SerializeField] private ListView statList;
         [SerializeField] private ListView abilList;
         [SerializeField] private MPView mp;
+        [SerializeField] private TooltipSpawnComponent tooltip;
         [Space]
         [SerializeField] private List<GameObject> liveObjects;
         [SerializeField] private List<GameObject> deadObjects;
@@ -63,6 +64,8 @@ namespace RpgActorTGC
             {
                 obj.GetComponent<AbilView>().Populate(abil);
             });
+
+            tooltip.Message = newUnit.CharacterName;
         }
 
         public void Repopulate() => Populate(Unit);

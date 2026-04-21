@@ -36,7 +36,9 @@ public class ScriptableDB : ScriptableObject
                 scriptablesByKey.Add(instance.Key, instance);
             }
         }
-        var result = scriptablesByKey[key] as T;
+
+        scriptablesByKey.TryGetValue(key, out var res);
+        var result = res as T;
         if (result == null && !nullAllowed) throw new ArgumentException($"Cannot find {key} as {typeof(T)}");
         return result;
     }

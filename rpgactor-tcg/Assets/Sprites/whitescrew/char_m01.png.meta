@@ -119,6 +119,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -138,7 +151,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1ef9d12d1bf88564fbeef4900c75f0cd
+      spriteID: ebf74e0ce65645946bfe09c7319ef479
       internalID: -549261692
       vertices: []
       indices: 
@@ -160,7 +173,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ebc63a6222284d54c957b1b9ca3c59d4
+      spriteID: f0d98b38136b0fa45b4cfa7e05769cda
       internalID: -2120837169
       vertices: []
       indices: 
@@ -182,7 +195,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9a0e6ead1c4701346b06361bc647c554
+      spriteID: fc237184b218ad541ad56f3638722573
       internalID: -460330840
       vertices: []
       indices: 
@@ -204,7 +217,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 318688af248ca7945973052308584b64
+      spriteID: 25662fd83c1626f4e8ed6cdc6b4d9156
       internalID: -904112561
       vertices: []
       indices: 
@@ -226,7 +239,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2653c2c6db02f0245a96dce9567b9f41
+      spriteID: 58d79b76ef9a148428490160e072a33c
       internalID: -1160392503
       vertices: []
       indices: 
@@ -248,7 +261,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eb2c2d699d9acec4991c6163f0f2cfa6
+      spriteID: 05c89129445f9fe458e5d3d155179dca
       internalID: 1949264183
       vertices: []
       indices: 
@@ -270,7 +283,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 86acf8e94dac0fe42ab59cc613cfcf64
+      spriteID: 8ebe7f65acd64344e8f66a32bee9f398
       internalID: -1114731171
       vertices: []
       indices: 
@@ -292,7 +305,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 36fbe979dba1b06428e70bf8bd3810c4
+      spriteID: 158bb11cd3f2be34e8d11b242e3ca9fb
       internalID: 449481626
       vertices: []
       indices: 
@@ -314,7 +327,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 75607e8265f1f62429c2d3cbec4fd35f
+      spriteID: dba836be1ff78934ba0e58922905853b
       internalID: 2147269371
       vertices: []
       indices: 
@@ -336,7 +349,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4ec38012cdd5bf64887ffc30f028b59b
+      spriteID: 14bbc17328b2f6746a5c430fe5235d9d
       internalID: 1245237310
       vertices: []
       indices: 
@@ -358,7 +371,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 570f96e2817f715408ea07bb9fc06ad8
+      spriteID: 8020593dfe6baf147bb9d999c6df8f42
       internalID: -109696759
       vertices: []
       indices: 
@@ -380,7 +393,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 239340421962b92409c1146025f60959
+      spriteID: 67040d10e834e554cb8aad52f5a95f80
       internalID: 1732665785
       vertices: []
       indices: 
@@ -402,7 +415,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bb304ee35d1b03748ac11ca3cc79cf93
+      spriteID: 7907a669f8a025e479af97e18d8239a8
       internalID: -295061544
       vertices: []
       indices: 
@@ -424,7 +437,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8837b6e282977094a97a55f0db3899b4
+      spriteID: 5d668bb2b7de41e41abb5f283daf3b15
       internalID: 818263542
       vertices: []
       indices: 
@@ -446,7 +459,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 58110405264796443a1ebdde90d7cb3c
+      spriteID: e9c72caecb02516408fae69dc1dad1b0
       internalID: -1451479447
       vertices: []
       indices: 
@@ -468,7 +481,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f781b74d7db712438d05cc8d77b9285
+      spriteID: fa4672412c490bf4898b6f72e5de68ed
       internalID: -2038924112
       vertices: []
       indices: 
@@ -490,7 +503,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e6f048cb28f8c7b4bbd0d82a9975b19c
+      spriteID: 409ce152a1f340840855bcba3807504a
       internalID: -100065466
       vertices: []
       indices: 
@@ -512,7 +525,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 27c65171b194f7a4b935b291d76f6f8d
+      spriteID: 1f5bd153b96355446a81b5e886cb34ae
       internalID: 73805424
       vertices: []
       indices: 
@@ -534,7 +547,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3fe711ec7a760c948b5844233fbac9ee
+      spriteID: a5b03ad16d1306b4db62f51cb53f1067
       internalID: 1995758548
       vertices: []
       indices: 
@@ -556,7 +569,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7fce4db2caf924441904b822e33f732d
+      spriteID: 59fd9c9767155e740a01173a4c64c9f0
       internalID: 775112622
       vertices: []
       indices: 
@@ -578,7 +591,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 534d7d6fcec9efe49b20c50844692a98
+      spriteID: eb671fe237e9a0147befafb8bc2de368
       internalID: -1877503039
       vertices: []
       indices: 
@@ -600,7 +613,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6679ec50a62a05549b5391053c98e2c8
+      spriteID: 56a86e86d23dec849aef4c3229ca9c86
       internalID: -715065096
       vertices: []
       indices: 
@@ -622,7 +635,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3848d92e538a4fb4c97f21036e780fa9
+      spriteID: 042fb2331fbfaeb4d8332b63b6e9fe25
       internalID: -1054417355
       vertices: []
       indices: 
@@ -644,7 +657,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b8a52bc1183ed4841a41db9539c0b761
+      spriteID: 0a92e3f897cb7ce4e99e1ea7fc06be0a
       internalID: 1979277567
       vertices: []
       indices: 
@@ -666,7 +679,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cc7a9f3db7d173f4e9246ff8e40a89c5
+      spriteID: ee151f583477b9a4d899f4280a771018
       internalID: 28833155
       vertices: []
       indices: 
@@ -688,7 +701,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 87c74be1cee50b5438f9eb0e214e9229
+      spriteID: dc995fe97f6950a408a69e07b1c9dd6d
       internalID: -1063110513
       vertices: []
       indices: 
@@ -710,7 +723,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 72c386c3827230c46bea3f057bbf1515
+      spriteID: 754fa4b01b359bc46934f309c3ce65f3
       internalID: 106692902
       vertices: []
       indices: 
@@ -732,7 +745,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b82b9eb4bab14b6419d8e9b5b2c69c88
+      spriteID: e0bfc7cc68da3044ca67f8be216a68de
       internalID: 1928529330
       vertices: []
       indices: 
@@ -754,7 +767,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4d10fe066dd626648847b7e19af9013f
+      spriteID: 3494ccee06cbdcc45a245a199767eaa1
       internalID: -1573977853
       vertices: []
       indices: 
@@ -776,7 +789,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a241b9d7cb1aa0745bbab892dfedb930
+      spriteID: 243a484195df0564bb149094a77fc995
       internalID: -743535594
       vertices: []
       indices: 
@@ -798,7 +811,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f350fd7548e85a446b87d5906cf1b0c7
+      spriteID: 5810db7793063d9488ef4cdd0e0300b6
       internalID: -204425735
       vertices: []
       indices: 
@@ -820,7 +833,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 40946cc2b88a9e94b96cff03291bf538
+      spriteID: 31c09f300642b4f46b9b43e791519120
       internalID: 608758034
       vertices: []
       indices: 
@@ -842,7 +855,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6abd3b7c6f0b5674587124be4468e20a
+      spriteID: 7e0db22a553155d48ab87c87cbe81d82
       internalID: 1179237348
       vertices: []
       indices: 
@@ -864,7 +877,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1ed71d59ad720f34096baee340b12024
+      spriteID: 4a1ef665495d4a0498f88786ef5dbbd7
       internalID: 655922584
       vertices: []
       indices: 
@@ -886,7 +899,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da44c28492fc6c84fa945366c30ef83b
+      spriteID: 816ab188f8a6d4146a1e00df1ca51c3c
       internalID: 1199617369
       vertices: []
       indices: 
@@ -908,7 +921,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 28dc547b3da55d2459cb36e9c4dc9754
+      spriteID: b75ff395b713dda47a1d05be1cdf9660
       internalID: 1436686813
       vertices: []
       indices: 
@@ -930,7 +943,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 653b3534730b60f4481755abba9a7491
+      spriteID: 2c320fcd01ebf674ead53ede2f52e38e
       internalID: 1947253392
       vertices: []
       indices: 
@@ -952,7 +965,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ed5c43d1a40696b4d81c87af46d277e5
+      spriteID: 4f4c04329a32f62438386874c1cce056
       internalID: 384778392
       vertices: []
       indices: 
@@ -974,7 +987,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dfa8706312aea66479d8e1a50bb8616f
+      spriteID: b93edd3dbd536944d8d24b5c11db2954
       internalID: -1215340853
       vertices: []
       indices: 
@@ -996,7 +1009,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 609f161ee78542e4596c43d898a4ca90
+      spriteID: d01b01d6adf13044089ea9684d8571c2
       internalID: -1404117680
       vertices: []
       indices: 
@@ -1018,7 +1031,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3e68c0966ef00b34cb19b537abc840bc
+      spriteID: d8e240e752c3cae42a85b3bd9b8d8d82
       internalID: -2001836952
       vertices: []
       indices: 
@@ -1040,7 +1053,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9e314098e1c8b9a40ad5deaf8c7f1259
+      spriteID: fd20e3572f93b7a47a8d6361987bd08b
       internalID: -746757065
       vertices: []
       indices: 
@@ -1062,7 +1075,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac96c01aa0ded3246a04ab25ee4080b7
+      spriteID: de69b68714bac314ead6a5a9f50db3b6
       internalID: -1147785906
       vertices: []
       indices: 
@@ -1084,7 +1097,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0d5b727ed75b90d42970317594b2cdcd
+      spriteID: c5044cd5050282a4c97481af740b8795
       internalID: 906710927
       vertices: []
       indices: 
@@ -1106,7 +1119,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 654e1589bfd17074d8d44db3a1363bc1
+      spriteID: 19dda9d632528914888e9a137b89f2c0
       internalID: -1302603176
       vertices: []
       indices: 
@@ -1128,7 +1141,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: db09833e96ab3124b9df49c19a8c8cea
+      spriteID: 84c63a022b5c8a64d8cf158ec7c407b0
       internalID: -1808153409
       vertices: []
       indices: 
@@ -1150,7 +1163,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 22eddaa4387f85b44a6fced2b3bb86e2
+      spriteID: e12745688a4f311429cfa80dea585610
       internalID: -1183689407
       vertices: []
       indices: 
@@ -1172,7 +1185,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 74304b8bd7735e649b27a3f6927a2996
+      spriteID: 6a39a05015b0ab147923627f59121dda
       internalID: -1934605953
       vertices: []
       indices: 
@@ -1194,7 +1207,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f131a907eeab4447b756cda9c3b8687
+      spriteID: f03c72f21ce2b5d4397ea42f36604adc
       internalID: 1417184083
       vertices: []
       indices: 
@@ -1216,7 +1229,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d84ae6d0ef257d34d8aaa579b4cd83c7
+      spriteID: c9116c3cc525c3c49aef699425faaa5f
       internalID: -1761433184
       vertices: []
       indices: 
@@ -1238,7 +1251,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8706240f613904840b0245f7cc0b805b
+      spriteID: da0c0253ed9b48f47b20e8c057e45628
       internalID: 116317048
       vertices: []
       indices: 
@@ -1260,7 +1273,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e58d0696f0580e346a32cfe9a4e7a417
+      spriteID: 4737b6c7df619df4badcaad90ae39feb
       internalID: 852820757
       vertices: []
       indices: 
@@ -1282,7 +1295,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7f887001fc3be9741a6564fe63e6c06f
+      spriteID: 285ba24b9062f874fa7101e30d056d6f
       internalID: -319337389
       vertices: []
       indices: 
@@ -1304,7 +1317,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e250a57ff4b37b5479349ac286fe2d6c
+      spriteID: 79102f1849169064c9b68f3a44cf6962
       internalID: 1975981225
       vertices: []
       indices: 
@@ -1326,7 +1339,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dad38fa97ac4178458c8d3fefb8e2e16
+      spriteID: e2423f042102e1b4f96b6c10724c7630
       internalID: -1639721611
       vertices: []
       indices: 
@@ -1348,7 +1361,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fc6c8b6b81eacf94f8d6218fdb3da4e5
+      spriteID: 7907d89a5dc4f16458afa404c5be9858
       internalID: 705297825
       vertices: []
       indices: 
@@ -1370,7 +1383,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cf7ec9d66f1a31b4fbc85a9fb11b1821
+      spriteID: 7b5de6d205067bf46ba708dfef7a5dee
       internalID: -955890270
       vertices: []
       indices: 
@@ -1392,7 +1405,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f335bf8d4f89809449991b4c8cbae76f
+      spriteID: 02bec3cdbdba9be4eae392c91bc3cc39
       internalID: 986609859
       vertices: []
       indices: 
@@ -1414,7 +1427,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5c190d92f26d92d44b56b21cd25dc782
+      spriteID: 3252f02a5c85000418edca4002890e53
       internalID: 753669594
       vertices: []
       indices: 
@@ -1436,7 +1449,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bc1c74438dc3f04438ef7c175705494b
+      spriteID: b6913ac2336c8cd48bb001084cfe8e4b
       internalID: 263868302
       vertices: []
       indices: 
@@ -1458,7 +1471,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 88a91464185f24e48bf5009fa6e3a59d
+      spriteID: a77a28bf851fafa488ec51108aefe26f
       internalID: 1806020371
       vertices: []
       indices: 
@@ -1480,7 +1493,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 741158f9e3dc0b24985f78159234dd8d
+      spriteID: ef539506a1c453b44a54d2e49bb916fd
       internalID: -966634120
       vertices: []
       indices: 
@@ -1502,7 +1515,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 73eb7a62eea07024690b41419d82a4a2
+      spriteID: a5b048d986307c04885ee0c5cbc62405
       internalID: -1701165792
       vertices: []
       indices: 
@@ -1524,7 +1537,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 77576d9e516e35c42a637eb2bd81a9d1
+      spriteID: a692a6924d2d60444842d88c6ba3b00f
       internalID: -2029304245
       vertices: []
       indices: 
@@ -1546,7 +1559,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0fb8eb236455a8643bb7ef007367233d
+      spriteID: ce96b59a61cb6414d9ea234365d33680
       internalID: 1487844169
       vertices: []
       indices: 
@@ -1568,7 +1581,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f639d67bca544be44a0e5a80f7425e7a
+      spriteID: cf7d6cadd26e364409a31d64399ffbaa
       internalID: -1115023798
       vertices: []
       indices: 
@@ -1590,7 +1603,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 05b869574f9b04046b07d71b1d5678b0
+      spriteID: 173bc01cfb7425845beb3e7b667118f9
       internalID: -802527230
       vertices: []
       indices: 
@@ -1612,7 +1625,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5905d69596995c64d8dcb1ce81a88d59
+      spriteID: bb1d34f0cc0cd7340be4ad0c2e0a5967
       internalID: -488651239
       vertices: []
       indices: 
@@ -1634,7 +1647,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ca2f3a67e44aa5d40b2d5c2e53db118d
+      spriteID: 3e69b40d3bc52e3459b3cce62ea28dcf
       internalID: -2031111213
       vertices: []
       indices: 
@@ -1656,7 +1669,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 749c48c4c61f2e54690a71cb820eebf1
+      spriteID: b3e06f9021a57ad45bef7e8a17e052d3
       internalID: -448434771
       vertices: []
       indices: 
@@ -1678,7 +1691,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3b78cd03911c09147b567488c0104c8f
+      spriteID: 3269046bfcba10e49913b76c44991daf
       internalID: 1049435455
       vertices: []
       indices: 
@@ -1700,7 +1713,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9108eece35edd3d4fa8748fbadd65deb
+      spriteID: aaeea842d0ecfb342a17f7301ef54c1e
       internalID: 115050330
       vertices: []
       indices: 
@@ -1722,7 +1735,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6208b6d443faac9429aff803b48c30b1
+      spriteID: 89725e645df8140499daf18ff587deb6
       internalID: 1980274389
       vertices: []
       indices: 
@@ -1744,7 +1757,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f9a18526bb5a37a4cba4002862f9ed54
+      spriteID: 2ed5ca5da962c024bb73c5171322e52a
       internalID: 721275361
       vertices: []
       indices: 
@@ -1766,7 +1779,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d3f80daf577382b4b945bca20196ff9e
+      spriteID: ff4c619f920d4b943a442235d1b728f5
       internalID: -1330946263
       vertices: []
       indices: 
@@ -1788,7 +1801,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cd93b754619894e42928b7b2937e718d
+      spriteID: 6b66b6d7d336a564aa38db1e35d5b709
       internalID: 195177458
       vertices: []
       indices: 
@@ -1810,7 +1823,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c7412e1439f9d1c4295789e8c37b7846
+      spriteID: 0a757cfc7c8699347a2e4e9878bd7d87
       internalID: -325069130
       vertices: []
       indices: 
@@ -1832,7 +1845,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 91eaf8d5cdfaeda48a63bbf02df6c4b0
+      spriteID: e32354c9874809148909d7e79caa2835
       internalID: 578032851
       vertices: []
       indices: 
@@ -1854,7 +1867,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5404ab4baa4f3be46bf6f6b6c6bf8c3d
+      spriteID: 078f4e0fa4f55c24a9f2745abda0fb70
       internalID: -278114754
       vertices: []
       indices: 
@@ -1876,7 +1889,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3210fccf98101a946a9d86b6e2a77cbe
+      spriteID: abb05635c53b7f1469dd6ecc69999863
       internalID: 1604157892
       vertices: []
       indices: 
@@ -1898,7 +1911,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0e3acb307d9758c479ac4b64096cb40c
+      spriteID: 322a7ea20c556f14a9ef719729a7d486
       internalID: -1193879609
       vertices: []
       indices: 
@@ -1920,7 +1933,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 62e3a6b0f56ee47448622f938eb501ff
+      spriteID: 9d0f66b7b793d7f4eb5c7bbd667ed6b2
       internalID: -340916317
       vertices: []
       indices: 
@@ -1942,7 +1955,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7f91b71598601754dbf4936ae04bacad
+      spriteID: 5e7e4426baa6968418e53dcf49fe5c29
       internalID: 1182849161
       vertices: []
       indices: 
@@ -1964,7 +1977,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c347478056fa5cf44b7fa6f0618b52a2
+      spriteID: e075cb0901cf10e4cbd58c73da42791f
       internalID: 1787482846
       vertices: []
       indices: 
@@ -1986,7 +1999,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 769b8e22cff7356478394f881da04da3
+      spriteID: e7e11ffba3b872745a920eb7a982b76a
       internalID: 958523843
       vertices: []
       indices: 
@@ -2008,7 +2021,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0573f461193e8f548bb74ff31099dc20
+      spriteID: dce8d686c35b86444baf9d8e00daf094
       internalID: 2128879515
       vertices: []
       indices: 
@@ -2030,7 +2043,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4c5e7d419c2d9ce45bdaf23e3ec8e6fc
+      spriteID: 8285032336f75364d903f832f4314192
       internalID: 1521504921
       vertices: []
       indices: 
@@ -2052,7 +2065,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2a15b8ed909168640841f1e9ff2b1475
+      spriteID: 0dc1624f105cfad4f8fe693015c156d8
       internalID: -1120514334
       vertices: []
       indices: 
@@ -2074,7 +2087,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b0020b13d8678b4419dcd3e0ca1fd999
+      spriteID: 25c9c3e325dbde94391a046ace9cc3f7
       internalID: -862926080
       vertices: []
       indices: 
@@ -2096,7 +2109,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 89401bbf35370e44f9906c72968693e0
+      spriteID: 660f01aecbddc234fa55ec7ec11c5f15
       internalID: 821785041
       vertices: []
       indices: 
@@ -2118,7 +2131,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 80b4d2f12b868774e9893ae42f6b4df5
+      spriteID: afa092ecda7619549ba3990fd2b7d98d
       internalID: 1221156011
       vertices: []
       indices: 
@@ -2140,7 +2153,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f9d67e58e33d9d741a6aa939ab9f1360
+      spriteID: b541db886ec53b143b92b4f3c2a6619d
       internalID: -937265255
       vertices: []
       indices: 
@@ -2162,7 +2175,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: acc140ca3902f9b4691d94937ef12946
+      spriteID: 6796ddcbee62d0644bbe065e8fbe7998
       internalID: 871645352
       vertices: []
       indices: 
@@ -2184,7 +2197,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 176a24be41af2f04c996ef011c844308
+      spriteID: 500da59c04c1e2c4fa2c2904f72b7408
       internalID: 1138311040
       vertices: []
       indices: 
@@ -2206,7 +2219,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: afabf1e32ab5de249874af2805fe86dc
+      spriteID: 1f82610cc9d77b54aa85ba69a2c182df
       internalID: 1820757427
       vertices: []
       indices: 
@@ -2228,7 +2241,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a773dfe38bae8a2489b13ddbb0fe3d24
+      spriteID: cf01d3a9da556854d8b12133faf02f85
       internalID: 1335926432
       vertices: []
       indices: 

@@ -107,6 +107,12 @@ MonoBehaviour:
   - Neuro
   - Necro
   - Bad
+  - Little
+  - Big
+  - Chrono
+  - Cloud
+  - Kat
+  - El
   suffixes:
   - Wombat
   - Hare
@@ -188,3 +194,7 @@ MonoBehaviour:
   - Mancer
   - Fella
   - Hombre
+  - Kami
+  - Bean
+  - Twain
+  - Gato

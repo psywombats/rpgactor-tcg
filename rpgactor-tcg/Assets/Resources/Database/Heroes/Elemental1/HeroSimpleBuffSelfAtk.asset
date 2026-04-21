@@ -25,7 +25,7 @@ MonoBehaviour:
       values:
       - 10
       - 3
-      - 8
+      - 10
   abilities:
   - warhead: {fileID: 11400000, guid: ad4db2b28b982c043a9c8e528fcb62f3, type: 2}
     mpCost: 6

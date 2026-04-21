@@ -10,6 +10,8 @@ namespace RpgActorTGC
         [SerializeField] private Button loadButton;
         [SerializeField] private TMP_Text saveLabel;
         [SerializeField] private TMP_Text loadLabel;
+        [SerializeField] private TooltipSpawnComponent saveTooltip;
+        [SerializeField] private TooltipSpawnComponent loadTooltip;
         
         public int DeckIndex { get; private set; }
         
@@ -30,6 +32,9 @@ namespace RpgActorTGC
             
             saveLabel.text = $"Save as Deck {deckIndex + 1}";
             loadLabel.text = $"Load Deck {deckIndex + 1}";
+
+            //saveTooltip.Message = $"Stores the party in slot {deckIndex + 1} so it can be edited later";
+            loadTooltip.Message = $"Switch to editing party {deckIndex + 1}";
         }
 
         public void Repopulate() => Populate(DeckIndex, editor);

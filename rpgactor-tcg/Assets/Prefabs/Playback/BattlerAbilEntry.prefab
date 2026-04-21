@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5767979944930804430}
   - component: {fileID: 1165858640945967900}
   - component: {fileID: 3565043385183412143}
+  - component: {fileID: 3708353078490931802}
   m_Layer: 5
   m_Name: BattlerAbilEntry
   m_TagString: Untagged
@@ -151,4 +152,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.AbilView
   desc: {fileID: 1165858640945967900}
+  tooltip: {fileID: 3708353078490931802}
   unactivatedAlpha: 0.66
+--- !u!114 &3708353078490931802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2190871071722059351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffa9000f78514363b51b40017c78bafc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TooltipSpawnComponent
+  tooltipMessage: 
+  textTooltip: {fileID: 0}

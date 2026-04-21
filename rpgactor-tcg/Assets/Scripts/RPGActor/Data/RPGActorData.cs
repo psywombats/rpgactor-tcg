@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json;
 
 namespace RpgActorTGC
@@ -24,6 +25,6 @@ namespace RpgActorTGC
                                        && sprite != null
                                        && !string.IsNullOrEmpty(displayName.ToAscii());
 
-        public IEnumerable<string> Classes => stats.Classes;
+        public IEnumerable<string> Classes => stats == null ? Enumerable.Empty<string>() : stats.Classes;
     }
 }

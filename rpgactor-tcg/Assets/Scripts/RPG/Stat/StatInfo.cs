@@ -10,10 +10,11 @@ namespace RpgActorTGC
         [SerializeField] private string abbreviation;
         [SerializeField] private string statName;
         [SerializeField] private Sprite icon;
-        [SerializeField] public bool useBinaryEditor;
+        [SerializeField, Tooltip("Use {0} for stat value")] public string description;
 
         public string Key => associatedStat.ToString();
         public string StatName => statName;
         public Sprite Icon => icon;
+        public string Description => description;
     }
 }

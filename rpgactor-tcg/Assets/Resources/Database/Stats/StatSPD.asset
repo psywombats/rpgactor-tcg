@@ -16,4 +16,4 @@ MonoBehaviour:
   abbreviation: SPD
   statName: Speed
   icon: {fileID: 1956395850, guid: da1903ee954764a4e8e88adc02e4fe0f, type: 3}
-  useBinaryEditor: 0
+  description: Characters with higher speed move first.

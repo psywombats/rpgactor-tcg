@@ -18,12 +18,18 @@ MonoBehaviour:
   - SpritesheetData
   orderedScriptSets:
   - scriptables:
-    - {fileID: 11400000, guid: 5000142282fa26e488ad5186d4ecf10f, type: 2}
-    - {fileID: 11400000, guid: 81ddbe70f5de1494dbefbc3433aab77a, type: 2}
     - {fileID: 11400000, guid: bff8d79b220b1c54fba8c39224ccb938, type: 2}
+    - {fileID: 11400000, guid: fef5b674502385442ab7aeca2ac281b7, type: 2}
     - {fileID: 11400000, guid: ec62e36edcc0e9c47a1bb0d36377f861, type: 2}
     - {fileID: 11400000, guid: de61a5dc690835d4487fbf101784acef, type: 2}
-    - {fileID: 11400000, guid: a4b4f1c4a5480c0459744487d5ee3a2f, type: 2}
+    - {fileID: 11400000, guid: 17b8f9499b5a791428e8546c1540c1aa, type: 2}
+    - {fileID: 11400000, guid: b8c9a1aa1f7d4304bbdff988c22c87d2, type: 2}
+    - {fileID: 11400000, guid: 7d2e3244a84319c44b49d313ce3fdc9b, type: 2}
+    - {fileID: 11400000, guid: 3a744d8f910c630498abdaaac5e71bc4, type: 2}
+    - {fileID: 11400000, guid: 7447ba273d09eb34dbaee53c1601d3ba, type: 2}
+    - {fileID: 11400000, guid: 5390c95831f50054f8a96dc74e545082, type: 2}
+    - {fileID: 11400000, guid: 56047af1adb575f43aa478ee2293549d, type: 2}
+    - {fileID: 11400000, guid: 1ca8ec9ea83f53541a764bf12a96a69e, type: 2}
     - {fileID: 11400000, guid: b2657d2a927a20b4da1dae3d7f98be50, type: 2}
     - {fileID: 11400000, guid: 2bd479945d6128144b507bfac9398c8f, type: 2}
     - {fileID: 11400000, guid: 0ea7c156f45136040902bfe00ae245e0, type: 2}
@@ -35,8 +41,6 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 1555675a7bae58c47865224b50f75c61, type: 2}
     - {fileID: 11400000, guid: 10d94f105a19e9843aec3bb7d22d2993, type: 2}
   - scriptables:
-    - {fileID: 11400000, guid: 33a4ae0650719c6489c48736a6ef2715, type: 2}
-    - {fileID: 11400000, guid: b0a9b2f62cba85744b852c553592b958, type: 2}
     - {fileID: 11400000, guid: 2b28fe77bc3bdec4faa0c30a7d0e3d99, type: 2}
     - {fileID: 11400000, guid: 0272df868c8b74a479ba88851076052a, type: 2}
     - {fileID: 11400000, guid: 7f7bf8eee6b1e6848bad322f8b68f856, type: 2}
@@ -49,6 +53,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 259766b5e48d1f94d8eebe3ced44a368, type: 2}
     - {fileID: 11400000, guid: 906ac7e015dcf43459d8241563c980b0, type: 2}
     - {fileID: 11400000, guid: 14eb050adab32904284a27758b7cd019, type: 2}
+    - {fileID: 11400000, guid: 33a4ae0650719c6489c48736a6ef2715, type: 2}
     - {fileID: 11400000, guid: 83ec84f41d13d5047a01cef7ab2f9396, type: 2}
     - {fileID: 11400000, guid: a4d1cc44c2a7b6e40a5e044f29715f4c, type: 2}
     - {fileID: 11400000, guid: 1a45ceda0e5697c4d9d36f2814ee549d, type: 2}

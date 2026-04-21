@@ -11,7 +11,7 @@
             MyDecks = new Deck[ConstantsData.Instance.deckCount];
             for (var i = 0; i < MyDecks.Length; i++)
             {
-                MyDecks[i] = new Deck($"Deck {i + 1}")
+                MyDecks[i] = new Deck($"Party {i + 1}")
                 {
                     DeckIndex = i
                 };
@@ -20,7 +20,7 @@
 
         public void SaveDeckAs(Deck deck, int slot)
         {
-            deck.DeckName = $"Deck {slot + 1}";
+            deck.DeckName = $"Party {slot + 1}";
             deck.DeckIndex = slot;
             MyDecks[slot] = deck;
         }

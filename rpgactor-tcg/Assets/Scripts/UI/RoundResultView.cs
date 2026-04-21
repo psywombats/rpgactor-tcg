@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,10 +11,12 @@ namespace RpgActorTGC
         [SerializeField] private ListView gridResultsList;
         [SerializeField] private TMP_Text topLabel;
         [SerializeField] private TMP_Text winLossLabel;
+        [SerializeField] private TooltipSpawnComponent winLossTooltip;
         [Space]
         [SerializeField] private ListView topPlayersView;
         [SerializeField] private int topPlayersCount;
         [SerializeField] private Button nextButton;
+        [SerializeField] private Button toggleButton;
         [Space]
         [SerializeField] private CharaModelView backChara;
         [SerializeField] private CharaModelView leftChara;
@@ -24,10 +24,17 @@ namespace RpgActorTGC
         [SerializeField] private CharaModelView rightChara;
 
         public MainGameplayView GameplayView { get; set; }
+
+        private bool useOverallTopPlayers;
         
         public void Awake()
         {
             nextButton.onClick.AddListener(() => GameplayView.ExitTournamentAsync().Forget());
+            toggleButton.onClick.AddListener(() =>
+            {
+                useOverallTopPlayers = !useOverallTopPlayers;
+                PopulateTopPlayers();
+            });
         }
 
         public void Populate(MainGameplayView mainView, TourneyRoundResult myResult)
@@ -41,20 +48,36 @@ namespace RpgActorTGC
             topLabel.text = $"End of round {CampaignManager.Instance.RoundCount}!";
             winLossLabel.text = $"Wins: {myResult.Wins}  Losses: {myResult.Losses}";
 
-            var topPlayers = new List<EntrantModel>(CampaignManager.Instance.AllEntrants);
-            topPlayers.Sort((a, b) => b.CurrentRoundResult.Wins.CompareTo(a.CurrentRoundResult.Wins));
-            var rank = 1;
-            topPlayersView.Populate(topPlayers.Take(topPlayersCount), (obj, entrant) =>
-            {
-                obj.GetComponent<TopPlayerView>().Populate((entrant, rank));
-                rank += 1;
-            });
+            PopulateTopPlayers();
 
-            var myCards = CampaignManager.Instance.Player.CurrentDeck.CardsByLane;
+            var player = CampaignManager.Instance.Player;
+            var myCards = player.CurrentDeck.CardsByLane;
             backChara.Sprite = myCards[LaneType.Back].Sprite;
             leftChara.Sprite = myCards[LaneType.Left].Sprite;
             centerChara.Sprite = myCards[LaneType.Center].Sprite;
             rightChara.Sprite = myCards[LaneType.Right].Sprite;
+
+            winLossTooltip.Message = $"{player.LifetimeWins}-{player.LifetimeLosses}";
+        }
+
+        private void PopulateTopPlayers()
+        {
+            var topPlayers = new List<EntrantModel>(CampaignManager.Instance.AllEntrants);
+            if (!useOverallTopPlayers)
+            {
+                topPlayers.Sort((a, b) => b.CurrentRoundResult.Wins.CompareTo(a.CurrentRoundResult.Wins));
+            }
+            else
+            {
+                topPlayers.Sort((a, b) => b.LifetimeWins.CompareTo(a.LifetimeWins));
+            }
+            
+            var rank = 1;
+            topPlayersView.Populate(topPlayers.Take(topPlayersCount), (obj, entrant) =>
+            {
+                obj.GetComponent<TopPlayerView>().Populate((entrant, rank), useOverallTopPlayers);
+                rank += 1;
+            });
         }
     }
 }

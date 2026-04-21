@@ -1,22 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net.Http;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class HTTPManager : SingletonBehaviour<HTTPManager>
 {
-    public HttpClient Client { get; private set; }
-
     private Dictionary<string, Texture2D> texturesByURL = new();
     private Dictionary<string, Task<Texture2D>> fetchTasks = new();
 
-    protected override void Init()
+    public async Task<(UnityWebRequest.Result result, string jsonString)> FetchJSONStringAsync(string url)
     {
-        base.Init();
-        Client = new HttpClient();
+        var req = UnityWebRequest.Get(url);
+        await req.SendWebRequest();
+        return req.result != UnityWebRequest.Result.Success 
+            ? (req.result, null) 
+            : (req.result, req.downloadHandler.text);
     }
-
+    
     public Task<Texture2D> FetchNetTextureAsync(string url, SpritesheetFormatData networkFormat)
     {
         if (!texturesByURL.TryGetValue(url, out var tex))
@@ -39,8 +40,10 @@ public class HTTPManager : SingletonBehaviour<HTTPManager>
 
     private async Task<Texture2D> FetchRemoteNetTextureAsync(string url, SpritesheetFormatData networkFormat)
     {
-        var blob = await Client.GetAsync(url);
-        if (!blob.IsSuccessStatusCode)
+        var req = UnityWebRequest.Get(url);
+        await req.SendWebRequest();
+ 
+        if (req.result != UnityWebRequest.Result.Success) 
         {
             Debug.LogWarning($"Could not load image from {url}; using fallback");
             return null;
@@ -48,7 +51,7 @@ public class HTTPManager : SingletonBehaviour<HTTPManager>
 
         try
         {
-            var imageBytes = await blob.Content.ReadAsByteArrayAsync();
+            var imageBytes = req.downloadHandler.data;
             var tex = new Texture2D(networkFormat.SheetSize.x, networkFormat.SheetSize.y, TextureFormat.RGBA32, false);
             tex.LoadImage(imageBytes);
             tex.filterMode = FilterMode.Point;

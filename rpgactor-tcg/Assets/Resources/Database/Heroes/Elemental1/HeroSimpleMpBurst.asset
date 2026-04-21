@@ -23,13 +23,13 @@ MonoBehaviour:
       - ATK
       - SPD
       values:
-      - 10
-      - 2
-      - 2
+      - 8
+      - 3
+      - 6
   abilities:
   - warhead: {fileID: 11400000, guid: 111d85d06b355bb40a334e3c9f1d816f, type: 2}
-    mpCost: 6
-    power: 4
+    mpCost: 4
+    power: 7
   actorPreferredName: 
   actorPreferredClasses:
   - Wizard

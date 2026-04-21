@@ -14,7 +14,7 @@ namespace RpgActorTGC
         public string AsciiName => asciiName ??= DisplayName.ToAscii();
 
         private string displayName;
-        public string DisplayName => displayName ??= Data.displayName.Replace(".bluesky.social", "");
+        public string DisplayName => displayName ??= Data.displayName.Replace(".bsky.social", "");
         
         public CharacterCard Card { get; set; }
         public NetworkedSpriteData Sprite { get; private set; }
@@ -47,7 +47,7 @@ namespace RpgActorTGC
             }
             
             // TODO: better scoring criteria
-            return 10;
+            return Data.stats == null ? 20 : 10;
         }
     }
 }

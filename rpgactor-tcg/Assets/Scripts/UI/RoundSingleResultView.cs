@@ -15,6 +15,8 @@ namespace RpgActorTGC
         [Space]
         [SerializeField] private Color winColor;
         [SerializeField] private Color lossColor;
+        [Space]
+        [SerializeField] private TooltipSpawnComponent nameTooltip;
 
         private MainGameplayView gameplayView;
         private NPCModel npc;
@@ -36,6 +38,9 @@ namespace RpgActorTGC
             });
             versusLabel.text = $"vs {npc.EntrantName}";
             tint.color = myResult ?  winColor : lossColor;
+
+            nameTooltip.Message = $"{npc.CurrentRoundResult.Wins}-{npc.CurrentRoundResult.Losses}, " +
+                                  $"{npc.LifetimeWins}-{npc.LifetimeLosses} overall";
         }
 
         private Task ReplayBattleAsync()

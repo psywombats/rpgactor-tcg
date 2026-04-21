@@ -11,7 +11,7 @@ namespace RpgActorTGC
         public bool HasActivated { get; private set; }
         
         public string GetShortDescription(bool pretty = false) => Card.GetShortDescription(Owner.Card, pretty);
-        public string GetLongDescription(bool pretty = false) => Card.GetShortDescription(Owner.Card, pretty);
+        public string GetLongDescription(bool pretty = false) => Card.GetLongDescription(Owner.Card, pretty);
         
         public AbilityInstance(Unit owner, AbilityCard card)
         {

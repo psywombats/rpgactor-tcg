@@ -57,7 +57,12 @@ public abstract class StateTransformBehavior : MonoBehaviour
         {
             posA = val;
         }
-        EditorUtility.SetDirty(this);
+#if UNITY_EDITOR
+        if (!Application.IsPlaying(this))
+        {
+            EditorUtility.SetDirty(this);
+        }
+#endif          
     }
 
     protected abstract Vector2 Get();
@@ -77,6 +82,7 @@ public abstract class StateTransformBehavior : MonoBehaviour
         var tween = DOTween.To(Get, Set, target, duration);
         tween.SetOptions(snapping).SetTarget(Trans);
         await tween.AsTask();
+        tween.Kill();
     }
 
     public void JumpToState(bool usesSecondaryState) => JumpToLerp(usesSecondaryState ? 1f : 0f);
@@ -85,9 +91,11 @@ public abstract class StateTransformBehavior : MonoBehaviour
     {
         CheckStart();
         Set(t * posB + (1f - t) * posA);
+#if UNITY_EDITOR        
         if (!Application.IsPlaying(this))
         {
             EditorUtility.SetDirty(this);
         }
+#endif        
     }
 }
