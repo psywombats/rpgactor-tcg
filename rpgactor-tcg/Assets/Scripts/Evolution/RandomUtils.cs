@@ -14,7 +14,9 @@ namespace RpgActorTGC
         
         public static T Choose<T>(this IEnumerable<T> set)
         {
-            var index = Range(0, set.Count());
+            var count = set.Count();
+            if (count == 0) throw new InvalidOperationException("Cannot choose an empty set.");
+            var index = Range(0, count);
             return set.ElementAt(index);
         }
         

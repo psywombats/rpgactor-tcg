@@ -10,8 +10,10 @@ namespace RpgActorTGC
         public RPGActorModel Actor { get; set; }
         public List<AbilityCard> AbilityCards { get; } = new();
         public StatSet Stats => Data.stats;
-        
         public bool IsLeader => Data.isLeader;
+        
+        public int UnlocksAt => CardCache.Instance.GetWinsRequiredForUnlock(Data);
+        public bool IsUnlocked => CampaignManager.Instance.MyHeroes.Contains(this);
 
         public SpritesheetData Sprite => Actor?.Sprite ?? Data.sprite;
         

@@ -12,13 +12,17 @@ namespace RpgActorTGC
         public int LifetimeWins { get; protected set; }
         public int LifetimeLosses { get; protected set; }
 
+        public void TallyResults()
+        {
+            LifetimeWins += CurrentRoundResult.Wins;
+            LifetimeLosses += CurrentRoundResult.Losses;
+        }
+        
         public virtual void SetupForNewRound()
         {
             if (CurrentRoundResult != null)
             {
                 HistoricalResults.Add(CurrentRoundResult);
-                LifetimeWins += CurrentRoundResult.Wins;
-                LifetimeLosses += CurrentRoundResult.Losses;
             }
             CurrentRoundResult = new TourneyRoundResult();
         }

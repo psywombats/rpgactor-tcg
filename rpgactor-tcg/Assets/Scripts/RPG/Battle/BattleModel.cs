@@ -151,7 +151,8 @@ namespace RpgActorTGC
                 if (UseVerboseLogging) SimLog("");
             }
 
-            var winner = Player1.Leader.IsDead ? Player2
+            var winner = Player1.Leader.IsDead && Player2.Leader.IsDead ? null
+                : Player1.Leader.IsDead ? Player2
                 : Player2.Leader.IsDead ? Player1
                 : Player1.Leader.HP < Player2.Leader.HP ? Player1 : Player2;
             if (UseVerboseLogging) SimLog($"\n\n<color={winner.Color}>{winner.ShortName}</color> won!");

@@ -10,24 +10,39 @@ namespace RpgActorTGC
         public List<NPCModel> NPCs { get; } = new();
         public List<EntrantModel> AllEntrants { get; } = new();
 
+        public HashSet<CharacterCard> MyLeaders { get; } = new();
+        public HashSet<CharacterCard> MyHeroes { get; } = new();
         public HashSet<CharacterCard> MyCards { get; } = new();
         public List<CharacterCard> GloballyAvailableLeaders { get; } = new();
         public List<CharacterCard> GloballyAvailableHeroes { get; } = new();
         
         public List<Deck> EvolvedReplacementDecks { get; private set; }
+        public List<Deck> WinningDecks { get; private set; } = new();
 
         public int RoundCount { get; private set; }
+
+        public bool IsTutorial { get; set; }
 
         protected override void Init()
         {
             Player = new PlayerModel();
             foreach (var card in CardCache.Instance.AllHeroCards)
             {
-                GloballyAvailableHeroes.Add(card);
+                if (card.UnlocksAt == 0)
+                {
+                    GloballyAvailableHeroes.Add(card);
+                    MyHeroes.Add(card);
+                    MyCards.Add(card);
+                }
             }
             foreach (var card in CardCache.Instance.AllLeaderCards)
             {
-                GloballyAvailableLeaders.Add(card);
+                if (card.UnlocksAt == 0)
+                {
+                    GloballyAvailableLeaders.Add(card);
+                    MyLeaders.Add(card);
+                    MyCards.Add(card);
+                }
             }
             
             AllEntrants.Add(Player);
@@ -67,8 +82,44 @@ namespace RpgActorTGC
                 }
             }
 
+            foreach (var entrant in AllEntrants)
+            {
+                entrant.TallyResults();
+            }
+
+            var topEntrants = new List<EntrantModel>(AllEntrants);
+            topEntrants.Sort((a, b) => b.CurrentRoundResult.Wins.CompareTo(a.CurrentRoundResult.Wins));
+            WinningDecks = topEntrants.Take(5).Select(entrant => entrant.CurrentDeck).ToList();
+            
             RoundCount++;
             return Player.CurrentRoundResult;
+        }
+
+        public List<CharacterCard> CheckForNewUnlocks()
+        {
+            var unlocked = new List<CharacterCard>();
+            foreach (var card in CardCache.Instance.AllCards)
+            {
+                if (card.UnlocksAt <= Player.LifetimeWins
+                    && card.UnlocksAt > Player.LifetimeWins - (Player.CurrentRoundResult?.Wins ?? 0))
+                {
+                    unlocked.Add(card);
+                    if (card.IsLeader)
+                    {
+                        MyLeaders.Add(card);
+                        MyCards.Add(card);
+                        GloballyAvailableLeaders.Add(card);
+                    }
+                    else
+                    {
+                        MyHeroes.Add(card);
+                        MyCards.Add(card);
+                        GloballyAvailableHeroes.Add(card);
+                    }
+                }
+            }
+
+            return unlocked;
         }
 
         private void RunEvoAlgorithm()

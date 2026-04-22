@@ -14,6 +14,8 @@ namespace RpgActorTGC
         [SerializeField] private BattleBox battlebox;
         [SerializeField] private TMP_Text turnCounter;
         [SerializeField] private TMP_Text roundCounter;
+        [Space]
+        [SerializeField] private TutorialDialogSpawner endTutorial;
 
         private BattleModel battle;
         public Dictionary<Unit, UnitView> ViewForUnit { get; } = new();
@@ -92,6 +94,7 @@ namespace RpgActorTGC
 
         public async Task EndBattleAsync(Party winner)
         {
+            endTutorial.TrySpawn();
             if (winner == null)
             {
                 await WriteLineAsync("The parties are equivalent, so both lose.", true);

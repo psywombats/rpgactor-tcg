@@ -25,7 +25,7 @@ MonoBehaviour:
       - MP
       - SPD
       values:
-      - 15
+      - 16
       - 5
       - 1
       - 3

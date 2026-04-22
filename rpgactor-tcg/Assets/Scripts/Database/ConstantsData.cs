@@ -8,6 +8,7 @@ public class ConstantsData : ScriptableObject
     
     [SerializeField] public int deckCount = 3;
     [SerializeField] public int npcCount = 30;
+    [SerializeField, Tooltip("Comma-separated list")] public string rarityUnlockThresholds = "1,2";
     [Space]
     [SerializeField] public SpritesheetFormatData rpgactorSpriteFormat;
     [SerializeField] public SpritesheetData defaultNetworkFallbackSprite;

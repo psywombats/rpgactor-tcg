@@ -34,7 +34,7 @@ namespace RpgActorTGC
                 return result;
             }
 
-            return "?";
+            return "nobody";
         }
     }
 }

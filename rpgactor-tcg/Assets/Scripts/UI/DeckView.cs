@@ -28,5 +28,13 @@ namespace RpgActorTGC
                 cardView.Populate(deck[cardView.Lane], onSelect);
             }
         }
+
+        public void Unselect()
+        {
+            foreach (var view in cardViews)
+            {
+                view.IsSelected = false;
+            }
+        }
     }
 }

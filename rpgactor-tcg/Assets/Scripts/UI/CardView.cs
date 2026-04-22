@@ -24,6 +24,11 @@ namespace RpgActorTGC
         [SerializeField] private Button backerButton;
         [SerializeField] private GameObject nullArea;
         [SerializeField] private GameObject nonNullArea;
+        [Space]
+        [SerializeField] private GameObject lockedArea;
+        [SerializeField] private GameObject unlockedArea;
+        [SerializeField] private TMP_Text lockedLabel;
+        [SerializeField] private TooltipSpawnComponent lockedTooltip;
 
         [Header("Config")]
         [SerializeField] private float selectedAlpha = .8f;
@@ -60,6 +65,9 @@ namespace RpgActorTGC
             
             nonNullArea.SetActive(Card != null);
             nullArea.SetActive(Card == null);
+
+            lockedTooltip.Message = $"This character is a reward for reaching {card.UnlocksAt} wins";
+            lockedLabel.text = card.UnlocksAt.ToString();
             
             foreach (var obj in leaderObjects)
             {
@@ -74,6 +82,9 @@ namespace RpgActorTGC
             {
                 chara.Sprite = Card.Sprite;
                 nameText.text = Card.CharacterName;
+                
+                unlockedArea.SetActive(Card.IsUnlocked);
+                lockedArea.SetActive(Card.IsUnlocked);
 
                 mp.Populate((int)Card[Stat.MP]);
                 var statTuples = Card.Stats.ToTuples()

@@ -87,7 +87,8 @@ namespace RpgActorTGC
 
         private void LaunchHowToPlay()
         {
-            TransitionSceneAsync().Forget();
+            CampaignManager.Instance.IsTutorial = true;
+            LaunchNewCampaign();
         }
 
         private void ResetAssignments()

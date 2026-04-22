@@ -10,12 +10,16 @@ namespace RpgActorTGC
         private readonly Dictionary<AbilityData, AbilityCard> abilityCards = new();
         private readonly Dictionary<DeckData, Deck> decks = new();
 
+        private List<int> unlockLevels;
+
         protected override void Init()
         {
             foreach (var cardData in DBManager.Instance.GetAll<CharacterData>())
             {
                 GetOrCreateCard(cardData);
             }
+            
+            unlockLevels = ConstantsData.Instance.rarityUnlockThresholds.Split(',').Select(int.Parse).ToList();
         }
         
         public IEnumerable<CharacterCard> AllHeroCards => heroCards.Values;
@@ -81,6 +85,12 @@ namespace RpgActorTGC
             {
                 card.Actor = null;
             }
+        }
+
+        public int GetWinsRequiredForUnlock(CharacterData data)
+        {
+            if (data.rarity == 0) return 0;
+            return unlockLevels[data.rarity - 1];
         }
     }
 }

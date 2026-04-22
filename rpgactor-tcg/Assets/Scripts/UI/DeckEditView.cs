@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using DG.Tweening;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,10 +23,7 @@ namespace RpgActorTGC
         [SerializeField] private Button practiceButton;
         [SerializeField] private PlaybackSelectionView practiceMenu;
         [Space]
-        [SerializeField] private CanvasGroup incompleteGroup;
-        [SerializeField] private TMP_Text incompleteLabel;
-        [SerializeField] private Button incompleteCloseButton;
-        [SerializeField] private float incompleteTransitionDuration = .5f;
+        [SerializeField] private TutorialDialogSpawner partyFullTutorial;
         
         public Deck Deck { get; private set; }
         public MainGameplayView GameplayView { get; private set; }
@@ -39,7 +34,6 @@ namespace RpgActorTGC
         public void Awake()
         {
             clearButton.onClick.AddListener(ClearDeck);
-            incompleteCloseButton.onClick.AddListener(() => CloseDialogAsync().Forget());
             practiceButton.onClick.AddListener(() => PracticeAsync().Forget());
         }
 
@@ -52,6 +46,11 @@ namespace RpgActorTGC
             {
                 obj.GetComponent<SaveLoadView>().Populate(i, this);
             });
+
+            if (!newDeck.IsIncomplete)
+            {
+                partyFullTutorial.TrySpawn();
+            }
         }
 
         public Task ShowMainMenuAsync() => mainMenuTrans.TweenToStateAsync(false, transitionDuration);
@@ -68,9 +67,11 @@ namespace RpgActorTGC
         private async Task TryRestartReplacementAsync(CardView cardView)
         {
             var startAgain = currentlyReplacingLane != cardView.Lane;
+            deckView.Unselect();
             await CancelSubmenusAsync();
             if (!startAgain)
             {
+                cardView.IsSelected = false;
                 return;
             }
 
@@ -143,11 +144,11 @@ namespace RpgActorTGC
         {
             await CancelSubmenusAsync();
             await mainMenuTrans.TweenToStateAsync(true, transitionDuration);
-            practiceMenu.Populate(CampaignManager.Instance.Player.MyDecks, this);
+            var practiceDecks = new HashSet<Deck>(CampaignManager.Instance.Player.MyDecks);
+            foreach (var deck in CampaignManager.Instance.WinningDecks) practiceDecks.Add(deck);
+            practiceMenu.Populate(practiceDecks, this);
             await practiceMenu.ShowAsync();
         }
-        
-        #region Dialog
         
         public bool TryPopIncompletionDialog()
         {
@@ -156,26 +157,11 @@ namespace RpgActorTGC
                 var message = Deck.Leader == null
                     ? "This party needs a leader first!"
                     : "This party has empty spaces. Fill those first!";
-                PopDialogAsync(message).Forget();
+                GameplayView.PopDialogAsync(message).Forget();
                 return true;
             }
 
             return false;
         }
-
-        public async Task PopDialogAsync(string message)
-        {
-            incompleteLabel.text = message;
-            incompleteGroup.gameObject.SetActive(true);
-            await incompleteGroup.DOFade(1f, incompleteTransitionDuration).AsTask();
-        }
-
-        private async Task CloseDialogAsync()
-        {
-            await incompleteGroup.DOFade(0f, incompleteTransitionDuration).AsTask();
-            incompleteGroup.gameObject.SetActive(false);
-        }
-        
-        #endregion
     }
 }

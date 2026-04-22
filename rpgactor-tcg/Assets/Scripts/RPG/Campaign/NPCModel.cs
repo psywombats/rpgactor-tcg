@@ -24,11 +24,10 @@ namespace RpgActorTGC
                     CampaignManager.Instance.EvolvedReplacementDecks.Remove(CurrentDeck);
                     CurrentDeck.DeckName = EntrantName;
                 }
-                else if (CurrentRoundResult.Wins <= CurrentRoundResult.Losses + 8)
+                else
                 {
-                    // we're really sucking wind
-                    CurrentDeck = Deck.CreateRandom(EntrantName, CampaignManager.Instance.GloballyAvailableHeroes,
-                        CampaignManager.Instance.GloballyAvailableLeaders);
+                    // fuck it, copy a winner
+                    CurrentDeck = CampaignManager.Instance.WinningDecks.Choose();
                 }
             }
             base.SetupForNewRound();

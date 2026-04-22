@@ -13,7 +13,6 @@ public class TextTooltipComponent : MonoBehaviour
     [SerializeField] private float outMult = 5f;
     [Space]
     [SerializeField] private LayoutElement layout;
-    [SerializeField] private float width = 250;
     [SerializeField] private int cutoff = 50;
 
     private bool mouseIn;

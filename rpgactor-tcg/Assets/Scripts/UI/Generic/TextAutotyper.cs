@@ -77,7 +77,7 @@ public class TextAutotyper : MonoBehaviour, IInputListener
         }
         textbox.text = text;
 
-        if (waitForConfirm) 
+        if (waitForConfirm || InputManager.Instance.IsFastKeyDown()) 
         {
             confirmed = false;
             if (advanceArrow != null) advanceArrow.SetActive(true);

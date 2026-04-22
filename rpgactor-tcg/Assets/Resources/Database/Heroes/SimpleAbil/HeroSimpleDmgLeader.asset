@@ -28,7 +28,7 @@ MonoBehaviour:
       - 6
   abilities:
   - warhead: {fileID: 11400000, guid: 8b64447a8ce2b8948ad43efa2ae63ffe, type: 2}
-    mpCost: 15
+    mpCost: 14
     power: 10
   actorPreferredName: 
   actorPreferredClasses:

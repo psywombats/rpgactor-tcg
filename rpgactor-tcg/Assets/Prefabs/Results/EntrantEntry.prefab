@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5768529147776620140}
   - component: {fileID: 956652636963457057}
   - component: {fileID: 604265311125695055}
-  - component: {fileID: 9180043105848936890}
   m_Layer: 5
   m_Name: NameLabel
   m_TagString: Untagged
@@ -138,20 +137,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &9180043105848936890
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 819067043724183102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffa9000f78514363b51b40017c78bafc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TooltipSpawnComponent
-  tooltipMessage: 
-  textTooltip: {fileID: 0}
 --- !u!1 &5433446670539398511
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,6 +148,7 @@ GameObject:
   - component: {fileID: 173257333700935998}
   - component: {fileID: 8483008902003569819}
   - component: {fileID: 8681399114744813695}
+  - component: {fileID: 1526138078252181265}
   m_Layer: 5
   m_Name: EntrantEntry
   m_TagString: Untagged
@@ -227,7 +213,21 @@ MonoBehaviour:
   nameLabel: {fileID: 604265311125695055}
   winLossLabel: {fileID: 8720224934520668235}
   myPlayerArea: {fileID: 7430391092562061048}
-  tooltip: {fileID: 9180043105848936890}
+  tooltip: {fileID: 1526138078252181265}
+--- !u!114 &1526138078252181265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5433446670539398511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffa9000f78514363b51b40017c78bafc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TooltipSpawnComponent
+  tooltipMessage: 
+  textTooltip: {fileID: 0}
 --- !u!1 &7430391092562061048
 GameObject:
   m_ObjectHideFlags: 0

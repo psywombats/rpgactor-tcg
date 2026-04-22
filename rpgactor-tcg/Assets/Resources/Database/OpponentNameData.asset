@@ -92,7 +92,7 @@ MonoBehaviour:
   - Loser
   - Weed
   - OG
-  - City
+  - Anime
   - Country
   - Duke
   - Kid
@@ -113,6 +113,12 @@ MonoBehaviour:
   - Cloud
   - Kat
   - El
+  - MC
+  - Tuxedo
+  - Drunk
+  - New
+  - Ol'
+  - Your
   suffixes:
   - Wombat
   - Hare
@@ -127,7 +133,7 @@ MonoBehaviour:
   - King
   - Emperor
   - Master
-  - Youngster
+  - Friend
   - Slayer
   - Spy
   - Fear
@@ -154,7 +160,7 @@ MonoBehaviour:
   - Marmot
   - Dragon
   - Fay
-  - Woman
+  - Prince
   - Grunt
   - Trainer
   - Nerd
@@ -198,3 +204,19 @@ MonoBehaviour:
   - Bean
   - Twain
   - Gato
+  - Whisper
+  - Mike
+  - Samurai
+  - Smith
+  - Lover
+  - Rules
+  - Death
+  - Dick
+  - Waifu
+  - Moon
+  - James
+  - Whiskey
+  - Mask
+  - McGoo
+  - Master
+  - IV

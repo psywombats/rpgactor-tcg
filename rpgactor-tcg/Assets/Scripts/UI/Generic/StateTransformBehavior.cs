@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using DG.Tweening;
 using EditorAttributes;
 using UnityEditor;
@@ -11,6 +12,8 @@ public abstract class StateTransformBehavior : MonoBehaviour
     [SerializeField] private Vector2 posB;
     [SerializeField] private bool startAtPrimary;
 
+    public event Action<float> OnTransition;
+    
     private RectTransform trans;
     protected RectTransform Trans
     {
@@ -31,6 +34,7 @@ public abstract class StateTransformBehavior : MonoBehaviour
     [Button] private void JumpToSecondary() => JumpToState(true);
 
     private bool started;
+    private bool startChecked;
 
     protected void Start()
     {
@@ -44,6 +48,7 @@ public abstract class StateTransformBehavior : MonoBehaviour
             started = true;
             JumpToPrimary();
         }
+        startChecked = true;
     }
 
     private void MemorizePosition(bool isSecondaryState)
@@ -82,7 +87,7 @@ public abstract class StateTransformBehavior : MonoBehaviour
         var tween = DOTween.To(Get, Set, target, duration);
         tween.SetOptions(snapping).SetTarget(Trans);
         await tween.AsTask();
-        tween.Kill();
+        OnTransition?.Invoke(t);
     }
 
     public void JumpToState(bool usesSecondaryState) => JumpToLerp(usesSecondaryState ? 1f : 0f);
@@ -91,6 +96,11 @@ public abstract class StateTransformBehavior : MonoBehaviour
     {
         CheckStart();
         Set(t * posB + (1f - t) * posA);
+        if (startChecked)
+        {
+            OnTransition?.Invoke(t);
+        }
+        
 #if UNITY_EDITOR        
         if (!Application.IsPlaying(this))
         {

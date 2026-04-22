@@ -1,5 +1,4 @@
-﻿using System;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,7 +23,7 @@ namespace RpgActorTGC
             editor = newEditor;
 
             label.text = $"vs {newOpponent.DeckName}";
-            //button.interactable = opponent != editor.Deck;
+            button.interactable = opponent != editor.Deck;
         }
 
         private void StartBattle()
@@ -36,15 +35,14 @@ namespace RpgActorTGC
 
             if (opponent.IsIncomplete)
             {
-                editor.PopDialogAsync($"Can't practice against {opponent.DeckName} because it doesn't have " +
-                                      $"a leader and three followers.").Forget();
+                editor.GameplayView.PopDialogAsync($"Can't practice against {opponent.DeckName} because it " +
+                                                $"doesn't have a leader and three followers.").Forget();
                 return;
             }
 
             if (opponent == editor.Deck)
             {
-                editor.PopDialogAsync($"Can't practice against {opponent.DeckName} because it doesn't have " +
-                                      $"a leader and three followers.").Forget();
+                editor.GameplayView.PopDialogAsync($"Can't practice against itself!").Forget();
                 return;
             }
             

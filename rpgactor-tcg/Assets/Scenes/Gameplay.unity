@@ -1676,6 +1676,10 @@ MonoBehaviour:
   tourneyLoadingArea: {fileID: 945553360}
   tournamentButton: {fileID: 175383959}
   resultTrans: {fileID: 1878483007}
+  dialogGroup: {fileID: 765986636}
+  dialogLabel: {fileID: 1248032273}
+  dialogCloseButton: {fileID: 1711643881}
+  dialogTransitionDuration: 0.5
 --- !u!1 &104867774
 GameObject:
   m_ObjectHideFlags: 0
@@ -6240,6 +6244,8 @@ RectTransform:
   - {fileID: 510160909}
   - {fileID: 1511707465}
   - {fileID: 1878483006}
+  - {fileID: 426653358}
+  - {fileID: 600871533}
   m_Father: {fileID: 87859645}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -6271,10 +6277,7 @@ MonoBehaviour:
   saveLoadEntries: {fileID: 2715072958208684371}
   practiceButton: {fileID: 2063603669}
   practiceMenu: {fileID: 1423132262}
-  incompleteGroup: {fileID: 765986636}
-  incompleteLabel: {fileID: 1248032273}
-  incompleteCloseButton: {fileID: 2098727802}
-  incompleteTransitionDuration: 0.5
+  partyFullTutorial: {fileID: 426653359}
 --- !u!114 &358354477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7775,6 +7778,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2468188706435235685, guid: 9fd58c66198cbe641b2c08bfdcef2d5c, type: 3}
+      propertyPath: m_text
+      value: Center
+      objectReference: {fileID: 0}
     - target: {fileID: 2907639288906079307, guid: 9fd58c66198cbe641b2c08bfdcef2d5c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -8185,6 +8192,69 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4815833239244572722, guid: 9fd58c66198cbe641b2c08bfdcef2d5c, type: 3}
   m_PrefabInstance: {fileID: 425311199}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &426653357
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 426653358}
+  - component: {fileID: 426653359}
+  m_Layer: 5
+  m_Name: PartyFullTutorial
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &426653358
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426653357}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 358354475}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &426653359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426653357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a75d725f39314ae1a3f0ea242945484c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.TutorialDialogSpawner
+  message: 'Now that your party is complete, it''s time to enter the tournament.
+
+
+    The
+    tournament is round-robin style. Your party will fight all 30 other entrants
+    automatically, and the results will be presented to you after a short delay.
+
+
+    When
+    you''re ready, click the Enter Tournament button.'
+  mainView: {fileID: 87859646}
+  popOnEnable: 0
+  popOnTrans: {fileID: 0}
+  requiredPopLerp: 0
+  delay: 0.5
 --- !u!1 &436769101
 GameObject:
   m_ObjectHideFlags: 0
@@ -11824,6 +11894,8 @@ RectTransform:
   - {fileID: 573298302}
   - {fileID: 958343565}
   - {fileID: 2090863975}
+  - {fileID: 1786112299}
+  - {fileID: 971435805}
   m_Father: {fileID: 358354475}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
@@ -12643,6 +12715,72 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 589079895}
   m_CullTransparentMesh: 1
+--- !u!1 &600871532
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 600871533}
+  - component: {fileID: 600871534}
+  m_Layer: 5
+  m_Name: RoundCompleteTutorial
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &600871533
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600871532}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 358354475}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &600871534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600871532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a75d725f39314ae1a3f0ea242945484c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.TutorialDialogSpawner
+  message: 'You''ve completed the first round of the tournament!
+
+
+    Now that you''ve
+    seen how your party performs, you may want to change up the members. The AI opponents
+    that performed poorly will copy winning parties, or build new ones to counter
+    the dominant meta. Winning opponents will probably reenter the same party. You
+    can use practice battles against the winners from last round and design a party
+    that counters them.
+
+
+    This ends the tutorial. Try to find combos that defeat
+    last round''s dominant parties, and maybe you can even win the tournament!'
+  mainView: {fileID: 87859646}
+  popOnEnable: 0
+  popOnTrans: {fileID: 358354477}
+  requiredPopLerp: 0
+  delay: 0
 --- !u!224 &627137407 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3530566320085414224, guid: 5a8b85a98a7530b4abd73bebb250cf6c, type: 3}
@@ -14779,6 +14917,71 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TooltipSpawnComponent
   tooltipMessage: Swap between viewing leaders and followers
   textTooltip: {fileID: 2130689216}
+--- !u!1 &876354592
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 876354593}
+  - component: {fileID: 876354594}
+  m_Layer: 5
+  m_Name: EndTutorial
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &876354593
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 876354592}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 954984538}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &876354594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 876354592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a75d725f39314ae1a3f0ea242945484c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.TutorialDialogSpawner
+  message: 'The battle has concluded.
+
+
+    Normally a battle ends when one of the
+    two leaders falls. If both leaders are alive at the end of 10 turns, the leader
+    with the highest HP wins. Additionally, if both parties have the same members,
+    it counts as a loss for both parties.
+
+
+    You will be returned to the results
+    screen and may watch more battles if you want. When you''re done, click ''Continue''
+    in the lower right.'
+  mainView: {fileID: 87859646}
+  popOnEnable: 0
+  popOnTrans: {fileID: 0}
+  requiredPopLerp: 0
+  delay: 0
 --- !u!1001 &878749138
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15940,6 +16143,8 @@ RectTransform:
   - {fileID: 1174555785}
   - {fileID: 820879338}
   - {fileID: 1079654813}
+  - {fileID: 2013643468}
+  - {fileID: 876354593}
   m_Father: {fileID: 87859645}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -15964,6 +16169,7 @@ MonoBehaviour:
   battlebox: {fileID: 740270382}
   turnCounter: {fileID: 355849474}
   roundCounter: {fileID: 1146410321}
+  endTutorial: {fileID: 876354594}
 --- !u!1 &958343564
 GameObject:
   m_ObjectHideFlags: 0
@@ -16033,6 +16239,71 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4815833239244572722, guid: 9fd58c66198cbe641b2c08bfdcef2d5c, type: 3}
   m_PrefabInstance: {fileID: 1259920759}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &971435804
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 971435805}
+  - component: {fileID: 971435806}
+  m_Layer: 5
+  m_Name: Tutorial2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &971435805
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 971435804}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 510160909}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &971435806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 971435804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a75d725f39314ae1a3f0ea242945484c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.TutorialDialogSpawner
+  message: 'Now that your party has a leader, it''s time to recruit three more characters
+    to fill its ranks.
+
+
+    Some characters have special abilities that trigger
+    once the party has enough MP. Hover over the name of the ability to view details.
+    No party composition will be able to beat every opponent, but picking abilities
+    that work well together is the key to maximizing your winrate!
+
+
+    Click on
+    the remaining empty slots to assign them characters.'
+  mainView: {fileID: 87859646}
+  popOnEnable: 0
+  popOnTrans: {fileID: 510160913}
+  requiredPopLerp: 0
+  delay: 0
 --- !u!1001 &980534446
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16220,6 +16491,10 @@ PrefabInstance:
     - target: {fileID: 5477654645977794484, guid: 98836ac6cb4696445933e2d9e2d9f116, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8253857415050962658, guid: 98836ac6cb4696445933e2d9e2d9f116, type: 3}
+      propertyPath: m_fontSize
+      value: 32
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16904,6 +17179,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1096045912}
+  - component: {fileID: 1096045914}
+  - component: {fileID: 1096045913}
   m_Layer: 5
   m_Name: Dialog
   m_TagString: Untagged
@@ -16931,8 +17208,48 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 600, y: 300}
+  m_SizeDelta: {x: 600, y: 152.01}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1096045913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1096045911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.VerticalLayoutGroup
+  m_Padding:
+    m_Left: 32
+    m_Right: 32
+    m_Top: 32
+    m_Bottom: 96
+  m_ChildAlignment: 0
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandHeight: 0
+  m_ChildControlWidth: 1
+  m_ChildControlHeight: 1
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
+--- !u!114 &1096045914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1096045911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ContentSizeFitter
+  m_HorizontalFit: 0
+  m_VerticalFit: 2
 --- !u!224 &1103212735 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1502224435883038862, guid: 181db98c0c695a04590b03b9c311fcde, type: 3}
@@ -18129,10 +18446,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1096045912}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 24}
-  m_SizeDelta: {x: -24, y: -80}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 227.755, y: -44.005}
+  m_SizeDelta: {x: 391.51, y: 24.01}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1248032273
 MonoBehaviour:
@@ -18181,14 +18498,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -19825,6 +20142,73 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1502224435883038862, guid: 181db98c0c695a04590b03b9c311fcde, type: 3}
   m_PrefabInstance: {fileID: 817426824}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1307047100
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1307047101}
+  - component: {fileID: 1307047102}
+  m_Layer: 5
+  m_Name: Tutorial
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1307047101
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307047100}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1878483006}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1307047102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307047100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a75d725f39314ae1a3f0ea242945484c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.TutorialDialogSpawner
+  message: 'Congratulations on completing the first round!
+
+
+    You can see how
+    your party performed against each opposing party, and what party composition
+    the opponent chose. You can also watch whichever fights you find interesting.
+    It''s good strategy to check how your party is performing against top opponents!
+
+
+    Try
+    spectating a fight by clicking any Replay button.
+
+
+'
+  mainView: {fileID: 87859646}
+  popOnEnable: 0
+  popOnTrans: {fileID: 1878483007}
+  requiredPopLerp: 1
+  delay: 2
 --- !u!1001 &1308275515
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20439,6 +20823,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8253857415050962658, guid: 98836ac6cb4696445933e2d9e2d9f116, type: 3}
+      propertyPath: m_fontSize
+      value: 32
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -20669,6 +21057,10 @@ PrefabInstance:
     - target: {fileID: 2043673484482797177, guid: 9fd58c66198cbe641b2c08bfdcef2d5c, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2468188706435235685, guid: 9fd58c66198cbe641b2c08bfdcef2d5c, type: 3}
+      propertyPath: m_text
+      value: Right
       objectReference: {fileID: 0}
     - target: {fileID: 2907639288906079307, guid: 9fd58c66198cbe641b2c08bfdcef2d5c, type: 3}
       propertyPath: m_AnchorMax.y
@@ -25093,7 +25485,7 @@ PrefabInstance:
       objectReference: {fileID: -3179183473789030160, guid: f29ea8d9e38caa747b6df5d1124c1904, type: 3}
     - target: {fileID: 3530566320085414224, guid: 5a8b85a98a7530b4abd73bebb250cf6c, type: 3}
       propertyPath: m_Pivot.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3530566320085414224, guid: 5a8b85a98a7530b4abd73bebb250cf6c, type: 3}
       propertyPath: m_Pivot.y
@@ -25101,7 +25493,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3530566320085414224, guid: 5a8b85a98a7530b4abd73bebb250cf6c, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3530566320085414224, guid: 5a8b85a98a7530b4abd73bebb250cf6c, type: 3}
       propertyPath: m_AnchorMax.y
@@ -25109,7 +25501,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3530566320085414224, guid: 5a8b85a98a7530b4abd73bebb250cf6c, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3530566320085414224, guid: 5a8b85a98a7530b4abd73bebb250cf6c, type: 3}
       propertyPath: m_AnchorMin.y
@@ -25153,7 +25545,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3530566320085414224, guid: 5a8b85a98a7530b4abd73bebb250cf6c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -32
       objectReference: {fileID: 0}
     - target: {fileID: 3530566320085414224, guid: 5a8b85a98a7530b4abd73bebb250cf6c, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -25175,6 +25567,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConfirmButton
       objectReference: {fileID: 0}
+    - target: {fileID: 4554305432433386545, guid: 5a8b85a98a7530b4abd73bebb250cf6c, type: 3}
+      propertyPath: m_IgnoreLayout
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8963243446648308187, guid: 5a8b85a98a7530b4abd73bebb250cf6c, type: 3}
       propertyPath: m_text
       value: Got it!
@@ -25187,6 +25583,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2098727804}
   m_SourcePrefab: {fileID: 100100000, guid: 5a8b85a98a7530b4abd73bebb250cf6c, type: 3}
+--- !u!114 &1711643881 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8241395728313143914, guid: 5a8b85a98a7530b4abd73bebb250cf6c, type: 3}
+  m_PrefabInstance: {fileID: 1711643880}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098727800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1001 &1713185074
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25364,6 +25771,64 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1723851407}
   m_CullTransparentMesh: 1
+--- !u!1 &1728219063
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1728219065}
+  - component: {fileID: 1728219064}
+  m_Layer: 5
+  m_Name: Tutorial1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1728219064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1728219063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a75d725f39314ae1a3f0ea242945484c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.TutorialDialogSpawner
+  message: "Welcome to the Character Compendium Coliseum!\n\nYour objective is to
+    stand at the top of the rankings of the round-robin tournament. To do this you
+    will first need to build a party. A party has four members. One member is the
+    leader. If they fall, the party loses. \n\nLet's pick a leader now by tapping
+    on an empty party slot. "
+  mainView: {fileID: 87859646}
+  popOnEnable: 1
+  popOnTrans: {fileID: 0}
+  requiredPopLerp: 0
+  delay: 0
+--- !u!224 &1728219065
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1728219063}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &1739556914 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 173257333700935998, guid: c9f8303156526de43b21359997455f2e, type: 3}
@@ -25930,6 +26395,67 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9f8303156526de43b21359997455f2e, type: 3}
+--- !u!1 &1786112298
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1786112299}
+  - component: {fileID: 1786112300}
+  m_Layer: 5
+  m_Name: Tutorial
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1786112299
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786112298}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 510160909}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1786112300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786112298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a75d725f39314ae1a3f0ea242945484c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.TutorialDialogSpawner
+  message: 'Characters are drawn from rpg.actor and assigned in-game roughly based
+    on their existing stats.
+
+
+    Leaders are the only characters that regenerate
+    MP. Some are best suited for frontline combat, and some do best protected in
+    the back. You can learn more about each stat by hovering the mouse over the stat
+    icons.'
+  mainView: {fileID: 87859646}
+  popOnEnable: 0
+  popOnTrans: {fileID: 510160913}
+  requiredPopLerp: 1
+  delay: 0
 --- !u!1 &1787697724
 GameObject:
   m_ObjectHideFlags: 0
@@ -26665,6 +27191,7 @@ RectTransform:
   - {fileID: 270425526}
   - {fileID: 1996113753}
   - {fileID: 812704066}
+  - {fileID: 1307047101}
   m_Father: {fileID: 358354475}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -32146,6 +32673,71 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TooltipSpawnComponent
   tooltipMessage: 
   textTooltip: {fileID: 2130689216}
+--- !u!1 &2013643467
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2013643468}
+  - component: {fileID: 2013643469}
+  m_Layer: 5
+  m_Name: StartTutorial
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2013643468
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2013643467}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 954984538}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2013643469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2013643467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a75d725f39314ae1a3f0ea242945484c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.TutorialDialogSpawner
+  message: 'Welcome to the coliseum!
+
+
+    Your party is on the left, and the opponent
+    is on the right. On their turn, each character attacks the character across from
+    them (and activates their ability if the party has enough MP). Characters in
+    back don''t normally attack, but will move forward when a frontliner falls. Try
+    hovering over enemy abilities to learn more about them.
+
+
+    Press ''Enter''
+    or click anywhere to advance the battle, or hold down ''Enter'' to play automatically.'
+  mainView: {fileID: 87859646}
+  popOnEnable: 0
+  popOnTrans: {fileID: 358354477}
+  requiredPopLerp: 1
+  delay: 1.7
 --- !u!1001 &2037256792
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32361,6 +32953,10 @@ PrefabInstance:
     - target: {fileID: 2043673484482797177, guid: 9fd58c66198cbe641b2c08bfdcef2d5c, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2468188706435235685, guid: 9fd58c66198cbe641b2c08bfdcef2d5c, type: 3}
+      propertyPath: m_text
+      value: Left
       objectReference: {fileID: 0}
     - target: {fileID: 2907639288906079307, guid: 9fd58c66198cbe641b2c08bfdcef2d5c, type: 3}
       propertyPath: m_AnchorMax.y
@@ -33075,17 +33671,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3530566320085414224, guid: 5a8b85a98a7530b4abd73bebb250cf6c, type: 3}
   m_PrefabInstance: {fileID: 1711643880}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2098727802 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8241395728313143914, guid: 5a8b85a98a7530b4abd73bebb250cf6c, type: 3}
-  m_PrefabInstance: {fileID: 1711643880}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2098727800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!114 &2098727804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35350,3 +35935,4 @@ SceneRoots:
   - {fileID: 1127531987}
   - {fileID: 104867775}
   - {fileID: 1268681533}
+  - {fileID: 1728219065}
