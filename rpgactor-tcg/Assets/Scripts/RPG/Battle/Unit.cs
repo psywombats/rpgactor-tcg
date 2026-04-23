@@ -88,7 +88,7 @@ namespace RpgActorTGC
                 await abil.SimulateTurnAsync(battle);
             }
 
-            if (!IsDead)
+            if (!IsDead && !battle.IsOver)
             {
                 var opponent = battle.GetOppositeUnit(this);
                 if (opponent != null)

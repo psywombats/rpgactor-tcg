@@ -23,7 +23,7 @@ namespace RpgActorTGC
             if (Data.mpCost > 0)
             {
                 desc += Data.mpCost;
-                if (pretty) desc += "<sprite name=\"mp\">";
+                desc += pretty ? "<sprite name=\"mp\">" : " ";
                 desc += Data.IsContinuous ? "+" : ":";
             }
             desc += Data.GetAbilityName(owner?.Data);

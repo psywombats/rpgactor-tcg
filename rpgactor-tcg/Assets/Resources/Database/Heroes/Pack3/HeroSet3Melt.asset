@@ -28,12 +28,12 @@ MonoBehaviour:
       - 2
       - 15
   abilities:
-  - warhead: {fileID: 0}
-    mpCost: 0
-    power: 0
+  - warhead: {fileID: 11400000, guid: 85c09ef3424f0d34193c054f3ab0d4aa, type: 2}
+    mpCost: 5
+    power: 3
     anim: {fileID: 0}
     isContinuous: 0
   actorPreferredName: 
   actorPreferredClasses: []
   actorPreferredDID: 
-  actorPreferredStat: 0
+  actorPreferredStat: 3

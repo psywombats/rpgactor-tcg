@@ -39,20 +39,37 @@ namespace RpgActorTGC
             {
                 return 1;
             }
+
+            if (Data.stats?.tcg != null)
+            {
+                // maxes out at 10 if it exists, so all later values must be >10 so as to not penalize those that opt in
+                return Data.stats.tcg.DistanceFromCard(card);
+            }
+            
             var matchingClass = card.Data.actorPreferredClasses.FirstOrDefault(tryClass => Classes.Any(tryClass.Contains));
             if (matchingClass != null)
             {
                 // score later classes in the data list higher
-                return 2 + card.Data.actorPreferredClasses.IndexOf(matchingClass);
+                return 10 + card.Data.actorPreferredClasses.IndexOf(matchingClass);
             }
 
             if (Data.stats?.BestStats != null && Data.stats.BestStats.Contains(card.Data.actorPreferredStat))
             {
-                return 5;
+                return 11;
+            }
+
+            if (Data.stats != null)
+            {
+                // might as well prioritize people engaged with the rpg.actor system
+                // the more stats you have, the closer you are considered to every card
+                var dist = 12;
+                dist += Data.stats.rmmz == null ? 1 : 0;
+                dist += Data.stats.dnd == null ? 1 : 0;
+                return dist;
+                // TODO: more+better scoring criteria
             }
             
-            // TODO: better scoring criteria
-            return Data.stats == null ? 20 : 10;
+            return 15;
         }
     }
 }

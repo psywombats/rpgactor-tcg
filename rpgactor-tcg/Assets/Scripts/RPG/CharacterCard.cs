@@ -33,10 +33,17 @@ namespace RpgActorTGC
             {
                 if (abilString == null)
                 {
-                    abilString = "";
-                    foreach (var card in AbilityCards)
+                    if (AbilityCards.Count == 1)
                     {
-                        abilString += $"({card.GetShortDescription(this)})";
+                        return AbilityCards[0].GetShortDescription(this);
+                    }
+                    else
+                    {
+                        abilString = "";
+                        foreach (var card in AbilityCards)
+                        {
+                            abilString += $"({card.GetShortDescription(this)})";
+                        }
                     }
                 }
                 return abilString;

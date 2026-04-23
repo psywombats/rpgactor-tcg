@@ -7,7 +7,7 @@ namespace RpgActorTGC
     [JsonObject(MemberSerialization.OptIn)]
     public class RPGActorStatsData
     {
-        [JsonProperty] public RPGActorTCGData tcg;
+        [JsonProperty] public RPGActorStatsTCG tcg;
         [JsonProperty] public RPGActorStatsRMMZ rmmz;
         [JsonProperty] public RPGActorStatsDND dnd;
         [JsonProperty("$type")] public string type;

@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac9a71f37cfe406697db579ca837ad20, type: 3}
   m_Name: WarheadDebuffAllDef
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.WHBuffStat
-  abilityName: Web
-  abilityDesc: Reduces the speed of all enemy followers by {0}.
-  isContinuous: 0
-  targetsLeader: 0
+  abilityName: Melt
+  abilityDesc: Reduces the defense of all characters by {0}.
+  anim: {fileID: 0}
+  targetsLeader: 1
   targetsHeroes: 1
   targetsLocal: 0
-  targetsFriendly: 0
+  targetsFriendly: 1
   targetsHostile: 1
-  stat: 6
+  stat: 5
