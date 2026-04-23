@@ -21,6 +21,7 @@ namespace RpgActorTGC
 
         protected override Task ApplyToVictimAsync(BattleModel battle, Unit caster, AbilityInstance instance, int power, Unit victim)
         {
+            if (!battle.IsSim) battle.View.ViewForUnit[victim].FlashAsync(instance.Element.Info().PrimaryColor).Forget();
             victim[stat] += power;
             if (victim[stat] < 0) victim[stat] = 0;
             if (battle.UseVerboseLogging) battle.SimLog($"Raised {victim.CompositionString} {stat.Info().StatName} by {power} to {victim[stat]}");

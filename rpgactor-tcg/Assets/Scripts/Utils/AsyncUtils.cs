@@ -24,7 +24,7 @@ public static class AsyncUtils
         }
         else
         {
-            await Task.Run(() => task);
+            await Task.Run(task);
         }
     }
     

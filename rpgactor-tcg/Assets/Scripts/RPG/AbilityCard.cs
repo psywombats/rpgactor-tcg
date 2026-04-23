@@ -1,4 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using Effekseer;
+using JetBrains.Annotations;
 
 namespace RpgActorTGC
 {
@@ -9,6 +10,7 @@ namespace RpgActorTGC
         public int Power => Data.power;
         public int Cost => Data.mpCost;
         public bool IsContinuous => Data.IsContinuous;
+        public EffekseerEffectAsset Anim => Data.anim;
         
         public AbilityCard(AbilityData data)
         {
@@ -30,8 +32,13 @@ namespace RpgActorTGC
         }
 
         public string GetLongDescription([CanBeNull] CharacterCard owner, bool pretty = false)
-            => $"{string.Format(Data.GetAbilityDesc(owner?.Data), Power)}. This ability activates " +
-               $"{(!Data.IsContinuous ? "once" : "every turn")} the party has {Data.mpCost} MP.";
+        {
+            var desc = string.Format(Data.GetAbilityDesc(owner?.Data), Power);
+            if (Data.mpCost > 0)
+                desc += $"This ability activates {(!Data.IsContinuous ? "once" : "every turn")} the " +
+                        $"party has {Data.mpCost} MP.";
+            return desc;
+        }
 
         public override string ToString() => GetShortDescription(null);
     }

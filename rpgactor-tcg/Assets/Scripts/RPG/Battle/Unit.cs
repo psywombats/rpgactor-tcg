@@ -13,6 +13,7 @@ namespace RpgActorTGC
         public int HP => (int)this[Stat.HP];
         public LaneType Lane { get; set; }
         public SpritesheetData Sprite => Card.Sprite;
+        public Element Element => Card.Element;
         
         public bool IsLeader => Card.IsLeader;
         public bool IsDead => HP <= 0;
@@ -73,6 +74,7 @@ namespace RpgActorTGC
             }
 
             if (battle.UseVerboseLogging) battle.SimLog($"Next up: {StateString}");
+            if (!battle.IsSim) await battle.View.ViewForUnit[this].AnimateTurnStartAsync();
 
             if (this[Stat.MP] > 0)
             {

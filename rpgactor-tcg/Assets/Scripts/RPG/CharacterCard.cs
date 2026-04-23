@@ -11,6 +11,7 @@ namespace RpgActorTGC
         public List<AbilityCard> AbilityCards { get; } = new();
         public StatSet Stats => Data.stats;
         public bool IsLeader => Data.isLeader;
+        public Element Element => Data.element;
         
         public int UnlocksAt => CardCache.Instance.GetWinsRequiredForUnlock(Data);
         public bool IsUnlocked => CampaignManager.Instance.MyCards.Contains(this);

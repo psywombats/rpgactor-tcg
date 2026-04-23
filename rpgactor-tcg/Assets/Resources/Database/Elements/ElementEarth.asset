@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c94457e7c1944390b56cc53fe371c00a, type: 3}
+  m_Name: ElementEarth
+  m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.ElementInfo
+  associatedElement: 3
+  elementName: 
+  description: 
+  primaryColor: {r: 0.24313726, g: 0.09411765, b: 0, a: 1}
+  cardTint: {r: 0, g: 0, b: 0, a: 0}
+  icon: {fileID: -1184932157, guid: 1d858cec186b62e4da5dce96c5ddfeac, type: 3}
+  castAnim: {fileID: 11400000, guid: c6f568f016af38343aa05b8306f2c3f3, type: 2}

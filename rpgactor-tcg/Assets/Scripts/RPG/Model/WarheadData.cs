@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Effekseer;
 using JetBrains.Annotations;
 using UnityEngine;
 
@@ -10,10 +11,13 @@ namespace RpgActorTGC
         [SerializeField] private string abilityName;
         [SerializeField][Tooltip("Use {0} for the power variable")] protected string abilityDesc;
         [SerializeField] private bool isContinuous;
+        [SerializeField] private EffekseerEffectAsset anim;
         
         public bool IsContinuous => isContinuous;
         
         public virtual bool HasPower => true;
+        
+        public EffekseerEffectAsset Anim => anim;
         
         public abstract Task ActivateAsync(BattleModel battle, Unit caster, AbilityInstance instance, int power);
         public abstract string GetUseMessage(BattleModel battle, Unit caster, AbilityInstance instance, int power);

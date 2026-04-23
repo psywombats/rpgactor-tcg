@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Effekseer;
 using UnityEngine;
 
 namespace RpgActorTGC
@@ -10,6 +11,7 @@ namespace RpgActorTGC
         [SerializeField] private WarheadData warhead;
         [SerializeField] public int mpCost;
         [SerializeField] public int power;
+        [SerializeField] public EffekseerEffectAsset anim;
         
          public bool IsContinuous => warhead.IsContinuous;
 

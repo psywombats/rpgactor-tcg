@@ -2,7 +2,9 @@
 using System.Linq;
 using System.Threading.Tasks;
 using DG.Tweening;
+using Effekseer;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace RpgActorTGC
 {
@@ -26,10 +28,21 @@ namespace RpgActorTGC
         [SerializeField] private float attackMoveBackDuration = .4f;
         [SerializeField] private float shakeDuration = .2f;
         [SerializeField] private Vector2 shakeStrength = new(0f, 20f);
-        [SerializeField] private float shakeRandomness = 0f;
+        [SerializeField] private float shakeRandomness = 10f;
         [SerializeField] private int shakeVibrato = 10;
+        [Space]
+        [SerializeField] private Image overlaySprite;
+        [SerializeField] private float flashDuration = .2f;
+        [SerializeField] private Color healColor = new(0.3f, .4f, .7f);
+        [SerializeField] private Color damageColor = new(1f, 0f, 0f, .7f);
+        [SerializeField] private Color turnStartColor = new(1f, 1f, 1f, .5f);
+        [Space]
+        [SerializeField] private BattleAnimPlayer animPlayer;
 
         public Unit Unit { get; private set; }
+
+        private RectTransform rectTrans;
+        private RectTransform RectTrans => rectTrans ??= GetComponent<RectTransform>();
 
         private Vector3 initialPos;
 
@@ -85,12 +98,34 @@ namespace RpgActorTGC
             var str = dmg > 0 ? shakeStrength : Vector2.zero;
             return Task.WhenAll(
                 spriteTransform.DOShakeAnchorPos(shakeDuration, str, shakeVibrato, shakeRandomness).AsTask(),
-                hpSlider.TweenTo(Unit.HP, attackMoveBackDuration));
+                hpSlider.TweenTo(Unit.HP, attackMoveBackDuration),
+                FlashAsync(damageColor));
         }
 
         public Task SwapToUnitPosAsync(UnitView unit2View)
         {
             return spriteTransform.DOMove(unit2View.spriteTransform.position, attackMoveBackDuration).AsTask();
+        }
+
+        public async Task AnimateTurnStartAsync()
+        {
+            await new WaitForSeconds(flashDuration / 2f);
+            FlashAsync(turnStartColor).Forget();
+        }
+
+        public Task AnimateCastAsync(AbilityInstance abil)
+        {
+            return Task.WhenAll(
+                PlayAnimAsync(abil.Element.Info().CastAnim),
+                FlashAsync(abil.Element.Info().PrimaryColor));
+        }
+
+        public Task PlayAnimAsync(EffekseerEffectAsset effect) => animPlayer.PlayEffectAsync(RectTrans, effect);
+
+        public async Task FlashAsync(Color color)
+        {
+            await overlaySprite.DOColor(color, flashDuration / 2f).AsTask();
+            await overlaySprite.DOColor(Color.clear, flashDuration / 2f).AsTask();
         }
     }
 }

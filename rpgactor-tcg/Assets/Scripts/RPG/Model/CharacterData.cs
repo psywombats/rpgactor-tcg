@@ -12,6 +12,7 @@ namespace RpgActorTGC
         [Space] 
         [SerializeField] public bool isLeader;
         [SerializeField] public int rarity;
+        [SerializeField] public Element element;
         [SerializeField] public StatSet stats;
         [SerializeField] public List<AbilityData> abilities;
         [Space]

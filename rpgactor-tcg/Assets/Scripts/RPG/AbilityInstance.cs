@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Effekseer;
 
 namespace RpgActorTGC
 {
@@ -9,6 +10,9 @@ namespace RpgActorTGC
         public Party Party => Owner.Party;
         
         public bool HasActivated { get; private set; }
+        
+        public Element Element => Owner.Element;
+        public EffekseerEffectAsset Anim => Card.Anim;
         
         public string GetShortDescription(bool pretty = false) => Card.GetShortDescription(Owner.Card, pretty);
         public string GetLongDescription(bool pretty = false) => Card.GetLongDescription(Owner.Card, pretty);
@@ -32,20 +36,23 @@ namespace RpgActorTGC
                 HasActivated = true;
                 if (!battle.IsSim)
                 {
+                    battle.View.ViewForUnit[Owner].AnimateCastAsync(this).Forget();
                     await battle.View.WriteLineAsync($"{Owner.PrettyName} activated {GetShortDescription()}: ");
                 }
                 await Card.Data.ActivateAsync(battle, Owner, this);
                 if (!battle.IsSim)
                 {
-                    AnimateAsync().Forget();
                     await battle.View.WriteLineAsync(Card.Data.GetUseMessage(battle, Owner, this), true);
                 }
             }
         }
 
-        private Task AnimateAsync()
+        public Task AnimateOnTargetAsync(BattleModel battle, Unit target)
         {
-            // TODO: animateasync
+            if (!battle.IsSim && Card.Anim != null)
+            {
+                return battle.View.ViewForUnit[target].PlayAnimAsync(Anim);
+            }
             return Task.CompletedTask;
         }
     }

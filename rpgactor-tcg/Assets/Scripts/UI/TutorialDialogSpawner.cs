@@ -50,7 +50,7 @@ namespace RpgActorTGC
 
         private async Task SpawnAsync()
         {
-            await Task.Delay((int)(delay * 1000f));
+            await new WaitForSeconds(delay);
             mainView.PopDialogAsync(message).Forget();
             hasPopped = true;
         }
