@@ -39,11 +39,16 @@ namespace RpgActorTGC
             {
                 return 1;
             }
-            var matchingClass = card.Data.actorPreferredClasses.FirstOrDefault(@class => Classes.Contains(@class));
+            var matchingClass = card.Data.actorPreferredClasses.FirstOrDefault(tryClass => Classes.Any(tryClass.Contains));
             if (matchingClass != null)
             {
                 // score later classes in the data list higher
                 return 2 + card.Data.actorPreferredClasses.IndexOf(matchingClass);
+            }
+
+            if (Data.stats?.BestStat == card.Data.actorPreferredStat)
+            {
+                return 5;
             }
             
             // TODO: better scoring criteria

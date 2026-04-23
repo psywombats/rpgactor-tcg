@@ -19,6 +19,7 @@ namespace RpgActorTGC
         [SerializeField] public string actorPreferredName;
         [SerializeField] public List<string> actorPreferredClasses;
         [SerializeField] public string actorPreferredDID;
+        [SerializeField] public GenericRPGStat actorPreferredStat;
 
         public string Key => name;
     }
