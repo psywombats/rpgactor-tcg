@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 797b1c6c9c724ba2936116a9c204bd58, type: 3}
   m_Name: LeaderSlowMP
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.CharacterData
-  disabled: 0
   characterName: SlowMP
   sprite: {fileID: 11400000, guid: 1ce1fa6a2bf005a4bbd648a451717290, type: 2}
   isLeader: 1
+  rarity: 0
+  element: 0
   stats:
     serializedStats:
       keys:
@@ -34,3 +35,4 @@ MonoBehaviour:
   actorPreferredName: 
   actorPreferredClasses: []
   actorPreferredDID: 
+  actorPreferredStat: 1

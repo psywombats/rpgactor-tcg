@@ -41,21 +41,19 @@ namespace RpgActorTGC
             }
         }
 
-        public GenericRPGStat BestStat
+        private HashSet<GenericRPGStat> bestStats;
+        public HashSet<GenericRPGStat> BestStats
         {
             get
             {
-                if (dnd?.abilities != null)
+                if (bestStats == null)
                 {
-                    return dnd.abilities.HighestStat;
+                    bestStats = new HashSet<GenericRPGStat>();
+                    if (dnd?.abilities != null) bestStats.Add(dnd.abilities.HighestStat);
+                    if (rmmz?.HighestStat != null) bestStats.Add(rmmz.HighestStat);
                 }
 
-                if (rmmz != null)
-                {
-                    return rmmz.HighestStat;
-                }
-
-                return GenericRPGStat.None;
+                return bestStats;
             }
         }
     }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c94457e7c1944390b56cc53fe371c00a, type: 3}
   m_Name: ElementNone
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.ElementInfo
-  associatedElement: 1
+  associatedElement: 0
   elementName: 
   description: 
   primaryColor: {r: 0.7372549, g: 0.7647059, b: 0.79607844, a: 1}

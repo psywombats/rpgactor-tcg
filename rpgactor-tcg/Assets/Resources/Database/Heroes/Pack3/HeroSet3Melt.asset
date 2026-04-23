@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 797b1c6c9c724ba2936116a9c204bd58, type: 3}
-  m_Name: HeroSimpleMpBurst
+  m_Name: HeroSet3Melt
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.CharacterData
-  characterName: Simple MP Burst
-  sprite: {fileID: 11400000, guid: 8df8c0743b247ee49b0021e6bd1a1622, type: 2}
+  characterName: Melt
+  sprite: {fileID: 11400000, guid: 2789bd16b3ff1e7479c42754fca1f3e8, type: 2}
   isLeader: 0
-  rarity: 0
-  element: 3
+  rarity: 3
+  element: 1
   stats:
     serializedStats:
       keys:
@@ -24,16 +24,16 @@ MonoBehaviour:
       - ATK
       - SPD
       values:
-      - 8
-      - 3
-      - 6
+      - 12
+      - 2
+      - 15
   abilities:
-  - warhead: {fileID: 11400000, guid: 111d85d06b355bb40a334e3c9f1d816f, type: 2}
-    mpCost: 4
-    power: 7
+  - warhead: {fileID: 0}
+    mpCost: 0
+    power: 0
     anim: {fileID: 0}
+    isContinuous: 0
   actorPreferredName: 
-  actorPreferredClasses:
-  - Wizard
+  actorPreferredClasses: []
   actorPreferredDID: 
-  actorPreferredStat: 3
+  actorPreferredStat: 0

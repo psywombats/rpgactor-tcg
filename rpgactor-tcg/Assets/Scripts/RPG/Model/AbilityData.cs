@@ -12,8 +12,9 @@ namespace RpgActorTGC
         [SerializeField] public int mpCost;
         [SerializeField] public int power;
         [SerializeField] public EffekseerEffectAsset anim;
+        [SerializeField] private bool isContinuous;
         
-         public bool IsContinuous => warhead.IsContinuous;
+         public bool IsContinuous => isContinuous;
 
         public Task ActivateAsync(BattleModel battle, Unit caster, AbilityInstance instance) =>
             warhead.ActivateAsync(battle, caster, instance, power);

@@ -16,6 +16,7 @@ MonoBehaviour:
   sprite: {fileID: 11400000, guid: 47d6a36668959a24692242dd35fbe6f2, type: 2}
   isLeader: 0
   rarity: 1
+  element: 2
   stats:
     serializedStats:
       keys:
@@ -30,9 +31,11 @@ MonoBehaviour:
   - warhead: {fileID: 11400000, guid: 16ec65541a98d62489ce6d4aad6e94f9, type: 2}
     mpCost: 3
     power: 1
+    anim: {fileID: 0}
   actorPreferredName: 
   actorPreferredClasses:
   - Ninja
   - Swordmaster
   - Swordsman
   actorPreferredDID: 
+  actorPreferredStat: 4

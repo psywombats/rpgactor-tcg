@@ -13,18 +13,24 @@ MonoBehaviour:
   m_Name: Database
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.ScriptableDB
   orderedTypeNames:
+  - ElementInfo
   - CharacterData
   - StatInfo
   - SpritesheetData
   orderedScriptSets:
   - scriptables:
+    - {fileID: 11400000, guid: 7a1304210dec9ed488d1ec799d26b47c, type: 2}
+    - {fileID: 11400000, guid: c5a9e5846f45ed84d8aab9c824b9b5f2, type: 2}
+    - {fileID: 11400000, guid: 76e042ad8bac7f942944e4e9837192e2, type: 2}
+    - {fileID: 11400000, guid: d4d98189e500aea4fb0fefaea3519608, type: 2}
+    - {fileID: 11400000, guid: a8a73bca7d0274748a0fa3250b86e6b6, type: 2}
+    - {fileID: 11400000, guid: e9c521579c85ccb4696ea5a13fd5fba7, type: 2}
+    - {fileID: 11400000, guid: b1fae61155063214ab2a1c9bae486631, type: 2}
+  - scriptables:
     - {fileID: 11400000, guid: bff8d79b220b1c54fba8c39224ccb938, type: 2}
     - {fileID: 11400000, guid: fef5b674502385442ab7aeca2ac281b7, type: 2}
     - {fileID: 11400000, guid: ec62e36edcc0e9c47a1bb0d36377f861, type: 2}
     - {fileID: 11400000, guid: de61a5dc690835d4487fbf101784acef, type: 2}
-    - {fileID: 11400000, guid: a4f2af3b46d7519418177866aea661ef, type: 2}
-    - {fileID: 11400000, guid: 6c557b3147ca40d47989ec9234a753da, type: 2}
-    - {fileID: 11400000, guid: d629d31f594595a43ae80b54a80a6b36, type: 2}
     - {fileID: 11400000, guid: 17b8f9499b5a791428e8546c1540c1aa, type: 2}
     - {fileID: 11400000, guid: b8c9a1aa1f7d4304bbdff988c22c87d2, type: 2}
     - {fileID: 11400000, guid: 7d2e3244a84319c44b49d313ce3fdc9b, type: 2}
@@ -33,12 +39,15 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 5390c95831f50054f8a96dc74e545082, type: 2}
     - {fileID: 11400000, guid: 56047af1adb575f43aa478ee2293549d, type: 2}
     - {fileID: 11400000, guid: 1ca8ec9ea83f53541a764bf12a96a69e, type: 2}
-    - {fileID: 11400000, guid: 51222a2530a726f4b9f7ee0801ec0e15, type: 2}
-    - {fileID: 11400000, guid: 747476c9f64d68146913f3aac4b5fd70, type: 2}
-    - {fileID: 11400000, guid: 9873e83e6d442e5479c34b26c96d6731, type: 2}
+    - {fileID: 11400000, guid: a4f2af3b46d7519418177866aea661ef, type: 2}
+    - {fileID: 11400000, guid: 6c557b3147ca40d47989ec9234a753da, type: 2}
+    - {fileID: 11400000, guid: d629d31f594595a43ae80b54a80a6b36, type: 2}
     - {fileID: 11400000, guid: b2657d2a927a20b4da1dae3d7f98be50, type: 2}
     - {fileID: 11400000, guid: 2bd479945d6128144b507bfac9398c8f, type: 2}
     - {fileID: 11400000, guid: 0ea7c156f45136040902bfe00ae245e0, type: 2}
+    - {fileID: 11400000, guid: 51222a2530a726f4b9f7ee0801ec0e15, type: 2}
+    - {fileID: 11400000, guid: 747476c9f64d68146913f3aac4b5fd70, type: 2}
+    - {fileID: 11400000, guid: 9873e83e6d442e5479c34b26c96d6731, type: 2}
   - scriptables:
     - {fileID: 11400000, guid: bc6aa186656c3f94da092760492f1d48, type: 2}
     - {fileID: 11400000, guid: 8f84370aa909206498f4761b3ec4406d, type: 2}

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c94457e7c1944390b56cc53fe371c00a, type: 3}
   m_Name: ElementIce
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.ElementInfo
-  associatedElement: 0
-  elementName: 
-  description: 
+  associatedElement: 5
+  elementName: Ice
+  description: General Winter stands alone.
   primaryColor: {r: 0.20392157, g: 0.28235295, b: 0.39215687, a: 1}
   cardTint: {r: 0, g: 0, b: 0, a: 0}
   icon: {fileID: -1153841807, guid: 1d858cec186b62e4da5dce96c5ddfeac, type: 3}

@@ -16,6 +16,7 @@ MonoBehaviour:
   sprite: {fileID: 11400000, guid: 745a645e78cfe1c4e8422e3eb16b3832, type: 2}
   isLeader: 0
   rarity: 1
+  element: 3
   stats:
     serializedStats:
       keys:
@@ -30,8 +31,10 @@ MonoBehaviour:
   - warhead: {fileID: 11400000, guid: 1c95981844a94b049bfc19cf331d872f, type: 2}
     mpCost: 0
     power: 1
+    anim: {fileID: 0}
   actorPreferredName: 
   actorPreferredClasses:
   - Archer
   - Ranger
   actorPreferredDID: 
+  actorPreferredStat: 4

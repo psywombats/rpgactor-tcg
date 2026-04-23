@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c94457e7c1944390b56cc53fe371c00a, type: 3}
   m_Name: ElementFire
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.ElementInfo
-  associatedElement: 0
-  elementName: 
-  description: 
+  associatedElement: 1
+  elementName: Fire
+  description: Blow it up. Everything.
   primaryColor: {r: 0.8509804, g: 0.4862745, b: 0, a: 1}
   cardTint: {r: 0, g: 0, b: 0, a: 0}
   icon: {fileID: -2114358682, guid: 1d858cec186b62e4da5dce96c5ddfeac, type: 3}

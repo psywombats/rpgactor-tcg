@@ -10,30 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 797b1c6c9c724ba2936116a9c204bd58, type: 3}
-  m_Name: HeroSimpleMpBurst
+  m_Name: HeroSet3Counter
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.CharacterData
-  characterName: Simple MP Burst
-  sprite: {fileID: 11400000, guid: 8df8c0743b247ee49b0021e6bd1a1622, type: 2}
+  characterName: Counter
+  sprite: {fileID: 11400000, guid: b2e4c9aa9ed1711469b2c0273123dddc, type: 2}
   isLeader: 0
-  rarity: 0
-  element: 3
+  rarity: 3
+  element: 2
   stats:
     serializedStats:
       keys:
       - MHP
       - ATK
+      - DEF
       - SPD
       values:
-      - 8
+      - 12
       - 3
-      - 6
+      - 1
+      - 10
   abilities:
-  - warhead: {fileID: 11400000, guid: 111d85d06b355bb40a334e3c9f1d816f, type: 2}
-    mpCost: 4
-    power: 7
+  - warhead: {fileID: 11400000, guid: 3b3e762475e04c0489b34a1ed9c926dd, type: 2}
+    mpCost: 7
+    power: 0
     anim: {fileID: 0}
   actorPreferredName: 
-  actorPreferredClasses:
-  - Wizard
+  actorPreferredClasses: []
   actorPreferredDID: 
-  actorPreferredStat: 3
+  actorPreferredStat: 4

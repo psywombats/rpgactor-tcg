@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c94457e7c1944390b56cc53fe371c00a, type: 3}
   m_Name: ElementEarth
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.ElementInfo
-  associatedElement: 3
-  elementName: 
-  description: 
+  associatedElement: 4
+  elementName: Earth
+  description: The battle is best won in the trenches.
   primaryColor: {r: 0.24313726, g: 0.09411765, b: 0, a: 1}
   cardTint: {r: 0, g: 0, b: 0, a: 0}
   icon: {fileID: -1184932157, guid: 1d858cec186b62e4da5dce96c5ddfeac, type: 3}

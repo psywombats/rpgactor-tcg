@@ -16,6 +16,7 @@ MonoBehaviour:
   sprite: {fileID: 11400000, guid: cff5887219159e04d840a554205b8895, type: 2}
   isLeader: 1
   rarity: 2
+  element: 6
   stats:
     serializedStats:
       keys:
@@ -32,8 +33,11 @@ MonoBehaviour:
   - warhead: {fileID: 11400000, guid: 1959bd39beb507d4cae9b2097873c895, type: 2}
     mpCost: 4
     power: 1
+    anim: {fileID: 0}
+    isContinuous: 1
   actorPreferredName: 
   actorPreferredClasses:
   - Healer
   - White Mage
   actorPreferredDID: 
+  actorPreferredStat: 5

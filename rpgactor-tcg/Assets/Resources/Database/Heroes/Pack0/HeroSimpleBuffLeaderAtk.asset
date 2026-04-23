@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 797b1c6c9c724ba2936116a9c204bd58, type: 3}
   m_Name: HeroSimpleBuffLeaderAtk
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.CharacterData
-  disabled: 0
   characterName: Simple Buff Leader Atk
   sprite: {fileID: 11400000, guid: 711ee0495c0454243bf2b3150734c44d, type: 2}
   isLeader: 0
+  rarity: 0
+  element: 2
   stats:
     serializedStats:
       keys:
@@ -30,7 +31,9 @@ MonoBehaviour:
   - warhead: {fileID: 11400000, guid: 3c2b6a883981a09439a2434691bfb65a, type: 2}
     mpCost: 6
     power: 2
+    anim: {fileID: 0}
   actorPreferredName: 
   actorPreferredClasses:
   - Warlock
   actorPreferredDID: 
+  actorPreferredStat: 5

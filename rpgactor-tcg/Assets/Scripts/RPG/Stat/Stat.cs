@@ -16,6 +16,7 @@ namespace RpgActorTGC
         ARCHER = 7,
         DUALSTRIKE = 8,
         BLOCK = 9,
+        COUNTER = 10,
     }
     
     public static class StatExtensions

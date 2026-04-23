@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ScriptableConstantsData
   deckCount: 3
   npcCount: 30
-  rarityUnlockThresholds: 20,35
+  rarityUnlockThresholds: 20,35,60
   rpgactorSpriteFormat: {fileID: 11400000, guid: c5f4b580f80a4f94dbe19bebd977aac1, type: 2}
   defaultNetworkFallbackSprite: {fileID: 11400000, guid: 33a4ae0650719c6489c48736a6ef2715, type: 2}
   oppoNames: {fileID: 11400000, guid: ba86ef9a39ce0d7438348eebd98421fb, type: 2}
@@ -23,4 +23,4 @@ MonoBehaviour:
     generationSize: 30
     generationWinnerCount: 10
     generationParentCount: 15
-    mutationRate: 0.2
+    mutationRate: 0.5

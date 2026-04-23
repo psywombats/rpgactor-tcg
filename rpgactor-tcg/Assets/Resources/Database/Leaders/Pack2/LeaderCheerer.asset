@@ -16,6 +16,7 @@ MonoBehaviour:
   sprite: {fileID: 11400000, guid: 2de46508177995544a63902cfa78a8c6, type: 2}
   isLeader: 1
   rarity: 2
+  element: 1
   stats:
     serializedStats:
       keys:
@@ -32,6 +33,8 @@ MonoBehaviour:
   - warhead: {fileID: 11400000, guid: 21325e67c4fab0a4aa10969da3269f93, type: 2}
     mpCost: 12
     power: 2
+    anim: {fileID: 0}
   actorPreferredName: 
   actorPreferredClasses: []
   actorPreferredDID: 
+  actorPreferredStat: 6

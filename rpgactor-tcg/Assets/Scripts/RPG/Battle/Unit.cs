@@ -129,6 +129,11 @@ namespace RpgActorTGC
                 if (battle.UseVerboseLogging) battle.SimLog("Knock out!!");
                 if (!battle.IsSim) await battle.View.WriteLineAsync($"{opponent.PrettyName} has fallen!", true);
             }
+            else if (opponent.Stats.Is(Stat.COUNTER))
+            {
+                if (!battle.IsSim) await battle.View.WriteLineAsync($"{opponent.PrettyName} counterattacks.");
+                await opponent.AttackUnitAsync(battle, this);
+            }
         }
 
         public async Task<int> TakeDamageAsync(BattleModel battle, int dmg)

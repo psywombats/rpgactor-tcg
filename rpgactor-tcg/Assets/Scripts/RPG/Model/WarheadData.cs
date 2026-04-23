@@ -6,14 +6,11 @@ using UnityEngine;
 
 namespace RpgActorTGC
 {
-    public abstract class WarheadData :  ScriptableObject
+    public abstract class WarheadData : ScriptableObject
     {
         [SerializeField] private string abilityName;
         [SerializeField][Tooltip("Use {0} for the power variable")] protected string abilityDesc;
-        [SerializeField] private bool isContinuous;
         [SerializeField] private EffekseerEffectAsset anim;
-        
-        public bool IsContinuous => isContinuous;
         
         public virtual bool HasPower => true;
         

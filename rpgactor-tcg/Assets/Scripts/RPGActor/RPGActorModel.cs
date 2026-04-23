@@ -46,7 +46,7 @@ namespace RpgActorTGC
                 return 2 + card.Data.actorPreferredClasses.IndexOf(matchingClass);
             }
 
-            if (Data.stats?.BestStat == card.Data.actorPreferredStat)
+            if (Data.stats?.BestStats != null && Data.stats.BestStats.Contains(card.Data.actorPreferredStat))
             {
                 return 5;
             }

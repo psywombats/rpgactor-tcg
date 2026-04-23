@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 797b1c6c9c724ba2936116a9c204bd58, type: 3}
   m_Name: HeroSimpleDmgLeader
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.CharacterData
-  disabled: 0
   characterName: Simple Dmg Leader
   sprite: {fileID: 11400000, guid: 7a0be953aa37c1b49ac503bbfe2801d8, type: 2}
   isLeader: 0
+  rarity: 0
+  element: 3
   stats:
     serializedStats:
       keys:
@@ -30,8 +31,10 @@ MonoBehaviour:
   - warhead: {fileID: 11400000, guid: 8b64447a8ce2b8948ad43efa2ae63ffe, type: 2}
     mpCost: 14
     power: 10
+    anim: {fileID: 11400000, guid: 42a9d0fc4fb2e5f4e87689d9ca931cdb, type: 2}
   actorPreferredName: 
   actorPreferredClasses:
   - Warlock
   - Wizard
   actorPreferredDID: did:plc:myswpfp7hcwirhhc7oudsq5v
+  actorPreferredStat: 3
