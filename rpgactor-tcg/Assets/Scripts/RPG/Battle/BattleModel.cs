@@ -50,11 +50,17 @@ namespace RpgActorTGC
 
         public Unit GetOppositeUnit(Unit unit)
         {
+            var oppositeParty = unit.Party == Player1 ? Player2 : Player1;
             if (unit.Lane == LaneType.Back)
             {
-                return null;
+                return unit.Stats.Is(Stat.ARCHER) ? oppositeParty[LaneType.Center] : null;
             }
-            var oppositeParty = unit.Party == Player1 ? Player2 : Player1;
+
+            if (unit.Stats.Is(Stat.ARCHER))
+            {
+                return oppositeParty[LaneType.Back];
+            }
+            
             var oppositeLane = unit.Lane switch
             {
                 LaneType.Left  => LaneType.Right,

@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: StatATK
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.StatInfo
   associatedStat: 4
+  isPrimary: 1
+  isFlag: 0
   abbreviation: ATK
   statName: Attack
   icon: {fileID: 215550801, guid: da1903ee954764a4e8e88adc02e4fe0f, type: 3}

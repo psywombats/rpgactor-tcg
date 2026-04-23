@@ -91,11 +91,14 @@ namespace RpgActorTGC
                 var opponent = battle.GetOppositeUnit(this);
                 if (opponent != null)
                 {
-                    await AttackUnitAsync(battle, opponent);
-                    if (!battle.IsSim)
+                    for (var i = 0; i < (Stats.Is(Stat.DUALSTRIKE) ? 2 : 1); i++)
                     {
-                        battle.View.RepopulateUnit(this);
-                        battle.View.RepopulateUnit(opponent);
+                        await AttackUnitAsync(battle, opponent);
+                        if (!battle.IsSim)
+                        {
+                            battle.View.RepopulateUnit(this);
+                            battle.View.RepopulateUnit(opponent);
+                        }
                     }
                 }
                 else
@@ -111,11 +114,14 @@ namespace RpgActorTGC
 
         public async Task AttackUnitAsync(BattleModel battle, Unit opponent)
         {
+            if (opponent.IsDead) return;
             var dmg = (int)(this[Stat.ATK] - opponent[Stat.DEF]);
+            if (dmg < 0) dmg = 0;
+            dmg = await opponent.TakeDamageAsync(battle, dmg);
             if (battle.UseVerboseLogging) battle.SimLog($"Attacked {opponent.CompositionString} for {dmg} damage " +
                                                      $"({opponent[Stat.HP]} => {opponent[Stat.HP] - dmg})");
             if (!battle.IsSim) await battle.View.AnimateAttackAsync(this, opponent, dmg);
-            opponent.TakeDamage(battle, dmg);
+            opponent.CleanupPostAttack(battle);
             if (opponent.IsDead)
             {
                 if (battle.UseVerboseLogging) battle.SimLog("Knock out!!");
@@ -123,9 +129,25 @@ namespace RpgActorTGC
             }
         }
 
-        public void TakeDamage(BattleModel battle, int dmg)
+        public async Task<int> TakeDamageAsync(BattleModel battle, int dmg)
         {
-            this[Stat.HP] -= dmg;
+            if (this[Stat.BLOCK] > 0)
+            {
+                this[Stat.BLOCK] -= 1;
+                if (!battle.IsSim) await battle.View.WriteLineAsync($"...but {PrettyName} blocked the damage.");
+                return 0;
+            }
+            else
+            {
+                this[Stat.HP] -= dmg;
+                if (HP > this[Stat.MHP]) this[Stat.HP] = this[Stat.MHP];
+                if (HP < 0) this[Stat.HP] = 0;
+                return dmg;
+            }
+        }
+
+        public void CleanupPostAttack(BattleModel battle)
+        {
             if (IsDead)
             {
                 var promotion = Party.CheckPromotion();

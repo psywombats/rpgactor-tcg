@@ -13,7 +13,10 @@ namespace RpgActorTGC
         public bool IsLeader => Data.isLeader;
         
         public int UnlocksAt => CardCache.Instance.GetWinsRequiredForUnlock(Data);
-        public bool IsUnlocked => CampaignManager.Instance.MyHeroes.Contains(this);
+        public bool IsUnlocked => CampaignManager.Instance.MyCards.Contains(this);
+        
+        public int LifetimeWins { get; set; }
+        public int LifetimeLosses { get; set; }
 
         public SpritesheetData Sprite => Actor?.Sprite ?? Data.sprite;
         

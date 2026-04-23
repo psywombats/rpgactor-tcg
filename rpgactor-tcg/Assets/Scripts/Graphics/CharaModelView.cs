@@ -61,10 +61,13 @@ public class CharaModelView : MonoBehaviour
     
     public void Awake()
     {
-        Sprite = defaultSprite;
+        if (Sprite == null)
+        {
+            Sprite = defaultSprite;
+            Animates = defaultAnimates;
+            StepIndex = 0;
+        }
         Facing = defaultDir;
-        Animates = defaultAnimates;
-        StepIndex = 0;
     }
 
     public void SetSpritesheetByTag(string key)

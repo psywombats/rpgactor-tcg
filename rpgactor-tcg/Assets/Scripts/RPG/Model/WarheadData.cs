@@ -13,6 +13,8 @@ namespace RpgActorTGC
         
         public bool IsContinuous => isContinuous;
         
+        public virtual bool HasPower => true;
+        
         public abstract Task ActivateAsync(BattleModel battle, Unit caster, AbilityInstance instance, int power);
         public abstract string GetUseMessage(BattleModel battle, Unit caster, AbilityInstance instance, int power);
         

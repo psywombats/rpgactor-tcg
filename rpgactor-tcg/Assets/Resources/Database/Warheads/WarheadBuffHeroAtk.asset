@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac9a71f37cfe406697db579ca837ad20, type: 3}
   m_Name: WarheadBuffHeroAtk
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.WHBuffStat
-  abilityName: Rage
-  abilityDesc: Raises the caster's attack by {0}.
+  abilityName: Cheer
+  abilityDesc: Raises all follower's ATK by {0}.
   isContinuous: 0
   targetsLeader: 0
-  targetsHeroes: 0
-  targetsLocal: 1
+  targetsHeroes: 1
+  targetsLocal: 0
   targetsFriendly: 1
   targetsHostile: 0
   stat: 4

@@ -49,7 +49,11 @@ namespace RpgActorTGC
             player.Populate(battle);
             await editorTrans.TweenToStateAsync(true, transitionDuration);
             editor.gameObject.SetActive(false);
+            editorTouchBlocker.SetActive(false);
+            
             await player.PlayBattleAsync();
+            
+            editorTouchBlocker.SetActive(true);
             editor.gameObject.SetActive(true);
             await editorTrans.TweenToStateAsync(false, transitionDuration);
             editorTouchBlocker.SetActive(false);
@@ -65,7 +69,7 @@ namespace RpgActorTGC
             editorTouchBlocker.SetActive(true);
             
             tourneyLoadingArea.SetActive(true);
-            await Task.Run(() => CampaignManager.Instance.SimulateRound(editor.Deck));
+            await AsyncUtils.RunInBackgroundIfPossible(() => CampaignManager.Instance.SimulateRound(editor.Deck));
             tourneyLoadingArea.SetActive(false);
 
             resultView.Populate(this, CampaignManager.Instance.Player.CurrentRoundResult);

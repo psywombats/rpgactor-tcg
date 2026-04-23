@@ -45,7 +45,7 @@ namespace RpgActorTGC
             try
             {
                 SetState(InitState.ParsingResponse, "Parsing rpg.actor info...");
-                await Task.Run(() =>
+                await AsyncUtils.RunInBackgroundIfPossible(() =>
                 {
                     fullCachedData = Newtonsoft.Json.JsonConvert.DeserializeObject<RPGActorFullCachedData>(jsonString);
                 });
@@ -64,7 +64,7 @@ namespace RpgActorTGC
                     .Select(actor => new RPGActorModel(actor)).ToList());
                 var toAssign = new HashSet<CharacterCard>(CardCache.Instance.AllCards);
                 ReadAssignmentsFromPlayerPrefs(toAssign);
-                await Task.Run(() => AssignFittingCardsAsync(toAssign));
+                await AsyncUtils.RunInBackgroundIfPossible(() => AssignFittingCardsAsync(toAssign));
                 if (toAssign.Any())
                 {
                     SetState(InitState.Error, $"Could not find actors for {toAssign.Count} cards");

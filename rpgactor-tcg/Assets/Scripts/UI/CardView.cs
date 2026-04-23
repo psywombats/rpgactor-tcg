@@ -65,9 +65,6 @@ namespace RpgActorTGC
             
             nonNullArea.SetActive(Card != null);
             nullArea.SetActive(Card == null);
-
-            lockedTooltip.Message = $"This character is a reward for reaching {card.UnlocksAt} wins";
-            lockedLabel.text = card.UnlocksAt.ToString();
             
             foreach (var obj in leaderObjects)
             {
@@ -84,7 +81,9 @@ namespace RpgActorTGC
                 nameText.text = Card.CharacterName;
                 
                 unlockedArea.SetActive(Card.IsUnlocked);
-                lockedArea.SetActive(Card.IsUnlocked);
+                lockedArea.SetActive(!Card.IsUnlocked);
+                lockedTooltip.Message = $"This character is a reward for reaching {card.UnlocksAt} wins";
+                lockedLabel.text = card.UnlocksAt.ToString();
 
                 mp.Populate((int)Card[Stat.MP]);
                 var statTuples = Card.Stats.ToTuples()

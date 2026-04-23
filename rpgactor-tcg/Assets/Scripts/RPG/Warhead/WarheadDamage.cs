@@ -14,10 +14,9 @@ namespace RpgActorTGC
 
         protected override async Task ApplyToVictimAsync(BattleModel battle, Unit caster, AbilityInstance instance, int power, Unit victim)
         {
+            power = await victim.TakeDamageAsync(battle, power);
             if (!battle.IsSim) await battle.View.ViewForUnit[victim].AnimateDamageAsync(power);
-            
-            victim.TakeDamage(battle, power);
-            if (victim.HP > victim[Stat.MHP]) victim[Stat.HP] = victim[Stat.MHP];
+            victim.CleanupPostAttack(battle);
             
             if (!battle.IsSim) battle.View.RepopulateUnit(victim);
             if (battle.UseVerboseLogging) battle.SimLog($"Damaged {victim.PrettyName} by {power} to {victim.HP}/{victim[Stat.MHP]}");

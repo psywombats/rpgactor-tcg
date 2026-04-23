@@ -1,18 +1,13 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using System;
+using RpgActorTGC;
 
-namespace RpgActorTGC
-{
-    [CustomPropertyDrawer(typeof(StatSet))]
+[CustomPropertyDrawer(typeof(StatSet))]
 public class StatSetDrawer : PropertyDrawer {
 
     public override void OnGUI(Rect pos, SerializedProperty property, GUIContent label) 
     {
-        var serialDictionary = property.FindPropertyRelative("serializedStats");
-        var keys = serialDictionary.FindPropertyRelative("keys");
-        var values = serialDictionary.FindPropertyRelative("values");
-
         EditorGUI.BeginProperty(pos, label, property);
 
         var fieldStyle = new GUIStyle(GUI.skin.textArea) { fixedWidth = 80 };
@@ -22,17 +17,33 @@ public class StatSetDrawer : PropertyDrawer {
         var seen = 0;
         foreach (Stat stat in Enum.GetValues(typeof(Stat)))
         {
+            var info = stat.Info();
+            if (info == null) continue;
             EditorGUI.LabelField(
                 new Rect(pos.x, 24 + pos.y + seen * 18, pos.width, EditorGUIUtility.singleLineHeight),
                 stat + ": ");
-
-            var oldFloat = GetStatValue(property, stat);
-            var newFloat = EditorGUI.FloatField(
-                new Rect(pos.x + 82, 24 + pos.y + seen * 18, pos.width, EditorGUIUtility.singleLineHeight),
-                oldFloat,
-                fieldStyle);
-            if (newFloat != oldFloat) {
-                SetStatValue(property, stat, newFloat);
+            if (info.IsFlag) 
+            {
+                var oldToggle = GetStatValue(property, stat);
+                var newToggle = EditorGUI.Toggle(
+                    new Rect(pos.x + 148, 24 + pos.y + seen * 18, pos.width, EditorGUIUtility.singleLineHeight),
+                    oldToggle > 0.0f) ? 1.0f : 0.0f;
+                if (!Mathf.Approximately(newToggle, oldToggle)) 
+                {
+                    SetStatValue(property, stat, newToggle);
+                }
+            } 
+            else 
+            {
+                var oldFloat = GetStatValue(property, stat);
+                var newFloat = EditorGUI.FloatField(
+                    new Rect(pos.x + 82, 24 + pos.y + seen * 18, pos.width, EditorGUIUtility.singleLineHeight),
+                    oldFloat,
+                    fieldStyle);
+                if (!Mathf.Approximately(newFloat, oldFloat)) 
+                {
+                    SetStatValue(property, stat, newFloat);
+                }
             }
             seen += 1;
         }
@@ -63,9 +74,9 @@ public class StatSetDrawer : PropertyDrawer {
 
     private void SetStatValue(SerializedProperty property, Stat stat, float value) 
     {
-        SerializedProperty serialDictionary = property.FindPropertyRelative("serializedStats");
-        SerializedProperty keys = serialDictionary.FindPropertyRelative("keys");
-        SerializedProperty values = serialDictionary.FindPropertyRelative("values");
+        var serialDictionary = property.FindPropertyRelative("serializedStats");
+        var keys = serialDictionary.FindPropertyRelative("keys");
+        var values = serialDictionary.FindPropertyRelative("values");
 
         var applied = false;
         for (var i = 0; i < keys.arraySize; i += 1) 
@@ -90,5 +101,4 @@ public class StatSetDrawer : PropertyDrawer {
         
         property.serializedObject.ApplyModifiedProperties();
     }
-}
 }

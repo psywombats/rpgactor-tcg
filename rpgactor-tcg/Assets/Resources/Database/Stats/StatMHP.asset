@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: StatMHP
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.StatInfo
   associatedStat: 1
+  isPrimary: 1
+  isFlag: 0
   abbreviation: MHP
   statName: Max Health
   icon: {fileID: 1755198807, guid: da1903ee954764a4e8e88adc02e4fe0f, type: 3}

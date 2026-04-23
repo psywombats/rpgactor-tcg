@@ -15,4 +15,28 @@ public static class AsyncUtils
             Debug.LogException(ex);
         }
     }
+
+    public static async Task RunInBackgroundIfPossible(Func<Task> task)
+    {
+        if (Application.platform == RuntimePlatform.WebGLPlayer)
+        {
+            await task.Invoke();
+        }
+        else
+        {
+            await Task.Run(() => task);
+        }
+    }
+    
+    public static async Task RunInBackgroundIfPossible(Action action)
+    {
+        if (Application.platform == RuntimePlatform.WebGLPlayer)
+        {
+            action.Invoke();
+        }
+        else
+        {
+            await Task.Run(action);
+        }
+    }
 }

@@ -14,13 +14,24 @@ namespace RpgActorTGC
         {
             Data = data;
         }
-        
-        public string GetShortDescription([CanBeNull] CharacterCard owner, bool pretty = false) 
-            => $"{Data.mpCost}{(pretty ? "<sprite name=\"mp\">" : "")}: {Data.GetAbilityName(owner?.Data)} {Power}";
+
+        public string GetShortDescription([CanBeNull] CharacterCard owner, bool pretty = false)
+        {
+            var desc = "";
+            if (Data.mpCost > 0)
+            {
+                desc += Data.mpCost;
+                if (pretty) desc += "<sprite name=\"mp\">";
+                desc += Data.IsContinuous ? "+" : ":";
+            }
+            desc += Data.GetAbilityName(owner?.Data);
+            if (Data.HasPower) desc +=  " " + Data.power;
+            return desc;
+        }
 
         public string GetLongDescription([CanBeNull] CharacterCard owner, bool pretty = false)
             => $"{string.Format(Data.GetAbilityDesc(owner?.Data), Power)}. This ability activates " +
-               $"{(!Data.IsContinuous ? "once" : "every turn")} once the party has {Data.mpCost} MP.";
+               $"{(!Data.IsContinuous ? "once" : "every turn")} the party has {Data.mpCost} MP.";
 
         public override string ToString() => GetShortDescription(null);
     }

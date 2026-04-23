@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: StatDEF
   m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.StatInfo
   associatedStat: 5
+  isPrimary: 1
+  isFlag: 0
   abbreviation: DEF
   statName: Defense
   icon: {fileID: 1094690630, guid: da1903ee954764a4e8e88adc02e4fe0f, type: 3}

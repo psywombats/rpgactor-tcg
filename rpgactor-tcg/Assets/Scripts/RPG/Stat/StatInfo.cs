@@ -7,6 +7,9 @@ namespace RpgActorTGC
     public class StatInfo : ScriptableObject, IDatabaseKeyable
     {
         [SerializeField] private Stat associatedStat;
+        [SerializeField] private bool isPrimary;
+        [SerializeField] private bool isFlag;
+        [Space]
         [SerializeField] private string abbreviation;
         [SerializeField] private string statName;
         [SerializeField] private Sprite icon;
@@ -16,5 +19,7 @@ namespace RpgActorTGC
         public string StatName => statName;
         public Sprite Icon => icon;
         public string Description => description;
+        public bool IsFlag => isFlag;
+        public bool IsPrimary => isPrimary;
     }
 }

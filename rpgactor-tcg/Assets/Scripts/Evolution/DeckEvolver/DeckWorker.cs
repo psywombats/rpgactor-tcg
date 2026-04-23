@@ -25,15 +25,34 @@ namespace RpgActorTGC
                 var winner = battle.SimulateBattleAsync(party1, party2).Result;
                 task.Solution1.UnlockParty(party1);
                 task.Solution2.UnlockParty(party2);
-
-                if (winner != null)
-                {
-                    // simple int32 addition is atomic
-                    task.Solution1.Wins += winner.Deck == task.Solution1.Deck ? 1 : 0;
-                    task.Solution2.Wins += winner.Deck == task.Solution2.Deck ? 1 : 0;
-                }
+                ScoreResult(task.Solution1, task.Solution2, winner);
             }
             tasks.Clear();
+        }
+
+        public static void ScoreResult(DeckSolution solution1, DeckSolution solution2, Party winner)
+        {
+            if (winner != null)
+            {
+                // simple int32 addition is atomic
+                solution1.Wins += winner.Deck == solution1.Deck ? 1 : 0;
+                solution2.Wins += winner.Deck == solution2.Deck ? 1 : 0;
+
+                if (winner.Deck == solution1.Deck)
+                {
+                    foreach (var card in solution1.Deck.CardsByLane.Values)
+                    {
+                        card.LifetimeWins += 1;
+                    }
+                }
+                if (winner.Deck == solution2.Deck)
+                {
+                    foreach (var card in solution2.Deck.CardsByLane.Values)
+                    {
+                        card.LifetimeWins += 1;
+                    }
+                }
+            }
         }
     }
 }

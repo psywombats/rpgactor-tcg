@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 797b1c6c9c724ba2936116a9c204bd58, type: 3}
+  m_Name: LeaderCheerer
+  m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.CharacterData
+  characterName: Cheerer
+  sprite: {fileID: 11400000, guid: 2de46508177995544a63902cfa78a8c6, type: 2}
+  isLeader: 1
+  rarity: 2
+  stats:
+    serializedStats:
+      keys:
+      - MHP
+      - MP
+      - ATK
+      - SPD
+      values:
+      - 13
+      - 3
+      - 4
+      - 10
+  abilities:
+  - warhead: {fileID: 11400000, guid: 21325e67c4fab0a4aa10969da3269f93, type: 2}
+    mpCost: 12
+    power: 2
+  actorPreferredName: 
+  actorPreferredClasses: []
+  actorPreferredDID: 

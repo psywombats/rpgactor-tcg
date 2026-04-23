@@ -85,7 +85,7 @@ namespace RpgActorTGC
             var str = dmg > 0 ? shakeStrength : Vector2.zero;
             return Task.WhenAll(
                 spriteTransform.DOShakeAnchorPos(shakeDuration, str, shakeVibrato, shakeRandomness).AsTask(),
-                hpSlider.TweenTo(Unit.HP - dmg, attackMoveBackDuration));
+                hpSlider.TweenTo(Unit.HP, attackMoveBackDuration));
         }
 
         public Task SwapToUnitPosAsync(UnitView unit2View)

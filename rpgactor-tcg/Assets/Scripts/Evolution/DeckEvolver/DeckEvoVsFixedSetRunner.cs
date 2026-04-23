@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace RpgActorTGC
 {
@@ -30,28 +31,42 @@ namespace RpgActorTGC
 
         protected override void AssignScoresToSolutions(List<DeckSolution> solutions)
         {
-            while (workers.Count < Environment.ProcessorCount)
-            {
-                workers.Add(new DeckWorker());
-            }
-            
             foreach (var sol in solutions)
             {
                 sol.Wins = 0;
             }
-
-            var created = 0;
-            for (var i = 0; i < solutions.Count; i++)
+            if (Application.platform != RuntimePlatform.WebGLPlayer)
             {
-                var sol1 =  solutions[i];
-                for (var j = i + 1; j < oppositionSolutions.Count; j++)
+                while (workers.Count < Environment.ProcessorCount)
                 {
-                    var sol2 = oppositionSolutions[j];
-                    workers[created % workers.Count].AssignTask(new DeckWorker.DeckTask(sol1, sol2));
-                    created += 1;
+                    workers.Add(new DeckWorker());
+                }
+
+                var created = 0;
+                foreach (var sol1 in solutions)
+                {
+                    foreach (var sol2 in oppositionSolutions)
+                    {
+                        workers[created % workers.Count].AssignTask(new DeckWorker.DeckTask(sol1, sol2));
+                        created += 1;
+                    }
+                }
+                Parallel.Invoke(workers.Select<DeckWorker, Action>(worker => worker.SimulateBattles).ToArray());
+            }
+            else
+            {
+                var battle = new BattleModel();
+                foreach (var sol1 in solutions)
+                {
+                    foreach (var sol2 in oppositionSolutions)
+                    {
+                        var party1 = sol1.GetFreshParty();
+                        var party2 = sol2.GetFreshParty();
+                        var winner = battle.SimulateBattleAsync(party1, party2).Result;
+                        DeckWorker.ScoreResult(sol1, sol2, winner);
+                    }
                 }
             }
-            Parallel.Invoke(workers.Select<DeckWorker, Action>(worker => worker.SimulateBattles).ToArray());
             
             foreach (var sol in solutions)
             {

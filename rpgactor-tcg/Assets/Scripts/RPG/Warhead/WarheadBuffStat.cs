@@ -9,14 +9,20 @@ namespace RpgActorTGC
     {
         [SerializeField] private Stat stat;
 
+        public override bool HasPower => !stat.Info().IsFlag;
+
         protected override string GetUseMessage(BattleModel battle, Unit caster, List<Unit> victims, AbilityInstance instance, int power)
         {
-            return $"Raised {stat.Info().StatName} of {GetVictimsString(victims)} by {power}.";
+            var verb = power > 0 ? "Raised" : "Lowered";
+            return stat.Info().IsFlag 
+                ? $"{GetVictimsString(victims)} is now {stat.Info().StatName}." 
+                : $"{verb} {stat.Info().StatName} of {GetVictimsString(victims)} by {power}.";
         }
 
         protected override Task ApplyToVictimAsync(BattleModel battle, Unit caster, AbilityInstance instance, int power, Unit victim)
         {
             victim[stat] += power;
+            if (victim[stat] < 0) victim[stat] = 0;
             if (battle.UseVerboseLogging) battle.SimLog($"Raised {victim.CompositionString} {stat.Info().StatName} by {power} to {victim[stat]}");
             if (stat == Stat.SPD)
             {

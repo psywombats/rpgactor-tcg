@@ -43,7 +43,7 @@ namespace RpgActorTGC
             }
         }
 
-        private Party GetFreshParty()
+        public Party GetFreshParty()
         {
             if (party == null)
             {

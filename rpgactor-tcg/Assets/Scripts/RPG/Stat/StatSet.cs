@@ -60,8 +60,9 @@ namespace RpgActorTGC
             set => Set(tag, value);
         }
 
-        public IEnumerable<Tuple<Stat, float>> ToTuples() =>
-            Enum.GetValues(typeof(Stat)).Cast<Stat>().Select(stat => new Tuple<Stat, float>(stat, Get(stat)));
+        public IEnumerable<Tuple<Stat, float>> ToTuples() => Enum.GetValues(typeof(Stat)).Cast<Stat>()
+            .Where(stat => stat.Info().IsPrimary)
+            .Select(stat => new Tuple<Stat, float>(stat, Get(stat)));
 
         #endregion
         

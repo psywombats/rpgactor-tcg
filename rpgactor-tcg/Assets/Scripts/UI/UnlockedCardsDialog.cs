@@ -35,9 +35,9 @@ namespace RpgActorTGC
             
             tcs = new TaskCompletionSource<bool>();
             await tcs.Task;
-
-            gameObject.SetActive(false);
+            
             await canvas.DOFade(0f, transitionDuration).AsTask();
+            gameObject.SetActive(false);
         }
 
         private void Populate(List<CharacterCard> newCards)
