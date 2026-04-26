@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 797b1c6c9c724ba2936116a9c204bd58, type: 3}
+  m_Name: LeaderLowMP
+  m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.CharacterData
+  characterName: Low MP
+  sprite: {fileID: 11400000, guid: 371762c6836986044a1ba126b96828be, type: 2}
+  isLeader: 0
+  rarity: 7
+  element: 5
+  stats:
+    serializedStats:
+      keys:
+      - MP
+      - MHP
+      - ATK
+      - SPD
+      - DEF
+      values:
+      - 1
+      - 20
+      - 4
+      - 1
+      - 2
+  abilities:
+  - warhead: {fileID: 11400000, guid: 16ec65541a98d62489ce6d4aad6e94f9, type: 2}
+    mpCost: 4
+    power: 0
+    anim: {fileID: 0}
+    isContinuous: 0
+  actorPreferredName: 
+  actorPreferredClasses:
+  - Fighter
+  - Barbarian
+  - Fish
+  actorPreferredDID: 
+  actorPreferredStat: 2

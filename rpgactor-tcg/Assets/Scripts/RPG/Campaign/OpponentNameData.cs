@@ -6,12 +6,7 @@ namespace RpgActorTGC
     [CreateAssetMenu(fileName = "OpponentNameData", menuName = "Data/Opponent Names")]
     public class OpponentNameData : ScriptableObject
     {
-        [SerializeField] private List<string> prefixes;
-        [SerializeField] private List<string> suffixes;
-
-        public string GeneratePlayerName()
-        {
-            return $"{prefixes.Choose()} {suffixes.Choose()}";
-        }
+        [SerializeField] public List<string> prefixes;
+        [SerializeField] public List<string> suffixes;
     }
 }

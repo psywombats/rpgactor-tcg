@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 797b1c6c9c724ba2936116a9c204bd58, type: 3}
+  m_Name: HeroContinuousRage
+  m_EditorClassIdentifier: Assembly-CSharp::RpgActorTGC.CharacterData
+  characterName: Continuous Rage
+  sprite: {fileID: 11400000, guid: e2719ec87bfdca942986c98f3383f9ee, type: 2}
+  isLeader: 0
+  rarity: 6
+  element: 1
+  stats:
+    serializedStats:
+      keys:
+      - MHP
+      - ATK
+      - SPD
+      values:
+      - 11
+      - 2
+      - 9
+  abilities:
+  - warhead: {fileID: 11400000, guid: ad4db2b28b982c043a9c8e528fcb62f3, type: 2}
+    mpCost: 5
+    power: 1
+    anim: {fileID: 0}
+    isContinuous: 1
+  actorPreferredName: 
+  actorPreferredClasses:
+  - Barbarian
+  - Fighter
+  actorPreferredDID: 
+  actorPreferredStat: 1

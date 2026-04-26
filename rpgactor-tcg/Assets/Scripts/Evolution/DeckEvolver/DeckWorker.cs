@@ -40,14 +40,14 @@ namespace RpgActorTGC
 
                 if (winner.Deck == solution1.Deck)
                 {
-                    foreach (var card in solution1.Deck.CardsByLane.Values)
+                    foreach (var card in solution1.Deck)
                     {
                         card.LifetimeWins += 1;
                     }
                 }
                 if (winner.Deck == solution2.Deck)
                 {
-                    foreach (var card in solution2.Deck.CardsByLane.Values)
+                    foreach (var card in solution2.Deck)
                     {
                         card.LifetimeWins += 1;
                     }

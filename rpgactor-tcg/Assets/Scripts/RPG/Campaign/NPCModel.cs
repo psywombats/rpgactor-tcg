@@ -5,10 +5,13 @@ namespace RpgActorTGC
     public class NPCModel : EntrantModel
     {
         public sealed override string EntrantName { get; }
+
+        private BehaviorType type;
         
-        public NPCModel()
+        public NPCModel(BehaviorType type)
         {
-            EntrantName = ConstantsData.Instance.oppoNames.GeneratePlayerName();
+            this.type = type;
+            EntrantName = CampaignManager.Instance.GeneratePlayerName();
             CurrentDeck = Deck.CreateRandom(EntrantName, CampaignManager.Instance.GloballyAvailableHeroes,
                 CampaignManager.Instance.GloballyAvailableLeaders);
         }
@@ -31,6 +34,16 @@ namespace RpgActorTGC
                 }
             }
             base.SetupForNewRound();
+        }
+
+        public enum BehaviorType
+        {
+            Frontrunner,    // intelligently builds decks to counter
+            Content,        // keeps entering the same deck, and only innovates when the deck starts losing
+            Copycat,        // enters winning decks from last round
+            Scientist,      // builds unique decks, and keeps reentering them as long as they're unique and not terrible
+            Chaff,          // generates random decks every round (or keeps them if they win)
+            
         }
     }
 }

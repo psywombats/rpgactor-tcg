@@ -22,6 +22,10 @@ namespace RpgActorTGC
         public int RoundCount { get; private set; }
 
         public bool IsTutorial { get; set; }
+        
+        private HashSet<string> availableNPCPrefixes;
+        private HashSet<string> availableNPCSuffixes;
+        private HashSet<Deck> historicallyStrongDecks;
 
         protected override void Init()
         {
@@ -46,12 +50,19 @@ namespace RpgActorTGC
             }
             
             AllEntrants.Add(Player);
-            for (var i = 0; i < ConstantsData.Instance.npcCount; i += 1)
-            {
-                var npc = new NPCModel();
-                NPCs.Add(npc);
-                AllEntrants.Add(npc);
-            }
+            var constants = ConstantsData.Instance;
+            for (var i = 0; i < constants.frontrunnerCount; i += 1) CreateNPC(NPCModel.BehaviorType.Frontrunner);
+            for (var i = 0; i < constants.contentCount; i += 1)     CreateNPC(NPCModel.BehaviorType.Content);
+            for (var i = 0; i < constants.copycatCount; i += 1)     CreateNPC(NPCModel.BehaviorType.Copycat);
+            for (var i = 0; i < constants.scientistCount; i += 1)   CreateNPC(NPCModel.BehaviorType.Scientist);
+            for (var i = 0; i < constants.chaffCount; i += 1)       CreateNPC(NPCModel.BehaviorType.Chaff);
+        }
+
+        private void CreateNPC(NPCModel.BehaviorType behaviorType)
+        {
+            var npc = new NPCModel(behaviorType);
+            NPCs.Add(npc);
+            AllEntrants.Add(npc);
         }
 
         public async Task<TourneyRoundResult> SimulateRound(Deck myDeck)
@@ -89,7 +100,10 @@ namespace RpgActorTGC
 
             var topEntrants = new List<EntrantModel>(AllEntrants);
             topEntrants.Sort((a, b) => b.CurrentRoundResult.Wins.CompareTo(a.CurrentRoundResult.Wins));
-            WinningDecks = topEntrants.Take(5).Select(entrant => entrant.CurrentDeck).ToList();
+            
+            WinningDecks = topEntrants.Take(ConstantsData.Instance.winningDeckCount)
+                .Select(entrant => entrant.CurrentDeck).ToList();
+            historicallyStrongDecks.UnionWith(WinningDecks);
             
             RoundCount++;
             return Player.CurrentRoundResult;
@@ -120,6 +134,21 @@ namespace RpgActorTGC
             }
 
             return unlocked;
+        }
+
+        public string GeneratePlayerName()
+        {
+            if (availableNPCPrefixes == null)
+            {
+                availableNPCPrefixes = new HashSet<string>(ConstantsData.Instance.oppoNames.prefixes);
+                availableNPCSuffixes = new HashSet<string>(ConstantsData.Instance.oppoNames.suffixes);
+            }
+
+            var prefix = availableNPCPrefixes.Choose();
+            var suffix = availableNPCSuffixes.Choose();
+            availableNPCPrefixes.Remove(prefix);
+            availableNPCSuffixes.Remove(suffix);
+            return prefix + " " + suffix;
         }
 
         private void RunEvoAlgorithm()

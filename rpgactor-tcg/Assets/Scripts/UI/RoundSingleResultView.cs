@@ -32,7 +32,7 @@ namespace RpgActorTGC
             npc = newNPC;
             var myResult = CampaignManager.Instance.Player.CurrentRoundResult.ResultsByOpponent[npc];
             
-            spritesList.Populate(npc.CurrentDeck.CardsByLane.Values, (obj, card) =>
+            spritesList.Populate(npc.CurrentDeck, (obj, card) =>
             {
                 obj.GetComponent<ResultsSpriteView>().Populate(card);
             });

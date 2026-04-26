@@ -57,7 +57,7 @@ namespace RpgActorTGC
             return party;
         }
 
-        public override bool IsEquivalentTo(DeckSolution other) => other.Deck.IsEquivalentTo(Deck);
+        public override bool IsEquivalentTo(DeckSolution other) => other.Deck.HasSameCardsAs(Deck);
 
         public override DeckSolution CrossWith(DeckSolution other)
         {
@@ -69,25 +69,25 @@ namespace RpgActorTGC
             {
                 if (newCards[(int)lane] == null)
                 {
-                    if (Deck.CardsByLane[lane].IsLeader)
+                    if (Deck[lane].IsLeader)
                     {
-                        newCards[(int)lane] = other.Deck.CardsByLane[lane];
+                        newCards[(int)lane] = other.Deck[lane];
                     }
-                    else if (other.Deck.CardsByLane[lane].IsLeader)
+                    else if (other.Deck[lane].IsLeader)
                     {
-                        newCards[(int)lane] = Deck.CardsByLane[lane];
+                        newCards[(int)lane] = Deck[lane];
                     }
                     else
                     {
                         newCards[(int)lane] = RandomUtils.Flip()
-                            ? Deck.CardsByLane[lane]
-                            : other.Deck.CardsByLane[lane];
+                            ? Deck[lane]
+                            : other.Deck[lane];
                     }
                 }
 
-                newCards[(int)lane] ??= (other.Deck.CardsByLane[lane].IsLeader && !Deck.CardsByLane[lane].IsLeader)
-                    ? Deck.CardsByLane[lane] 
-                    : other.Deck.CardsByLane[lane];
+                newCards[(int)lane] ??= (other.Deck[lane].IsLeader && !Deck[lane].IsLeader)
+                    ? Deck[lane] 
+                    : other.Deck[lane];
             }
             
             return new DeckSolution(new Deck("Evolved Deck",
@@ -98,7 +98,7 @@ namespace RpgActorTGC
         {
             if (RandomUtils.NextFloat() < .1f)
             {
-                var shuffled = Deck.CardsByLane.Values.ToList();
+                var shuffled = Deck.ToList();
                 RandomUtils.Shuffle(shuffled);
                 Deck = new Deck("Shuffled Deck", shuffled[0],  shuffled[1], shuffled[2], shuffled[3]);
             }
@@ -106,11 +106,11 @@ namespace RpgActorTGC
             {
                 var newCards = new CharacterCard[4];
                 var index = RandomUtils.Range(0, 4);
-                var replacee = Deck.CardsByLane[(LaneType)index];
+                var replacee = Deck[(LaneType)index];
                 newCards[index] = CardCache.Instance.GetRandomCharacter(replacee.IsLeader);
                 foreach (LaneType lane in Enum.GetValues(typeof(LaneType)))
                 {
-                    newCards[(int)lane] ??= Deck.CardsByLane[lane];
+                    newCards[(int)lane] ??= Deck[lane];
                 }
 
                 Deck = new Deck("Mutated Deck",

@@ -41,7 +41,8 @@ namespace RpgActorTGC
         {
             GameplayView = mainView;
             
-            gridResultsList.Populate(CampaignManager.Instance.NPCs, (obj, npc) =>
+            gridResultsList.Populate(CampaignManager.Instance.NPCs.OrderBy(npc => npc.CurrentRoundResult.Wins), 
+                (obj, npc) =>
             {
                 obj.GetComponent<RoundSingleResultView>().Populate(mainView, npc);
             });
@@ -51,11 +52,10 @@ namespace RpgActorTGC
             PopulateTopPlayers();
 
             var player = CampaignManager.Instance.Player;
-            var myCards = player.CurrentDeck.CardsByLane;
-            backChara.Sprite = myCards[LaneType.Back].Sprite;
-            leftChara.Sprite = myCards[LaneType.Left].Sprite;
-            centerChara.Sprite = myCards[LaneType.Center].Sprite;
-            rightChara.Sprite = myCards[LaneType.Right].Sprite;
+            backChara.Sprite = player.CurrentDeck[LaneType.Back].Sprite;
+            leftChara.Sprite = player.CurrentDeck[LaneType.Left].Sprite;
+            centerChara.Sprite = player.CurrentDeck[LaneType.Center].Sprite;
+            rightChara.Sprite = player.CurrentDeck[LaneType.Right].Sprite;
 
             winLossTooltip.Message = $"{player.LifetimeWins}-{player.LifetimeLosses}";
         }

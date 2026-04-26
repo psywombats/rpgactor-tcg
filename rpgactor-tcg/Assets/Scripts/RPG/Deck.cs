@@ -1,17 +1,17 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace RpgActorTGC
 {
-    public class Deck
+    public class Deck : IEnumerable<CharacterCard>
     {
-        public CharacterCard Leader => CardsByLane.Values.FirstOrDefault(c => c != null && c.IsLeader);
-        public IEnumerable<CharacterCard> Followers => CardsByLane.Values.Where(c => c != null && !c.IsLeader);
-        public CharacterCard this[LaneType lane] => CardsByLane.ContainsKey(lane) ? CardsByLane[lane] : null;
+        public CharacterCard Leader => cardsByLane.Values.FirstOrDefault(c => c != null && c.IsLeader);
+        public IEnumerable<CharacterCard> Followers => cardsByLane.Values.Where(c => c != null && !c.IsLeader);
+        public CharacterCard this[LaneType lane] => cardsByLane.ContainsKey(lane) ? cardsByLane[lane] : null;
         
         public string DeckName { get; set; }
-        public Dictionary<LaneType, CharacterCard> CardsByLane { get; } = new();
         public int DeckIndex { get; set; } = -1;
 
         public bool IsIncomplete => Leader == null || Followers.Count() < 3;
@@ -33,10 +33,13 @@ namespace RpgActorTGC
                                     ^ this[LaneType.Left].GetHashCode()
                                     ^ this[LaneType.Center].GetHashCode()
                                     ^ this[LaneType.Right].GetHashCode();
+        
+        private readonly Dictionary<LaneType, CharacterCard> cardsByLane = new();
 
         public Deck(string deckName)
         {
             DeckName = deckName;
+            foreach (LaneType lane in Enum.GetValues(typeof(LaneType))) cardsByLane[lane] = null;
         }
 
         public Deck(Deck other) : this(other.DeckName, other[LaneType.Back], other[LaneType.Left],
@@ -54,10 +57,10 @@ namespace RpgActorTGC
         public Deck(string name, CharacterCard back, CharacterCard left, CharacterCard center, CharacterCard right)
         {
             DeckName = name;
-            CardsByLane[LaneType.Left] = left;
-            CardsByLane[LaneType.Right] = right;
-            CardsByLane[LaneType.Center] = center;
-            CardsByLane[LaneType.Back] = back;
+            cardsByLane[LaneType.Left] = left;
+            cardsByLane[LaneType.Right] = right;
+            cardsByLane[LaneType.Center] = center;
+            cardsByLane[LaneType.Back] = back;
             
             if (Leader == null)
             {
@@ -65,11 +68,11 @@ namespace RpgActorTGC
             }
         }
 
-        public bool ContainsCard(CharacterCard card) => CardsByLane.Values.Contains(card);
+        public bool ContainsCard(CharacterCard card) => cardsByLane.Values.Contains(card);
 
         public LaneType GetLaneForCard(CharacterCard card)
         {
-            foreach (var kvp in CardsByLane)
+            foreach (var kvp in cardsByLane)
             {
                 if (kvp.Value == card)
                 {
@@ -79,18 +82,13 @@ namespace RpgActorTGC
             throw new KeyNotFoundException($"No lane for card {card}");
         }
 
-        public bool IsEquivalentTo(Deck other)
-        {
-            return OrderFreeHash == other.OrderFreeHash;
-        }
-
         public void Replace(LaneType lane, CharacterCard newCard)
         {
             // remove other leaders if we're assigning another one
             if (newCard != null && newCard.IsLeader)
             {
                 var lanesToClear = new HashSet<LaneType>();
-                foreach (var asgn in CardsByLane)
+                foreach (var asgn in cardsByLane)
                 {
                     if (asgn.Value != null && asgn.Value.IsLeader && lane != asgn.Key)
                     {
@@ -99,11 +97,11 @@ namespace RpgActorTGC
                 }
                 foreach (var toClear in lanesToClear)
                 {
-                    CardsByLane.Remove(toClear);
+                    cardsByLane.Remove(toClear);
                 }
             }
 
-            CardsByLane[lane] = newCard;
+            cardsByLane[lane] = newCard;
         }
 
         public static Deck CreateRandom(string deckName,
@@ -120,5 +118,38 @@ namespace RpgActorTGC
             (cards[leaderIndex], cards[0]) = (cards[0], cards[leaderIndex]);
             return new Deck(deckName, cards[0], cards[1], cards[2], cards[3]);
         }
+        
+        #region Equals
+
+        public bool HasSameCardsAs(Deck deck) => OrderFreeHash == deck.OrderFreeHash;
+        
+        public override bool Equals(object obj)
+        {
+            var other = obj as Deck;
+            if (other == null) return false;
+
+            return this[LaneType.Back] == other[LaneType.Back]
+                && this[LaneType.Center] == other[LaneType.Center]
+                && ((this[LaneType.Left] == other[LaneType.Left] && this[LaneType.Right] == other[LaneType.Right])
+                    || (this[LaneType.Left] == other[LaneType.Right] && this[LaneType.Right] == other[LaneType.Left]));
+        }
+
+        public override int GetHashCode()
+        {
+            // we don't distinguish between left/right positions for equivalence checks
+            return HashCode.Combine(
+                this[LaneType.Back].GetHashCode(),
+                this[LaneType.Center].GetHashCode(),
+                this[LaneType.Left].GetHashCode() ^ this[LaneType.Right].GetHashCode());
+        }
+
+        #endregion
+
+        #region IEnumerable
+
+        public IEnumerator<CharacterCard> GetEnumerator() => cardsByLane.Values.GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+        #endregion
     }
 }

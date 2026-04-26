@@ -12,6 +12,7 @@ namespace RpgActorTGC
         public StatSet Stats => Data.stats;
         public bool IsLeader => Data.isLeader;
         public Element Element => Data.element;
+        public int Rarity => Data.rarity;
         
         public int UnlocksAt => CardCache.Instance.GetWinsRequiredForUnlock(Data);
         public bool IsUnlocked => CampaignManager.Instance.MyCards.Contains(this);

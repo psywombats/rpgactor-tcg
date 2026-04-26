@@ -126,7 +126,7 @@ namespace RpgActorTGC
             View = view;
             IsSim = (object)view == null;
 
-            if (Player1.Deck.IsEquivalentTo(Player2.Deck))
+            if (Player1.Deck.HasSameCardsAs(Player2.Deck))
             {
                 if (!IsSim) await View.EndBattleAsync(null);
                 return null;
@@ -196,7 +196,27 @@ namespace RpgActorTGC
             turnOrder.Sort(SpeedComparator);
         }
 
-        private static int SpeedComparator(Unit p1, Unit p2) => p2[Stat.SPD].CompareTo(p1[Stat.SPD]);
+        private static int SpeedComparator(Unit p1, Unit p2)
+        {
+            var result = p2[Stat.SPD].CompareTo(p1[Stat.SPD]);
+            if (result != 0) return result;
+
+            var lane1 = p1.Lane == LaneType.Right ? LaneType.Left : LaneType.Right;
+            var lane2 = p1.Lane == LaneType.Right ? LaneType.Left : LaneType.Right;
+            result = lane1.CompareTo(lane2);
+            if (result != 0) return result;
+
+            result = p2.Party.Sum(unit => unit[Stat.SPD]).CompareTo(p1.Party.Sum(unit => unit[Stat.SPD]));
+            if (result != 0) return result;
+            
+            result = p1.Card.Rarity.CompareTo(p2.Card.Rarity);
+            if (result != 0) return result;
+            
+            result = p1.Party.Deck.GetHashCode().CompareTo(p2.Party.Deck.GetHashCode());
+            if (result != 0) return result;
+
+            throw new InvalidOperationException($"Apparently these two decks are identical: {p1.Party} | {p2.Party}");
+        }
 
         public void SimLog(string message)
         {

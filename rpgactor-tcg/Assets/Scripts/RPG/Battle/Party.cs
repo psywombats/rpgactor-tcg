@@ -18,11 +18,11 @@ namespace RpgActorTGC
         public Party(Deck deck)
         {
             Deck = deck;
-            foreach (var kvp in deck.CardsByLane)
+            foreach (LaneType lane in Enum.GetValues(typeof(LaneType)))
             {
-                var unit = new Unit(this, kvp.Value, kvp.Key);
+                var unit = new Unit(this, Deck[lane], lane);
                 AllUnits.Add(unit);
-                if (kvp.Value.IsLeader)
+                if (unit.IsLeader)
                 {
                     Leader = unit;
                 }
