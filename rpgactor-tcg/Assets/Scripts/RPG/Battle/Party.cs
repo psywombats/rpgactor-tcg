@@ -64,7 +64,7 @@ namespace RpgActorTGC
             $"{this[LaneType.Center].StateString} / " +
             $"{this[LaneType.Right].StateString})";
 
-        public override string ToString() => StateString;
+        public override string ToString() => PartyName;
 
         #endregion
         

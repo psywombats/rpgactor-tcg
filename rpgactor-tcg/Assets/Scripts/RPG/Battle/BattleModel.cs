@@ -201,9 +201,7 @@ namespace RpgActorTGC
             var result = p2[Stat.SPD].CompareTo(p1[Stat.SPD]);
             if (result != 0) return result;
 
-            var lane1 = p1.Lane == LaneType.Right ? LaneType.Left : LaneType.Right;
-            var lane2 = p1.Lane == LaneType.Right ? LaneType.Left : LaneType.Right;
-            result = lane1.CompareTo(lane2);
+            result = p1.Lane.CompareTo(p2.Lane);
             if (result != 0) return result;
 
             result = p2.Party.Sum(unit => unit[Stat.SPD]).CompareTo(p1.Party.Sum(unit => unit[Stat.SPD]));

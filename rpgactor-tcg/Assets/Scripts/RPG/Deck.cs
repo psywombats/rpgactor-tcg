@@ -138,9 +138,9 @@ namespace RpgActorTGC
         {
             // we don't distinguish between left/right positions for equivalence checks
             return HashCode.Combine(
-                this[LaneType.Back].GetHashCode(),
-                this[LaneType.Center].GetHashCode(),
-                this[LaneType.Left].GetHashCode() ^ this[LaneType.Right].GetHashCode());
+                this[LaneType.Back]?.GetHashCode(),
+                this[LaneType.Center]?.GetHashCode(),
+                this[LaneType.Left]?.GetHashCode() ^ this[LaneType.Right]?.GetHashCode());
         }
 
         #endregion

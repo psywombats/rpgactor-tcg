@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
-namespace RpgActorTGC
+namespace MapElitesTGC
 {
     /// <summary>
     /// A niche represents the competition space of a deck versus the top known solution decks.
@@ -22,25 +23,27 @@ namespace RpgActorTGC
     /// </remarks>
     public class Niche
     {
-        public DeckNicheSolution Elite { get; }
+        public Solution Elite { get; }
+
+        public int Fitness => winSet.Count;
 
         private readonly MapEliteRunner runner;
-        private HashSet<Niche> winSet;
+        private readonly HashSet<Solution> winSet;
 
-        public Niche(MapEliteRunner runner, HashSet<Niche> winSet, DeckNicheSolution elite)
+        public Niche(MapEliteRunner runner, HashSet<Solution> winSet, Solution elite)
         {
             Elite = elite;
             this.winSet = winSet;
             this.runner = runner;
         }
 
-        public bool CanWeBeat(DeckNicheSolution challenger)
+        public async Task<bool> CheckIfWeCanBeatAsync(Solution challenger)
         {
-            var winner = runner.CalcWinner(Elite, challenger);
+            var winner = await runner.CalcBattleWinnerAsync(Elite, challenger);
             return winner == challenger;
         }
 
-        public bool IsSuperiorTo(DeckNicheSolution challenger, HashSet<Niche> otherWinset)
+        public async Task<bool> CheckIfSuperiorToAsync(Solution challenger, HashSet<Solution> otherWinset)
         {
             // if you can beat someone we can't, we aren't superior
             if (otherWinset.Any(win => !winSet.Contains(win)))
@@ -49,16 +52,16 @@ namespace RpgActorTGC
             }
 
             // if we can't beat you, we aren't superior
-            if (!CanWeBeat(challenger))
+            if (!await CheckIfWeCanBeatAsync(challenger))
             {
                 return false;
             }
             
-            // you can't beat someone that we can, and we can beat you -- we are superior
+            // you can't beat anyone we can't, and we can beat you -- we are superior
             return true;
         }
 
-        public bool IsInferiorTo(DeckNicheSolution challenger, HashSet<Niche> otherWinset)
+        public async Task<bool> CheckIfInferiorToAsync(Solution challenger, HashSet<Solution> otherWinset)
         {
             // if we can beat someone you can't, we're not inferior
             if (winSet.Any(win => !otherWinset.Contains(win)))
@@ -66,8 +69,8 @@ namespace RpgActorTGC
                 return false;
             }
             
-            // if we can beat you, so we clearly can't be inferior lol
-            if (CanWeBeat(challenger))
+            // if we can beat you, we clearly can't be inferior lol
+            if (await CheckIfWeCanBeatAsync(challenger))
             {
                 return false;
             }

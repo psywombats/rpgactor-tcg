@@ -9,11 +9,11 @@ public class ConstantsData : ScriptableObject
     [SerializeField] public int deckCount = 3;
     [SerializeField] public int winningDeckCount = 4;
     [Space]
-    [SerializeField] public int frontrunnerCount = 30;
-    [SerializeField] public int scientistCount = 30;
-    [SerializeField] public int copycatCount = 30;
-    [SerializeField] public int contentCount = 30;
-    [SerializeField] public int chaffCount = 30;
+    [SerializeField] public int frontrunnerCount = 2;
+    [SerializeField] public int scientistCount = 2;
+    [SerializeField] public int copycatCount = 5;
+    [SerializeField] public int contentCount = 12;
+    [SerializeField] public int chaffCount = 9;
     [SerializeField, Tooltip("Comma-separated list")] public string rarityUnlockThresholds = "1,2";
     [Space]
     [SerializeField] public SpritesheetFormatData rpgactorSpriteFormat;

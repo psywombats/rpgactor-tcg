@@ -12,19 +12,23 @@ namespace RpgActorTGC
 
         public static float NextFloat() => (float)rand.NextDouble();
         
-        public static T Choose<T>(this IEnumerable<T> set)
+        public static T Choose<T>(this List<T> set)
         {
-            var count = set.Count();
+            var count = set.Count;
             if (count == 0) throw new InvalidOperationException("Cannot choose an empty set.");
             var index = Range(0, count);
             return set.ElementAt(index);
         }
+
+        public static T Choose<T>(this IEnumerable<T> set) => set.ToList().Choose();
         
-        public static T WeightedChoose<T>(List<T> candidates)
+        public static T WeightedChoose<T>(this IList<T> candidates)
         {
+            var count = candidates.Count;
+            if (count == 0) throw new InvalidOperationException("Cannot choose an empty set.");
             var r = rand.NextDouble();
             r *= r; // parabolic weighting
-            var index = UnityEngine.Mathf.FloorToInt((float)(r * candidates.Count));
+            var index = UnityEngine.Mathf.FloorToInt((float)(r * count));
             return candidates[index];
         }
 

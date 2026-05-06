@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using RpgActorTGC;
 
-namespace RpgActorTGC
+namespace MapElitesTGC
 {
     /// <summary>
     /// Runs the MAP-Elites (sorta) algorithm against a particular problem space.
@@ -15,46 +17,120 @@ namespace RpgActorTGC
     /// </remarks>
     public class MapEliteRunner
     {
-        private NicheMap niches = new();
-        private Dictionary<Tuple<DeckNicheSolution, DeckNicheSolution>, DeckNicheSolution> battleVsCache = new();
-        private BattleModel battleSim = new();
+        [Serializable]
+        public class GenerationSettings
+        {
+            public int generationCount = 10;
+            public int generationSize = 100;
+            public float mutationRate = .2f;
+            public int winnerCount = 10;
+        }
+        
+        public List<Solution> Opposition { get; }
+        public GenerationSettings Settings { get; }
+        public List<CharacterCard> AvailableLeaders { get; }
+        public List<CharacterCard> AvailableFollowers { get; }
+        
+        private readonly BattleModel battleSim = new();
+        private NicheMap nicheMap;
+        private Dictionary<(Deck d1, Deck d2), Deck> vsCache = new();
         
         /// <summary>
         /// Creates a solver for a given generation (or list of decks representing a generation)
         /// </summary>
         /// <remarks>
         /// It's important that the opposition is a list and not a set -- some decks appear more frequently than others.
-        /// The set of strongest decks is probably the elites from previous generations. We'll use it to initialize the
-        /// set of niches.
         /// </remarks>
-        /// <param name="opposition">The set of decks we are optimizing to beat</param>
-        /// <param name="knownStrongDecks">A set of decks known to perform well</param>
-        public MapEliteRunner(List<Deck> opposition, HashSet<Deck> knownStrongDecks)
+        public MapEliteRunner(GenerationSettings settings, List<Deck> opposingDecks, 
+            List<CharacterCard> availableHeroes = null, List<CharacterCard> availableLeaders = null)
         {
-            foreach (var deck in knownStrongDecks)
+            Opposition = opposingDecks.Select(d => new Solution(this, d)).ToList();
+            Settings = settings;
+            AvailableFollowers = availableHeroes ?? new List<CharacterCard>(CardCache.Instance.AllHeroCards);
+            AvailableLeaders = availableLeaders ?? new List<CharacterCard>(CardCache.Instance.AllLeaderCards);
+        }
+
+        public async Task<IList<Solution>> RunAsync()
+        {
+            for (var generationIndex = 0; generationIndex < Settings.generationCount; generationIndex++)
             {
-                var solutions = knownStrongDecks.Select(d => new DeckNicheSolution(d)).ToHashSet();
+                if (nicheMap == null)
+                {
+                    await GenerateInitialNichesAsync();
+                }
+                else
+                {
+                    await EvaluateNextGeneration();
+                }
+            }
+
+            return await nicheMap.GetOrderedElitesAsync(Settings.winnerCount);
+        }
+
+        public async Task<Solution> CalcBattleWinnerAsync(Solution sol1, Solution sol2)
+        {
+            if (sol1.Deck.GetHashCode() > sol2.Deck.GetHashCode())
+            {
+                (sol1, sol2) = (sol2, sol1);
+            }
+            if (vsCache.TryGetValue((sol1.Deck, sol2.Deck), out var winnerDeck))
+            {
+                if (Equals(winnerDeck, sol1.Deck)) return sol1;
+                if (Equals(winnerDeck, sol2.Deck)) return sol2;
+                return null;
+            }
+            
+            var p1 = sol1.LockParty();
+            var p2 = sol2.LockParty();
+            var winningParty = await battleSim.SimulateBattleAsync(p1, p2);
+            sol1.UnlockParty(p1);
+            sol2.UnlockParty(p2);
+
+            var winner = winningParty == p1 ? sol1
+                : winningParty == p2 ? sol2
+                : null;
+            vsCache.TryAdd((sol1.Deck, sol2.Deck), winner?.Deck);
+            return winner;
+        }
+
+        private async Task GenerateInitialNichesAsync()
+        {
+            var solutions = new List<Solution>();
+            for (var i = 0; i < Opposition.Count && solutions.Count < Settings.generationSize; i++)
+            {
+                solutions.Add(Opposition[i]);
+            }
+            while (solutions.Count < Settings.generationSize)
+            {
+                solutions.Add(new Solution(this, Deck.CreateRandom("Seed Deck", AvailableFollowers, AvailableLeaders)));
+            }
+            nicheMap = new NicheMap(this, solutions);
+            await nicheMap.PopulateMapAsync();
+        }
+
+        private async Task EvaluateNextGeneration()
+        {
+            var elites = await nicheMap.GetOrderedElitesAsync();
+            for (var i = 0; i < Settings.generationSize; i++)
+            {
+                var parent1 = elites.WeightedChoose();
+                var parent2 = elites.WeightedChoose();
+                var solution = new Solution(this, parent1, parent2);
+                await nicheMap.ClassifySolutionAsync(solution);
             }
         }
 
-        public DeckNicheSolution CalcWinner(DeckNicheSolution sol1, DeckNicheSolution sol2)
+        public async Task<int> CalcFitnessAsync(Solution solution)
         {
-            if (sol1.Deck.GetHashCode() > sol2.GetHashCode())
+            var fitness = 0;
+            foreach (var oppo in Opposition)
             {
-                (sol2, sol1) = (sol1, sol2);
+                if (await CalcBattleWinnerAsync(solution, oppo) == solution)
+                {
+                    fitness++;
+                }
             }
-
-            if (battleVsCache.TryGetValue(new Tuple<DeckNicheSolution, DeckNicheSolution>(sol1, sol2), out var result))
-            {
-                return result;
-            }
-
-            var p1 = sol1.LockParty();
-            var p2 = sol2.LockParty();
-            var winningParty = battleSim.SimulateBattleAsync(p1, p2).Result;
-            var winner = winningParty == p1 ? sol1 : sol2;
-            battleVsCache.Add(new Tuple<DeckNicheSolution, DeckNicheSolution>(sol1, sol2), winner);
-            return winner;
+            return fitness;
         }
     }
 }

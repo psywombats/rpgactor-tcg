@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using MapElitesTGC;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -41,7 +43,7 @@ namespace RpgActorTGC
         {
             GameplayView = mainView;
             
-            gridResultsList.Populate(CampaignManager.Instance.NPCs.OrderBy(npc => npc.CurrentRoundResult.Wins), 
+            gridResultsList.Populate(CampaignManager.Instance.NPCs.OrderBy(npc => -1 * npc.CurrentRoundResult.Wins), 
                 (obj, npc) =>
             {
                 obj.GetComponent<RoundSingleResultView>().Populate(mainView, npc);
@@ -78,6 +80,31 @@ namespace RpgActorTGC
                 obj.GetComponent<TopPlayerView>().Populate((entrant, rank), useOverallTopPlayers);
                 rank += 1;
             });
+        }
+        
+        [EditorAttributes.Button]
+        private void TestMapElites() => TestMapElitesAsync().Forget();
+
+        private async Task TestMapElitesAsync()
+        {
+            var runner = new MapEliteRunner(new MapEliteRunner.GenerationSettings()
+                {
+                    generationCount = 10,
+                    generationSize = 100,
+                    mutationRate = .2f,
+                    winnerCount = 10,
+                },
+                CampaignManager.Instance.AllEntrants.Select(entrant => entrant.CurrentDeck).ToList(),
+                CampaignManager.Instance.GloballyAvailableHeroes,
+                CampaignManager.Instance.GloballyAvailableLeaders);
+            var results = await runner.RunAsync();
+
+            var place = 1;
+            foreach (var result in results)
+            {
+                Debug.Log(place + ": " + result.Deck.CompositionString);
+                place += 1;
+            }
         }
     }
 }

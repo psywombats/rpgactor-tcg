@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace RpgActorTGC
@@ -37,8 +38,8 @@ namespace RpgActorTGC
 
         public Unit(Party party, CharacterCard card, LaneType lane)
         {
-            Party = party;
-            Card = card;
+            Party = party ?? throw new ArgumentNullException(nameof(party));
+            Card = card ?? throw new ArgumentNullException(nameof(card));
             Lane = lane;
             originalLane = Lane;
 

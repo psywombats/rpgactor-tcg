@@ -25,7 +25,6 @@ namespace RpgActorTGC
         
         private HashSet<string> availableNPCPrefixes;
         private HashSet<string> availableNPCSuffixes;
-        private HashSet<Deck> historicallyStrongDecks;
 
         protected override void Init()
         {
@@ -103,7 +102,6 @@ namespace RpgActorTGC
             
             WinningDecks = topEntrants.Take(ConstantsData.Instance.winningDeckCount)
                 .Select(entrant => entrant.CurrentDeck).ToList();
-            historicallyStrongDecks.UnionWith(WinningDecks);
             
             RoundCount++;
             return Player.CurrentRoundResult;
