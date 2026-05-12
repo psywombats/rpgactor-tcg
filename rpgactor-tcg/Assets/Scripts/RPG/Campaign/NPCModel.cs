@@ -12,28 +12,88 @@ namespace RpgActorTGC
         {
             this.type = type;
             EntrantName = CampaignManager.Instance.GeneratePlayerName();
-            CurrentDeck = Deck.CreateRandom(EntrantName, CampaignManager.Instance.GloballyAvailableHeroes,
+            CurrentDeck = Deck.CreateRandom(EntrantName,
+                CampaignManager.Instance.GloballyAvailableHeroes,
                 CampaignManager.Instance.GloballyAvailableLeaders);
         }
 
         public override void SetupForNewRound()
-        { 
-            // if our deck sucks, take one that's proven to work against the current field
-            if (CurrentRoundResult != null && CurrentRoundResult.Wins < CurrentRoundResult.Losses)
+        {
+            if (CurrentRoundResult != null)
             {
-                if (CampaignManager.Instance.EvolvedReplacementDecks.Any())
+                switch (type)
                 {
-                    CurrentDeck = CampaignManager.Instance.EvolvedReplacementDecks.First();
-                    CampaignManager.Instance.EvolvedReplacementDecks.Remove(CurrentDeck);
-                    CurrentDeck.DeckName = EntrantName;
-                }
-                else
-                {
-                    // fuck it, copy a winner
-                    CurrentDeck = CampaignManager.Instance.WinningDecks.Choose();
+                    case BehaviorType.Frontrunner: CheckForNewFrontrunnerDeck(); break;
+                    case BehaviorType.Content:     CheckForNewContentDeck();     break;
+                    case BehaviorType.Copycat:     CheckForNewCopycatDeck();     break;
+                    case BehaviorType.Scientist:   CheckForNewScientistDeck();   break;
+                    case BehaviorType.Chaff:       CheckForNewChaffDeck();       break;
                 }
             }
             base.SetupForNewRound();
+        }
+
+        private void CheckForNewFrontrunnerDeck()
+        {
+            if (CurrentRoundResult.Rank > 0)
+            {
+                CurrentDeck = null;
+            }
+            CurrentDeck ??= CampaignManager.Instance.ClaimEvolvedDeck();
+            if (CurrentDeck == null)
+            {
+                CheckForNewCopycatDeck();
+            }
+        }
+
+        private void CheckForNewCopycatDeck()
+        {
+            if (CurrentRoundResult.Rank > ConstantsData.Instance.winningDeckCount)
+            {
+                CurrentDeck = null;
+            }
+            CurrentDeck ??= CampaignManager.Instance.ClaimWinningDeck();
+            if (CurrentDeck == null)
+            {
+                CheckForNewChaffDeck();
+            }
+        }
+
+        private void CheckForNewScientistDeck()
+        {
+            if (CurrentRoundResult.Losses > CurrentRoundResult.Wins)
+            {
+                CurrentDeck = null;
+            }
+            CurrentDeck ??= CampaignManager.Instance.ClaimUniqueEvolvedDeck();
+            if (CurrentDeck == null)
+            {
+                CheckForNewContentDeck();
+            }
+        }
+
+        private void CheckForNewChaffDeck()
+        {
+            if (CurrentRoundResult.Losses > CurrentRoundResult.Wins + 6)
+            {
+                CurrentDeck = null;
+            }
+            CurrentDeck = Deck.CreateRandom(EntrantName,
+                CampaignManager.Instance.GloballyAvailableHeroes,
+                CampaignManager.Instance.GloballyAvailableLeaders);
+        }
+        
+        private void CheckForNewContentDeck()
+        {
+            if (CurrentRoundResult.Losses > CurrentRoundResult.Wins + 3)
+            {
+                CurrentDeck = null;
+            }
+            CurrentDeck ??= CampaignManager.Instance.ClaimUniqueWinningDeck();
+            if (CurrentDeck == null)
+            {
+                CheckForNewChaffDeck();
+            }
         }
 
         public enum BehaviorType
@@ -43,7 +103,6 @@ namespace RpgActorTGC
             Copycat,        // enters winning decks from last round
             Scientist,      // builds unique decks, and keeps reentering them as long as they're unique and not terrible
             Chaff,          // generates random decks every round (or keeps them if they win)
-            
         }
     }
 }

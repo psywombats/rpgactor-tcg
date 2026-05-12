@@ -93,7 +93,7 @@ namespace RpgActorTGC
                     generationSize = 100,
                     mutationRate = .2f,
                     winnerCount = 10,
-                },
+                }, 
                 CampaignManager.Instance.AllEntrants.Select(entrant => entrant.CurrentDeck).ToList(),
                 CampaignManager.Instance.GloballyAvailableHeroes,
                 CampaignManager.Instance.GloballyAvailableLeaders);

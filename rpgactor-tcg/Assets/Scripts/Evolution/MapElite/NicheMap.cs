@@ -54,7 +54,7 @@ namespace MapElitesTGC
             {
                 if (await runner.CalcBattleWinnerAsync(solution, opponent) == solution)
                 {
-                    winSet.Add(solution);
+                    winSet.Add(opponent);
                 }
             }
 

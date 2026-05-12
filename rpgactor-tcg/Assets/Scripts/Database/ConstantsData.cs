@@ -1,4 +1,5 @@
-﻿using RpgActorTGC;
+﻿using MapElitesTGC;
+using RpgActorTGC;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Constants", menuName = "Data/Constants")]
@@ -21,5 +22,5 @@ public class ConstantsData : ScriptableObject
     [Space]
     [SerializeField] public OpponentNameData oppoNames;
     [Space]
-    [SerializeField] public EvolutionRunner<DeckSolution>.EvolutionSettings evolutionSettings;
+    [SerializeField] public MapEliteRunner.GenerationSettings evolutionSettings;
 }

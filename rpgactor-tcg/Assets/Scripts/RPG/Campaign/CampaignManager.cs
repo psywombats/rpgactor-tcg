@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MapElitesTGC;
 
 namespace RpgActorTGC
 {
@@ -15,9 +16,6 @@ namespace RpgActorTGC
         public HashSet<CharacterCard> MyCards { get; } = new();
         public List<CharacterCard> GloballyAvailableLeaders { get; } = new();
         public List<CharacterCard> GloballyAvailableHeroes { get; } = new();
-        
-        public List<Deck> EvolvedReplacementDecks { get; private set; }
-        public List<Deck> WinningDecks { get; private set; } = new();
 
         public int RoundCount { get; private set; }
 
@@ -99,9 +97,15 @@ namespace RpgActorTGC
 
             var topEntrants = new List<EntrantModel>(AllEntrants);
             topEntrants.Sort((a, b) => b.CurrentRoundResult.Wins.CompareTo(a.CurrentRoundResult.Wins));
+
+            for (var i = 0; i < topEntrants.Count; i++)
+            {
+                topEntrants[i].CurrentRoundResult.Rank = i;
+            }
             
-            WinningDecks = topEntrants.Take(ConstantsData.Instance.winningDeckCount)
+            winningDecks = topEntrants.Take(ConstantsData.Instance.winningDeckCount)
                 .Select(entrant => entrant.CurrentDeck).ToList();
+            uniqueWinningDecks = new List<Deck>(winningDecks);
             
             RoundCount++;
             return Player.CurrentRoundResult;
@@ -133,6 +137,17 @@ namespace RpgActorTGC
 
             return unlocked;
         }
+        
+        private void RunEvoAlgorithm()
+        {
+            var runner = new MapEliteRunner(ConstantsData.Instance.evolutionSettings,
+                AllEntrants.Select(entrant => entrant.CurrentDeck).ToList(),
+                GloballyAvailableHeroes,
+                GloballyAvailableLeaders);
+            var solutions = runner.RunAsync().Result;
+            evolvedDecks = solutions.Select(sol => sol.Deck).ToList();
+            uniqueEvolvedDecks = new List<Deck>(evolvedDecks);
+        }
 
         public string GeneratePlayerName()
         {
@@ -148,13 +163,56 @@ namespace RpgActorTGC
             availableNPCSuffixes.Remove(suffix);
             return prefix + " " + suffix;
         }
+        
+        #region Claim next deck
+        
+        // claimables
+        private List<Deck> evolvedDecks;
+        private List<Deck> uniqueEvolvedDecks;
+        private List<Deck> winningDecks;
+        private List<Deck> uniqueWinningDecks;
+        
+        public Deck ClaimEvolvedDeck() => ClaimNextDeck(evolvedDecks, uniqueEvolvedDecks);
+        public Deck ClaimUniqueEvolvedDeck() => ClaimNextUniqueDeck(evolvedDecks, uniqueEvolvedDecks);
+        public Deck ClaimWinningDeck() => ClaimNextDeck(winningDecks, uniqueWinningDecks);
+        public Deck ClaimUniqueWinningDeck() => ClaimNextUniqueDeck(winningDecks, uniqueWinningDecks);
 
-        private void RunEvoAlgorithm()
+        private Deck ClaimNextDeck(List<Deck> decks, List<Deck> uniqueDecks)
         {
-            var runner = new DeckEvoVsFixedSetRunner(AllEntrants.Select(entrant => entrant.CurrentDeck),
-                GloballyAvailableLeaders, GloballyAvailableHeroes);
-            var solutions = runner.RunEvolution(ConstantsData.Instance.evolutionSettings);
-            EvolvedReplacementDecks = solutions.Select(sol => sol.Deck).ToList();
+            var result = decks.FirstOrDefault();
+            return ClaimDeck(decks, uniqueDecks, result);
         }
+
+        private Deck ClaimNextUniqueDeck(List<Deck> decks, List<Deck> uniqueDecks)
+        {
+            var result = uniqueDecks.FirstOrDefault();
+            return ClaimDeck(decks, uniqueDecks, result);
+        }
+
+        private Deck ClaimDeck(List<Deck> decks, List<Deck> uniqueDecks, Deck deck)
+        {
+            if (deck == null) return null;
+            decks.Remove(deck);
+            RemoveDeckAndVariants(uniqueDecks, deck);
+            return new Deck(deck);
+        }
+        
+        private void RemoveDeckAndVariants(List<Deck> decks, Deck toRemove)
+        {
+            if (toRemove == null) return;
+
+            // treat subsequent similar decks as variants and ignore for the sake of variety
+            foreach (var deck in decks.ToList().Where(deck => deck.CalculateDistance(toRemove) <= 1))
+            {
+                decks.Remove(deck);
+            }
+        }
+        
+        public IEnumerable<Deck> GetTopNPCDecks(int count)
+        {
+            return NPCs.OrderBy(a => -1 * a.CurrentRoundResult.Wins).Take(count).Select(npc => npc.CurrentDeck);
+        }
+        
+        #endregion
     }
 }

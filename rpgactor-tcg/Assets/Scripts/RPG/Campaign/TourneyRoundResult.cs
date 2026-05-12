@@ -6,6 +6,7 @@ namespace RpgActorTGC
     {
         public int Wins { get; private set; }
         public int Losses { get; private set; }
+        public int Rank { get; set; }
 
         public Dictionary<EntrantModel, bool> ResultsByOpponent { get; } = new();
 

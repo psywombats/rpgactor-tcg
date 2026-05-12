@@ -145,7 +145,7 @@ namespace RpgActorTGC
             await CancelSubmenusAsync();
             await mainMenuTrans.TweenToStateAsync(true, transitionDuration);
             var practiceDecks = new HashSet<Deck>(CampaignManager.Instance.Player.MyDecks);
-            foreach (var deck in CampaignManager.Instance.WinningDecks) practiceDecks.Add(deck);
+            foreach (var deck in CampaignManager.Instance.GetTopNPCDecks(5)) practiceDecks.Add(deck);
             practiceMenu.Populate(practiceDecks, this);
             await practiceMenu.ShowAsync();
         }

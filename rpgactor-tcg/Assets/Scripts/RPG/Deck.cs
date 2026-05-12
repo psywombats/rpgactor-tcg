@@ -104,6 +104,11 @@ namespace RpgActorTGC
             cardsByLane[lane] = newCard;
         }
 
+        public int CalculateDistance(Deck other)
+        {
+            return cardsByLane.Count - this.Count(other.ContainsCard);
+        }
+
         public static Deck CreateRandom(string deckName,
             List<CharacterCard> availableHeroes = null, List<CharacterCard> availableLeaders = null)
         {
